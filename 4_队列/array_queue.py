@@ -26,6 +26,10 @@ class Array(object):
             yield item
 
 
+class FullError(Exception):
+    pass
+
+
 class ArrayQueue(object):
     def __init__(self, maxsize):
         self.maxsize = maxsize
@@ -34,7 +38,9 @@ class ArrayQueue(object):
         self.tail = 0
 
     def push(self, value):
-        self.array[self.head % self.maxsize] = value
+        if len(self) >= self.maxsize:
+            raise FullError('queue full')
+        self.array[self.head] = value
         self.head += 1
 
     def pop(self):
@@ -42,15 +48,30 @@ class ArrayQueue(object):
         self.tail += 1
         return value
 
+    def __len__(self):
+        return self.head-self.tail
+
 
 def test_queue():
+    import pytest    # pip install pytest
     size = 5
     q = ArrayQueue(size)
     for i in range(size):
         q.push(i)
 
+    with pytest.raises(FullError) as excinfo:   # 我们来测试是否真的抛出了异常
+        q.push(size)
+    assert 'full' in str(excinfo.value)
+
+    assert len(q) == 5
+
     assert q.pop() == 0
     assert q.pop() == 1
+
+    assert len(q) == 3
+
     assert q.pop() == 2
     assert q.pop() == 3
     assert q.pop() == 4
+
+    assert len(q) == 0

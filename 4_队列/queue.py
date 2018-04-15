@@ -150,4 +150,4 @@ def test_queue():
     import pytest    # pip install pytest
     with pytest.raises(EmptyError) as excinfo:   # 我们来测试是否真的抛出了异常
         q.pop()   # 继续调用会抛出异常
-        assert 'empty queue' == excinfo.value
+    assert 'empty queue' == str(excinfo.value)
