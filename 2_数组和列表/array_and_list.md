@@ -24,6 +24,7 @@ Python 的 array 是内存连续、存储的都是同一数据类型的结构，
 
 操作                                  | 平均时间复杂度 |
 --------------------------------------|----------------|
+list[index]| O(1)           |
 list.append                           | O(1)           |
 list.insert                           | O(n)           |
 list.pop(index), default last element | O(1)           |
