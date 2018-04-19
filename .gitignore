@@ -22,3 +22,6 @@ Session.vim
 .cache
 .tmp
 .idea
+
+# mkdocs
+site/

@@ -1,0 +1,16 @@
+site_name: Python 数据结构与算法视频教程
+theme: readthedocs
+extra_javascript:
+    - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+
+markdown_extensions:
+    - mdx_math
+pages:
+  - 课程简介: 'index.md'
+  - 课程简介之本方法学算法: '0_课程简介之笨方法学算法/why_and_how_to_learn.md'
+  - 抽象数据类型和面向对象编程: '1_抽象数据类型和面向对象编程/ADT_OOP.md'
+  - 数组和列表: '2_数组和列表/array_and_list.md'
+  - 链表: '3_链表/linked_list.md'
+  - 队列: '4_队列/queue.md'
+  - 栈: '5_栈/stack.md'
+  - 算法分析: '6_算法分析/big_o.md'
