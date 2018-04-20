@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>抽象数据类型和面向对象编程 - Python 数据结构与算法视频教程</title>
+  <title>哈希表 - Python 数据结构与算法视频教程</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "\u62bd\u8c61\u6570\u636e\u7c7b\u578b\u548c\u9762\u5411\u5bf9\u8c61\u7f16\u7a0b";
-    var mkdocs_page_input_path = "1_\u62bd\u8c61\u6570\u636e\u7c7b\u578b\u548c\u9762\u5411\u5bf9\u8c61\u7f16\u7a0b/ADT_OOP.md";
-    var mkdocs_page_url = "/1_\u62bd\u8c61\u6570\u636e\u7c7b\u578b\u548c\u9762\u5411\u5bf9\u8c61\u7f16\u7a0b/ADT_OOP/";
+    var mkdocs_page_name = "\u54c8\u5e0c\u8868";
+    var mkdocs_page_input_path = "7_\u54c8\u5e0c\u8868/hashtable.md";
+    var mkdocs_page_url = "/7_\u54c8\u5e0c\u8868/hashtable/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -57,30 +57,9 @@
     <a class="" href="../../0_课程简介之笨方法学算法/why_and_how_to_learn/">课程简介之笨方法学算法</a>
 	    </li>
           
-            <li class="toctree-l1 current">
+            <li class="toctree-l1">
 		
-    <a class="current" href="./">抽象数据类型和面向对象编程</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l2"><a href="#python">Python 一切皆对象</a></li>
-    
-
-    <li class="toctree-l2"><a href="#adt">什么是抽象数据类型 ADT</a></li>
-    
-
-    <li class="toctree-l2"><a href="#bag-adt">实现一个 Bag ADT</a></li>
-    
-
-    <li class="toctree-l2"><a href="#adt_1">实现 ADT 我们应该注意什么？</a></li>
-    
-
-    <li class="toctree-l2"><a href="#_1">小问题：</a></li>
-    
-
-    <li class="toctree-l2"><a href="#_2">延伸阅读：</a></li>
-    
-
-    </ul>
+    <a class="" href="../../1_抽象数据类型和面向对象编程/ADT_OOP/">抽象数据类型和面向对象编程</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -108,9 +87,18 @@
     <a class="" href="../../6_算法分析/big_o/">算法分析</a>
 	    </li>
           
-            <li class="toctree-l1">
+            <li class="toctree-l1 current">
 		
-    <a class="" href="../../7_哈希表/hashtable/">哈希表</a>
+    <a class="current" href="./">哈希表</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#_1">哈希表</a></li>
+    
+
+    <li class="toctree-l2"><a href="#o1">如何在 O(1) 时间内查找</a></li>
+    
+
+    </ul>
 	    </li>
           
         </ul>
@@ -135,7 +123,7 @@
     
       
     
-    <li>抽象数据类型和面向对象编程</li>
+    <li>哈希表</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -145,44 +133,17 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="python">Python 一切皆对象</h1>
-<p>举个例子，在 python 中我们经常使用的 list</p>
-<pre><code class="py">l = list()    # 实例化一个 list 对象 l
-l.append(1)    # 调用 l 的 append 方法
-l.append(2)
-l.remove(1)
-print(len(l))    # 调用对象的 `__len__` 方法
+                <h1 id="_1">哈希表</h1>
+<p>不知道你有没有好奇过为什么 Python 里的 dict 和 set 查找速度这么快呢，用了什么黑魔法吗？
+经常听别人说哈希表，究竟什么是哈希表呢？这一章我们来介绍哈希表，后续章节我们会看到 Python 中的字典和集合是如何实现的。</p>
+<h1 id="o1">如何在 O(1) 时间内查找</h1>
+<p>前面我们已经讲到了数组和链表，数组能通过下标 O(1) 访问，但是删除一个中间元素却要移动其他元素，时间 O(n)。
+循环双端链表倒是可以在知道一个节点的情况下迅速删除它，但是吧查找又成了 O(n)。
+难道就没有一种方法可以快速定位和删除元素吗？似乎想要快速找到一个元素除了知道下标之外别无他法，于是乎聪明的计算机科学家又想到了一种方法。
+能不能给每个元素一种『逻辑下标』，然后直接找到它呢，哈希表就是这种实现。它通过一个函数来计算一个元素应该放在数组哪个位置，当然对于一个
+特定的元素，哈希函数每次计算的下标必须要一样才可以：</p>
+<pre><code>hash(element) = index
 </code></pre>
-
-<p>在后面实现新的数据类型时，我们将使用 python 的 class 实现，它包含属性和方法。
-属性一般是使用某种特定的数据类型，而方法一般是对属性的操作。
-这里你只需了解这么多就行了， 我们不会使用继承等特性。</p>
-<h1 id="adt">什么是抽象数据类型 ADT</h1>
-<p>实际上 python 内置的 list 就可以看成一种抽象数据类型。</p>
-<p>ADT: Abstract Data Type，抽象数据类型，我们在组合已有的数据结构来实现一种新的数据类型， ADT 定义了类型的数据和操作。</p>
-<p>我们以抽象一个背包(Bag) 数据类型来说明，背包是一种容器类型，我们可以给它添加东西，也可以移除东西，并且我们想知道背包里
-有多少东西。于是我们可以定义一个新的数据类型叫做 Bag.</p>
-<pre><code class="py">class Bag:
-    &quot;&quot;&quot; 背包类型 &quot;&quot;&quot;
-    pass
-</code></pre>
-
-<h1 id="bag-adt">实现一个 Bag ADT</h1>
-<p>视频中我们将使用 python 的 class 来实现一个新的容器类型叫做 Bag。</p>
-<h1 id="adt_1">实现 ADT 我们应该注意什么？</h1>
-<ul>
-<li>如何选用恰当的数据结构作为存储？</li>
-<li>选取的数据结构能否满足 ADT 的功能需求</li>
-<li>实现效率如何？</li>
-</ul>
-<h1 id="_1">小问题：</h1>
-<ul>
-<li>你了解 python 的魔术方法吗？ 比如 <code>__len__</code> ，调用 len(l) 的时候发生了什么？</li>
-<li>你了解单测吗？我们以后将使用 pytest 运行单元测试，保证我们实现的数据结构和算法是正确的。你可以网上搜索下它的简单用法</li>
-</ul>
-<h1 id="_2">延伸阅读：</h1>
-<p><a href="http://www.atjiang.com/data-structures-using-python-ADT/">数据结构与算法--ADT</a></p>
-<p><a href="http://www.nhu.edu.tw/~chun/CS-ch12-Abstract%20Data%20Types.pdf">http://www.nhu.edu.tw/~chun/CS-ch12-Abstract%20Data%20Types.pdf</a></p>
               
             </div>
           </div>
@@ -190,10 +151,8 @@ print(len(l))    # 调用对象的 `__len__` 方法
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../../2_数组和列表/array_and_list/" class="btn btn-neutral float-right" title="数组和列表">Next <span class="icon icon-circle-arrow-right"></span></a>
       
-      
-        <a href="../../0_课程简介之笨方法学算法/why_and_how_to_learn/" class="btn btn-neutral" title="课程简介之笨方法学算法"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../6_算法分析/big_o/" class="btn btn-neutral" title="算法分析"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -219,10 +178,8 @@ print(len(l))    # 调用对象的 `__len__` 方法
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../../0_课程简介之笨方法学算法/why_and_how_to_learn/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../../6_算法分析/big_o/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
-      
-        <span style="margin-left: 15px"><a href="../../2_数组和列表/array_and_list/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

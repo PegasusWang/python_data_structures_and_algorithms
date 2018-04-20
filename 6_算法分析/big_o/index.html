@@ -54,7 +54,7 @@
           
             <li class="toctree-l1">
 		
-    <a class="" href="../../0_课程简介之笨方法学算法/why_and_how_to_learn/">课程简介之本方法学算法</a>
+    <a class="" href="../../0_课程简介之笨方法学算法/why_and_how_to_learn/">课程简介之笨方法学算法</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -93,25 +93,33 @@
     <li class="toctree-l2"><a href="#o">大 O 表示法</a></li>
     
 
-    <li class="toctree-l2"><a href="#_2">时间复杂度</a></li>
+    <li class="toctree-l2"><a href="#_2">如何计算时间复杂度</a></li>
     
 
-    <li class="toctree-l2"><a href="#_3">空间复杂度</a></li>
+    <li class="toctree-l2"><a href="#_3">常用时间复杂度</a></li>
     
 
-    <li class="toctree-l2"><a href="#_4">常见复杂度增长趋势图</a></li>
+    <li class="toctree-l2"><a href="#_4">空间复杂度</a></li>
     
 
-    <li class="toctree-l2"><a href="#_5">时间换空间，空间换时间</a></li>
+    <li class="toctree-l2"><a href="#_5">常见复杂度增长趋势图</a></li>
     
 
-    <li class="toctree-l2"><a href="#_6">思考题</a></li>
+    <li class="toctree-l2"><a href="#_6">时间换空间，空间换时间</a></li>
     
 
-    <li class="toctree-l2"><a href="#_7">参考资料</a></li>
+    <li class="toctree-l2"><a href="#_7">思考题</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_8">参考资料</a></li>
     
 
     </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../7_哈希表/hashtable/">哈希表</a>
 	    </li>
           
         </ul>
@@ -153,9 +161,15 @@
 <h1 id="o">大 O 表示法</h1>
 <p>我们从一个计算矩阵的例子来引入，这里我参考了 <a href="https://book.douban.com/subject/10607365/">《Data Structures and Algorithms in Python》</a> 中给的一个例子:</p>
 <p>考虑计算一个 n * n 矩阵所有元素的和（如果你不知道矩阵，就理解为一个二维数组）：</p>
-<p>[0, 1, 2]
-[3, 4, 5]
-[6, 7, 8]</p>
+<p>
+<script type="math/tex; mode=display">
+        \begin{bmatrix}
+        0 & 1 & 2 \\
+        3 & 4 & 5 \\
+        6 & 7 & 8 \\
+        \end{bmatrix}
+</script>
+</p>
 <p>这里列举两种方式:</p>
 <pre><code class="py"># version1
 total_sum = 0
@@ -174,15 +188,19 @@ for i in range(n):
     total_sum = total_sum + row_sum[i]    # 注意这里和上边的不同
 </code></pre>
 
-<p>v1 版本的关键操作在 j 循环里，两步加法操作，由于嵌套在第一个循环里，操作步骤是 $(2n) * n = 2n^2$。
-v2 版本的 total_sum 只有 n 次操作，它的操作次数是 n + n*n = n^2 + n</p>
+<p>v1 版本的关键操作在 j 循环里，两步加法操作，由于嵌套在第一个循环里，操作步骤是 <script type="math/tex">  (2n) * n = 2n^2  </script>。</p>
+<p>v2 版本的 total_sum 只有 n 次操作，它的操作次数是 <script type="math/tex"> n + n*n = n^2 + n </script>。</p>
 <p>这里你可能还感觉不到它们有多大差别，因为计算机执行的太快了，但是当 n 增长特别快的时候，总的操作次数差距就很明显了：</p>
 <table>
 <thead>
 <tr>
 <th>n</th>
-<th>2n^2</th>
-<th>n^2 +n</th>
+<th>
+<script type="math/tex"> 2n^2 </script>
+</th>
+<th>
+<script type="math/tex"> n^2 +n </script>
+</th>
 </tr>
 </thead>
 <tbody>
@@ -213,23 +231,106 @@ v2 版本的 total_sum 只有 n 次操作，它的操作次数是 n + n*n = n^2 
 </tr>
 </tbody>
 </table>
-<p>
-<script type="math/tex; mode=display"> x^{y^z}=(1+{\rm e}^x)^{-2xy^w} </script>
+<p>通常我们不太关注每个算法具体执行了多少次，而更关心随着输入规模 n 的增加，算法运行时间将以什么速度增加。为此计算机科学家定义了一个符号，
+用来表示在最糟糕的情况下算法的运行时间，大 O 符号，在数学上称之为渐进上界（《算法导论》）。</p>
+<h1 id="_2">如何计算时间复杂度</h1>
+<p>上边我们列举了两个版本的计算矩阵和的代码，你看到了两个公式:</p>
+<ul>
+<li>v1: <script type="math/tex"> 2n*n = 2n^2 </script>
+</li>
+<li>v2: <script type="math/tex"> n + n*n = n + n^2 </script>
+</li>
+</ul>
+<p>当 n 非常大的时候，<script type="math/tex"> n^2 </script> 的数值这里将占主导，我们可以忽略 n 的影响</p>
+<ul>
+<li>v1: <script type="math/tex"> 2n*n = 2n^2 </script>
+</li>
+<li>v2: <script type="math/tex"> n + n*n = n + n^2 \leq 2n^2 </script>
+</li>
+</ul>
+<p>这里我们可以认为两个算法的时间复杂度均为 <script type="math/tex"> O(n^2) </script>
 </p>
-<h1 id="_2">时间复杂度</h1>
-<h1 id="_3">空间复杂度</h1>
+<h1 id="_3">常用时间复杂度</h1>
+<p>这里我们列举一些常用的时间复杂度，按照增长速度排序，日常我们的业务代码中最常用的是指数之前的复杂度，指数和阶乘的增长速度非常快，
+当输入比较大的时候用在业务代码里是不可接受的。</p>
+<table>
+<thead>
+<tr>
+<th>O</th>
+<th>名称</th>
+<th>举例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>常量时间</td>
+<td>一次赋值</td>
+</tr>
+<tr>
+<td>
+<script type="math/tex">\log n</script>
+</td>
+<td>对数时间</td>
+<td>折半查找</td>
+</tr>
+<tr>
+<td>
+<script type="math/tex">n</script>
+</td>
+<td>线性时间</td>
+<td>线性查找</td>
+</tr>
+<tr>
+<td>n<script type="math/tex">\log n</script>
+</td>
+<td>对数线性时间</td>
+<td>快速排序</td>
+</tr>
+<tr>
+<td>
+<script type="math/tex">n^2</script>
+</td>
+<td>平方</td>
+<td>两重循环</td>
+</tr>
+<tr>
+<td>
+<script type="math/tex">n^3</script>
+</td>
+<td>立方</td>
+<td>三重循环</td>
+</tr>
+<tr>
+<td>
+<script type="math/tex">2^n</script>
+</td>
+<td>指数</td>
+<td>递归求斐波那契数列</td>
+</tr>
+<tr>
+<td>
+<script type="math/tex">n!</script>
+</td>
+<td>阶乘</td>
+<td>旅行商问题</td>
+</tr>
+</tbody>
+</table>
+<h1 id="_4">空间复杂度</h1>
 <p>相比时间复杂度，空间复杂度讨论比较少。因为用户老爷等不及，况且现在存储越来越白菜价了，更多时候我们为了提升响应速度宁可多 使用点空间。
 空间复杂度相对好算一些，就是每个元素的空间占用乘以总的元素数，有些算法需要额外的空间存储，有些可以本地解决。
 如果能本地搞定的我们成为 in place 的，原地操作，比如交换一个 数组中的某两个位置的元素。但是有些操作可能就需要申请额外的空间
 来完成算法了，后边我们介绍排序算法的时候会讲到。</p>
-<h1 id="_4">常见复杂度增长趋势图</h1>
-<p>为了让你有个直观的感觉，我们来看看一些经典的时间复杂度和对应的增长趋势图。</p>
-<h1 id="_5">时间换空间，空间换时间</h1>
-<p>有一些时候时间和空间两者不可兼得，我们会牺牲其中之一来换取另一个。
-空间换时间：比如典型的就是 python 中的集合（后面会讲到它的实现原理），虽然它比较浪费空间，但是却能用 O(1)
+<h1 id="_5">常见复杂度增长趋势图</h1>
+<p>为了让你有个直观的感觉，我们来看看一些经典的时间复杂度和对应的增长趋势图，不同函数在输入规模增长的时候很快就会有巨大的增长差异</p>
+<p><img alt="函数增长趋势图" src="../function_growth.png" /></p>
+<h1 id="_6">时间换空间，空间换时间</h1>
+<p>有一些时候时间和空间两者不可兼得，我们会牺牲其中之一来换取另一个。</p>
+<p>空间换时间：比如典型的就是 python 中的集合（后面会讲到它的实现原理），虽然它比较浪费空间，但是却能用 O(1)
 的时间复杂度来判重。</p>
 <p>时间换空间：当我们空间不够用，典型的就是缓存失效算法，我们不可能缓存下无限容量的数据，就会使用一些缓存淘汰算法来保证空间可用。</p>
-<h1 id="_6">思考题</h1>
+<h1 id="_7">思考题</h1>
 <ul>
 <li>回头看看前几章我们讲到的数据结构，以及每个操作的时间复杂度，你能理解了吗？</li>
 <li>二分查找是针对有序元素的一种经典的查找算法，你知道的它的时间复杂度吗？你能简单证明下吗。</li>
@@ -237,9 +338,8 @@ v2 版本的 total_sum 只有 n 次操作，它的操作次数是 n + n*n = n^2 
   的时间复杂度吗？你会用数学公式证明吗？</li>
 <li>你能指出时间和空间权衡的例子吗？往往很多高效的数据结构能同时兼顾时间和空间复杂度，但是有时候我们却得做出一定的权衡</li>
 </ul>
-<h1 id="_7">参考资料</h1>
-<p>如果你对数学感兴趣，建议你阅读《算法导论》『函数的增长』这一节。
-和《Data Structures and Algorithms in Python》第4章。</p>
+<h1 id="_8">参考资料</h1>
+<p>如果你对数学感兴趣，建议你阅读《算法导论》『函数的增长』这一节 和《Data Structures and Algorithms in Python》第4章。</p>
 <p>(本章我用了 <a href="https://www.zybuluo.com/codeep/note/163962">MathJax</a> 来书写一些简单的数学公式，使用 "$"包含起来的就是数学公式)</p>
               
             </div>
@@ -247,6 +347,8 @@ v2 版本的 total_sum 只有 n 次操作，它的操作次数是 n + n*n = n^2 
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../7_哈希表/hashtable/" class="btn btn-neutral float-right" title="哈希表">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../../5_栈/stack/" class="btn btn-neutral" title="栈"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -277,6 +379,8 @@ v2 版本的 total_sum 只有 n 次操作，它的操作次数是 n + n*n = n^2 
       
         <span><a href="../../5_栈/stack/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
+      
+        <span style="margin-left: 15px"><a href="../../7_哈希表/hashtable/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
