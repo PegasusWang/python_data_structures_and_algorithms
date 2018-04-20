@@ -14,6 +14,7 @@
 目前就职于[知乎](https://www.zhihu.com/people/pegasus-wang/activities)，从实习期间接触 Python 起一直从事 Python 网站后端开发，有一定 Python 的使用和实践经验。
 
 知乎专栏：
+
 - [《Python 学习之路》](https://zhuanlan.zhihu.com/c_85234576)
 - [《玩转vim(视频)》](https://zhuanlan.zhihu.com/vim-video)
 
@@ -158,3 +159,19 @@ Python 抽象程度比较高， 我们能用更少的代码来实现功能，同
 文字内容讲义放到 github 上，供大家免费查阅。
 
 如果你觉得文字内容或者视频内容有错误，欢迎在 github 上提 issue 讨论，我会修正相关内容，防止产生误导。
+
+## 本电子书制作和写作方式
+使用 mkdocs 和 markdown 构建，使用  Python-Markdown-Math 完成数学公式
+
+安装依赖：
+```sh
+pip install mkdocs    # 制作电子书
+# https://stackoverflow.com/questions/27882261/mkdocs-and-mathjax/31874157
+pip install https://github.com/mitya57/python-markdown-math/archive/master.zip
+```
+
+编写并查看：
+```sh
+mkdocs serve     # 修改自动更新，http://localhost:8000 访问
+```
+
