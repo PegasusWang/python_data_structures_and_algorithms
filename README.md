@@ -139,7 +139,6 @@ Python 抽象程度比较高， 我们能用更少的代码来实现功能，同
 对于找工作的同学提升面试成功率。
 
 
-
 ## 工具
 
 推荐使用以下工具进行开发，如果使用编辑器最好装对 应 Python 插件：
@@ -173,5 +172,5 @@ pip install https://github.com/mitya57/python-markdown-math/archive/master.zip
 编写并查看：
 ```sh
 mkdocs serve     # 修改自动更新，http://localhost:8000 访问
+# 数学公式参考 https://www.zybuluo.com/codeep/note/163962
 ```
-

@@ -7,7 +7,7 @@
 
 ## 痛点
 - 讲 Python 数据结构和算法的资料很少，中文资料更少
-- 很多自学 Python 的工程师对基础不够重视，面试也发现很多数据结构和算法不过关，太多人挂在了基础的数据结构和算法上
+- 转行的工程师越来越多，竞争压力越来越大，很多自学 Python 的工程师对基础不够重视，面试也发现很多数据结构和算法不过关，很多人挂在了基础的数据结构和算法上。
 - 缺少工程应用场景下的讲解，很多讲算法的资料太『教科书化』。本书实现的代码工程上可用
 
 ## 作者简介
@@ -173,5 +173,5 @@ pip install https://github.com/mitya57/python-markdown-math/archive/master.zip
 编写并查看：
 ```sh
 mkdocs serve     # 修改自动更新，http://localhost:8000 访问
+# 数学公式参考 https://www.zybuluo.com/codeep/note/163962
 ```
-
