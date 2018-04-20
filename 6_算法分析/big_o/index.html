@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>算法分析 - Python 数据结构与算法视频教程</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "\u7b97\u6cd5\u5206\u6790";
+    var mkdocs_page_input_path = "6_\u7b97\u6cd5\u5206\u6790/big_o.md";
+    var mkdocs_page_url = "/6_\u7b97\u6cd5\u5206\u6790/big_o/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Python 数据结构与算法视频教程</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">课程简介</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../0_课程简介之笨方法学算法/why_and_how_to_learn/">课程简介之本方法学算法</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../1_抽象数据类型和面向对象编程/ADT_OOP/">抽象数据类型和面向对象编程</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../2_数组和列表/array_and_list/">数组和列表</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../3_链表/linked_list/">链表</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../4_队列/queue/">队列</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../5_栈/stack/">栈</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">算法分析</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#_1">算法复杂度分析</a></li>
+    
+
+    <li class="toctree-l2"><a href="#o">大 O 表示法</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_2">时间复杂度</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_3">空间复杂度</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_4">常见复杂度增长趋势图</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_5">时间换空间，空间换时间</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_6">思考题</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_7">参考资料</a></li>
+    
+
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Python 数据结构与算法视频教程</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>算法分析</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="_1">算法复杂度分析</h1>
+<p>前面我们说了很多次时间复杂度是 O(1), O(n) 啥的，并没有仔细讲解这个 O 符号究竟是什么。
+你可以大概理解为操作的次数和数据个数的比例关系。比如 O(1) 就是有限次数操作，O(n) 就是操作正比于你的元素个数。
+这一章我们用更严谨的方式来定义它。</p>
+<h1 id="o">大 O 表示法</h1>
+<p>我们从一个计算矩阵的例子来引入，这里我参考了 <a href="https://book.douban.com/subject/10607365/">《Data Structures and Algorithms in Python》</a> 中给的一个例子:</p>
+<p>考虑计算一个 n * n 矩阵所有元素的和（如果你不知道矩阵，就理解为一个二维数组）：</p>
+<p>[0, 1, 2]
+[3, 4, 5]
+[6, 7, 8]</p>
+<p>这里列举两种方式:</p>
+<pre><code class="py"># version1
+total_sum = 0
+for i in range(n):
+    row_sum[i] = 0
+    for j in range(n):
+        row_sum[i] = row_sum[i] + matrix[i, j]
+        total_sum = total_sum + matrix[i, j]
+
+# version2
+total_sum = 0
+for i in range(n):
+    row_sum[i] = 0
+    for j in range(n):
+        row_sum[i] = row_sum[i] + matrix[i, j]
+    total_sum = total_sum + row_sum[i]    # 注意这里和上边的不同
+</code></pre>
+
+<p>v1 版本的关键操作在 j 循环里，两步加法操作，由于嵌套在第一个循环里，操作步骤是 $(2n) * n = 2n^2$。
+v2 版本的 total_sum 只有 n 次操作，它的操作次数是 n + n*n = n^2 + n</p>
+<p>这里你可能还感觉不到它们有多大差别，因为计算机执行的太快了，但是当 n 增长特别快的时候，总的操作次数差距就很明显了：</p>
+<table>
+<thead>
+<tr>
+<th>n</th>
+<th>2n^2</th>
+<th>n^2 +n</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10</td>
+<td>200</td>
+<td>110</td>
+</tr>
+<tr>
+<td>100</td>
+<td>20,000</td>
+<td>10,100</td>
+</tr>
+<tr>
+<td>1000</td>
+<td>2,000,000</td>
+<td>1,001,000</td>
+</tr>
+<tr>
+<td>10000</td>
+<td>200,000,000</td>
+<td>100,010,000</td>
+</tr>
+<tr>
+<td>100000</td>
+<td>20,000,000,000</td>
+<td>10,000,100,000</td>
+</tr>
+</tbody>
+</table>
+<p>
+<script type="math/tex; mode=display"> x^{y^z}=(1+{\rm e}^x)^{-2xy^w} </script>
+</p>
+<h1 id="_2">时间复杂度</h1>
+<h1 id="_3">空间复杂度</h1>
+<p>相比时间复杂度，空间复杂度讨论比较少。因为用户老爷等不及，况且现在存储越来越白菜价了，更多时候我们为了提升响应速度宁可多 使用点空间。
+空间复杂度相对好算一些，就是每个元素的空间占用乘以总的元素数，有些算法需要额外的空间存储，有些可以本地解决。
+如果能本地搞定的我们成为 in place 的，原地操作，比如交换一个 数组中的某两个位置的元素。但是有些操作可能就需要申请额外的空间
+来完成算法了，后边我们介绍排序算法的时候会讲到。</p>
+<h1 id="_4">常见复杂度增长趋势图</h1>
+<p>为了让你有个直观的感觉，我们来看看一些经典的时间复杂度和对应的增长趋势图。</p>
+<h1 id="_5">时间换空间，空间换时间</h1>
+<p>有一些时候时间和空间两者不可兼得，我们会牺牲其中之一来换取另一个。
+空间换时间：比如典型的就是 python 中的集合（后面会讲到它的实现原理），虽然它比较浪费空间，但是却能用 O(1)
+的时间复杂度来判重。</p>
+<p>时间换空间：当我们空间不够用，典型的就是缓存失效算法，我们不可能缓存下无限容量的数据，就会使用一些缓存淘汰算法来保证空间可用。</p>
+<h1 id="_6">思考题</h1>
+<ul>
+<li>回头看看前几章我们讲到的数据结构，以及每个操作的时间复杂度，你能理解了吗？</li>
+<li>二分查找是针对有序元素的一种经典的查找算法，你知道的它的时间复杂度吗？你能简单证明下吗。</li>
+<li>斐波那契数列你肯定很熟悉，它的公式是 F(n) = F(n-1) + F(n-2)，你知道计算一个斐波那契数 F(n)
+  的时间复杂度吗？你会用数学公式证明吗？</li>
+<li>你能指出时间和空间权衡的例子吗？往往很多高效的数据结构能同时兼顾时间和空间复杂度，但是有时候我们却得做出一定的权衡</li>
+</ul>
+<h1 id="_7">参考资料</h1>
+<p>如果你对数学感兴趣，建议你阅读《算法导论》『函数的增长』这一节。
+和《Data Structures and Algorithms in Python》第4章。</p>
+<p>(本章我用了 <a href="https://www.zybuluo.com/codeep/note/163962">MathJax</a> 来书写一些简单的数学公式，使用 "$"包含起来的就是数学公式)</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../../5_栈/stack/" class="btn btn-neutral" title="栈"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../../5_栈/stack/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script src="../../search/require.js"></script>
+      <script src="../../search/search.js"></script>
+
+</body>
+</html>

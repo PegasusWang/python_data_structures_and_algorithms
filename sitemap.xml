@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    
+    <url>
+     <loc>/</loc>
+     <lastmod>2018-04-20</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>/0_课程简介之笨方法学算法/why_and_how_to_learn/</loc>
+     <lastmod>2018-04-20</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>/1_抽象数据类型和面向对象编程/ADT_OOP/</loc>
+     <lastmod>2018-04-20</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>/2_数组和列表/array_and_list/</loc>
+     <lastmod>2018-04-20</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>/3_链表/linked_list/</loc>
+     <lastmod>2018-04-20</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>/4_队列/queue/</loc>
+     <lastmod>2018-04-20</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>/5_栈/stack/</loc>
+     <lastmod>2018-04-20</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>/6_算法分析/big_o/</loc>
+     <lastmod>2018-04-20</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+</urlset>

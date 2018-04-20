@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>栈 - Python 数据结构与算法视频教程</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "\u6808";
+    var mkdocs_page_input_path = "5_\u6808/stack.md";
+    var mkdocs_page_url = "/5_\u6808/stack/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Python 数据结构与算法视频教程</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">课程简介</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../0_课程简介之笨方法学算法/why_and_how_to_learn/">课程简介之本方法学算法</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../1_抽象数据类型和面向对象编程/ADT_OOP/">抽象数据类型和面向对象编程</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../2_数组和列表/array_and_list/">数组和列表</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../3_链表/linked_list/">链表</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../4_队列/queue/">队列</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">栈</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#_1">栈</a></li>
+    
+
+    <li class="toctree-l2"><a href="#adt">栈 ADT</a></li>
+    
+
+    <li class="toctree-l2"><a href="#stack-over-flow">Stack over flow 什么鬼？</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_2">思考题</a></li>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../6_算法分析/big_o/">算法分析</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Python 数据结构与算法视频教程</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>栈</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="_1">栈</h1>
+<p>栈这个词实际上在计算机科学里使用很多，除了数据结构外，还有内存里的栈区 （和堆对应），熟悉 C 系语言的话应该不会陌生。
+上一章我们讲到了先进先出 queue，其实用 python 的内置类型 collections.deque 或者我们自己实现的 LinkedList 来实现它都很简单。
+本章我们讲讲 后进先出的栈。</p>
+<p>生活中的数据结构：
+- 栈。好比在桶里头放盘子，先放的盘子放在了底下，后来的盘子放在上边。你要拿的时候，也是先拿最上边的。</p>
+<p>栈其实也很简单，因为基础操作就俩，一个 push 和一个 pop，咦，咋和队列一样的？
+确实方法名字一样，但是得到的结果可是不同的。</p>
+<h1 id="adt">栈 ADT</h1>
+<p>上一章我介绍了我们怎样选取恰到的数据结构来实现新的 ADT？你能想到这里我们应该使用之前提到的哪个数据结构来实现吗？
+你的大脑可能开始高(gui)速(su)旋转了，上几章学过的 array, list, deque, LinkedList, CircularDoubleLinkedList, queue
+等在大脑里呼啸而过，这个时候可能已经一脸愁容了，到底该选啥？</p>
+<p>还用问嘛，当然是时间复杂度最小的啦，大部分情况下空间都是够用的。
+其实你会发现栈比队列还简单，因为它只在顶上操作（想象装着盘子的桶），如果有一种数据结构能方便在尾部增减元素不就满足需求了吗。
+这个时候如果你忘记了，可以翻翻前几章，看看哪个数据结构符合要求。</p>
+<p>想一下，似乎 CircularDoubleLinkedList 循环双端队列是满足的，因为增删最后一个元素都是 O(1)。
+不过看了下示例代码，似乎没有 pop() 方法，对，因为我已经把实现 deque 作为思考题了。😂
+如果之前你没写出来也没关系，这里我们会再实现它。</p>
+<p>视频里我们将借助 CircularDoubleLinkedList 实现 双端队列 Deque ，并且用 Deque 实现 Stack。</p>
+<h1 id="stack-over-flow">Stack over flow 什么鬼？</h1>
+<p>嗯，stackoverflow 不是一个程序员问答网站吗？没错。
+函数的临时变量是存储在栈区的，如果你不幸写了一个没有出口的递归函数，就会这个错。不信你试试：</p>
+<pre><code class="py">def infinite_fib(n):
+    return infinite_fib(n-1) + infinite_fib(n-2)
+infinite_fib(10)
+</code></pre>
+
+<p>一大段输出之后就会出现异常： RecursionError: maximum recursion depth exceeded。
+后边会讲到递归，递归是初学者比较难理解的概念，在树的遍历等地方还会看到它。</p>
+<h1 id="_2">思考题</h1>
+<ul>
+<li>上一章我们用数组实现了队列，其实也能用数组来实现 栈，你能自己用数组来实现一个栈的 ADT 吗？</li>
+<li>这里我们自己实现了 Deque，你能用 python 内置的 collections.deque 实现栈吗？有轮子能直接用的话看起来就简单多了</li>
+<li>哪些经典算法里使用到了栈呢？</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../6_算法分析/big_o/" class="btn btn-neutral float-right" title="算法分析">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../../4_队列/queue/" class="btn btn-neutral" title="队列"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../../4_队列/queue/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../../6_算法分析/big_o/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script src="../../search/require.js"></script>
+      <script src="../../search/search.js"></script>
+
+</body>
+</html>
