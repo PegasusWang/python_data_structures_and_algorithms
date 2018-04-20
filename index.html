@@ -93,6 +93,8 @@
         
             <li><a class="toctree-l3" href="#_16">勘误</a></li>
         
+            <li><a class="toctree-l3" href="#_17">本电子书制作和写作方式</a></li>
+        
         </ul>
     
 
@@ -179,9 +181,11 @@
 </ul>
 <h2 id="_3">作者简介</h2>
 <p>目前就职于<a href="https://www.zhihu.com/people/pegasus-wang/activities">知乎</a>，从实习期间接触 Python 起一直从事 Python 网站后端开发，有一定 Python 的使用和实践经验。</p>
-<p>知乎专栏：
-- <a href="https://zhuanlan.zhihu.com/c_85234576">《Python 学习之路》</a>
-- <a href="https://zhuanlan.zhihu.com/vim-video">《玩转vim(视频)》</a></p>
+<p>知乎专栏：</p>
+<ul>
+<li><a href="https://zhuanlan.zhihu.com/c_85234576">《Python 学习之路》</a></li>
+<li><a href="https://zhuanlan.zhihu.com/vim-video">《玩转vim(视频)》</a></li>
+</ul>
 <p>电子书：<a href="http://python-web-guide.readthedocs.io/zh/latest/&lt;Paste&gt;">《Python web 入坑指南》</a></p>
 <h2 id="_4">课程内容</h2>
 <p>包括我们在业务开发和面试中常用的算法和数据结构，希望可以帮助新人快速上手，很多老手写业务代码写多了很多基础知识忘记了，
@@ -302,6 +306,17 @@
 有出版社找过笔者想让我出书，一来自己对出书兴趣不大，另外感觉书籍相对视频不够直观，有错误也不能及时修改，打算直接把所有
 文字内容讲义放到 github 上，供大家免费查阅。</p>
 <p>如果你觉得文字内容或者视频内容有错误，欢迎在 github 上提 issue 讨论，我会修正相关内容，防止产生误导。</p>
+<h2 id="_17">本电子书制作和写作方式</h2>
+<p>使用 mkdocs 和 markdown 构建，使用  Python-Markdown-Math 完成数学公式</p>
+<p>安装依赖：</p>
+<pre><code class="sh">pip install mkdocs    # 制作电子书
+# https://stackoverflow.com/questions/27882261/mkdocs-and-mathjax/31874157
+pip install https://github.com/mitya57/python-markdown-math/archive/master.zip
+</code></pre>
+
+<p>编写并查看：</p>
+<pre><code class="sh">mkdocs serve     # 修改自动更新，http://localhost:8000 访问
+</code></pre>
               
             </div>
           </div>
@@ -352,5 +367,5 @@
 
 <!--
 MkDocs version : 0.17.3
-Build Date UTC : 2018-04-20 01:12:08
+Build Date UTC : 2018-04-20 01:22:39
 -->
