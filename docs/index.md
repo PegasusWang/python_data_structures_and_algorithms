@@ -84,7 +84,7 @@ Python 抽象程度比较高， 我们能用更少的代码来实现功能，同
 [《Data Structures and Algorithms in Python》]( https://book.douban.com/subject/10607365/): 适合对 Python
 和算法比较熟悉的同学，或者是有其他语言编程经验的同学。英文版，缺点是书中错误真的很多，代码有些无法运行
 
-[《算法导论》]( https://book.douban.com/subject/20432061/): 喜欢数学证明和板砖书的同学可以参考，有很多高级主题。使用伪代码
+[《算法导论》]( https://book.douban.com/subject/20432061/): 喜欢数学证明和板砖书的同学可以参考，有很多高级主题。使用伪代码表示，对新手来说不够通俗。目前最新是第三版
 
 
 ## 讲课形式
