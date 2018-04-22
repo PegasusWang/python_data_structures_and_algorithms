@@ -147,6 +147,9 @@ class HashTable(object):
 
 具体的实现和代码编写在视频里讲解。这个代码可不太好实现，稍不留神就会有错，我们还是通过编写单元测试验证代码的正确性。
 
+# 思考题
+- Slot 在二次探查法里为什么不能直接删除？为什么我们要给它定义几个状态？
+
 # 延伸阅读
 - 《Data Structures and Algorithms in Python》11 章 Hash Tables
 - 《算法导论》第三版 11 章散列表

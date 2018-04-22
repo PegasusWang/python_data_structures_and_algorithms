@@ -11,7 +11,7 @@
 字典最常使用的场景就是 k,v 存储，经常用作缓存，它的 key 值是唯一的。
 内置库 collections.OrderDict 还保持了 key 的添加顺序，其实用我们之前实现的链表也能自己实现一个 OrderDict。
 
-# 实现 dict
+# 实现 dict ADT
 
 其实上边 HashTable 实现的三个基本方法就是我们使用字典最常用的三个基本方法， 这里我们继承一下这个类，
 然后实现更多 dict 支持的方法，items(), keys(), values()。不过需要注意的是，在 python2 和 python3 里这些方法
@@ -24,3 +24,29 @@ class DictADT(HashTable):
 ```
 
 视频里我们将演示如何实现这些方法，并且写单侧验证正确性。
+
+# Hashable
+作为 dict 的 key 必须是可哈希的，也就是说不能是 list 等可变对象。不信你在 ipython 里运行如下代码：
+
+```py
+d = dict()
+d[[1]] = 1
+# TypeError: unhashable type: 'list'
+```
+
+我引用 python 文档里的说法，大家可以自己理解下：
+
+> An object is hashable if it has a hash value which never changes during its lifetime (it needs a __hash__() method), and can be compared to other objects (it needs an __eq__() or __cmp__() method). Hashable objects which compare equal must have the same hash value.
+
+> Hashability makes an object usable as a dictionary key and a set member, because these data structures use the hash value internally.
+
+> All of Python’s immutable built-in objects are hashable, while no mutable containers (such as lists or dictionaries) are. Objects which are instances of user-defined classes are hashable by default; they all compare unequal (except with themselves), and their hash value is derived from their id().
+
+
+# 思考题：
+- 你能在哈希表的基础上实现 dict 的其他操作吗？
+- 对于 python 来说，哪些内置数据类型是可哈希的呢？
+- 你了解 python 的 hash 函数吗？
+
+# 延伸阅读
+阅读 python 文档关于 dict 的相关内容
