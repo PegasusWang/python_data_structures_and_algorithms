@@ -7,14 +7,13 @@
 
 ## 痛点
 - 讲 Python 数据结构和算法的资料很少，中文资料更少
-- 转行的工程师越来越多，竞争压力越来越大，很多自学 Python 的工程师对基础不够重视，面试也发现很多数据结构和算法不过关，很多人挂在了基础的数据结构和算法上。
+- 很多自学 Python 的工程师对基础不够重视，面试也发现很多数据结构和算法不过关，很多人挂在了基础的数据结构和算法上
 - 缺少工程应用场景下的讲解，很多讲算法的资料太『教科书化』。本书实现的代码工程上可用
 
 ## 作者简介
 目前就职于[知乎](https://www.zhihu.com/people/pegasus-wang/activities)，从实习期间接触 Python 起一直从事 Python 网站后端开发，有一定 Python 的使用和实践经验。
 
 知乎专栏：
-
 - [《Python 学习之路》](https://zhuanlan.zhihu.com/c_85234576)
 - [《玩转vim(视频)》](https://zhuanlan.zhihu.com/vim-video)
 
@@ -84,7 +83,7 @@ Python 抽象程度比较高， 我们能用更少的代码来实现功能，同
 [《Data Structures and Algorithms in Python》]( https://book.douban.com/subject/10607365/): 适合对 Python
 和算法比较熟悉的同学，或者是有其他语言编程经验的同学。英文版，缺点是书中错误真的很多，代码有些无法运行
 
-[《算法导论》]( https://book.douban.com/subject/20432061/): 喜欢数学证明和板砖书的同学可以参考，有很多高级主题。使用伪代码表示，对新手来说不够通俗。目前最新是第三版
+[《算法导论》]( https://book.douban.com/subject/20432061/): 喜欢数学证明和板砖书的同学可以参考，有很多高级主题。使用伪代码
 
 
 ## 讲课形式
@@ -140,7 +139,6 @@ Python 抽象程度比较高， 我们能用更少的代码来实现功能，同
 对于找工作的同学提升面试成功率。
 
 
-
 ## 工具
 
 推荐使用以下工具进行开发，如果使用编辑器最好装对 应 Python 插件：
@@ -160,6 +158,7 @@ Python 抽象程度比较高， 我们能用更少的代码来实现功能，同
 
 如果你觉得文字内容或者视频内容有错误，欢迎在 github 上提 issue 讨论，我会修正相关内容，防止产生误导。
 
+
 ## 本电子书制作和写作方式
 使用 mkdocs 和 markdown 构建，使用  Python-Markdown-Math 完成数学公式
 
@@ -175,3 +174,8 @@ pip install https://github.com/mitya57/python-markdown-math/archive/master.zip
 mkdocs serve     # 修改自动更新，http://localhost:8000 访问
 # 数学公式参考 https://www.zybuluo.com/codeep/note/163962
 ```
+
+您的打赏就是我写作的最大动力，呵呵哒!
+<center>
+![微信打赏](http://7ktuty.com1.z0.glb.clouddn.com/weixin_dashang.png)
+</center>
