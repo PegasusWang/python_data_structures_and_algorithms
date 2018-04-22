@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>栈 - Python 数据结构与算法视频教程</title>
+  <title>字典 - Python 数据结构与算法视频教程</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "\u6808";
-    var mkdocs_page_input_path = "5_\u6808/stack.md";
-    var mkdocs_page_url = "/5_\u6808/stack/";
+    var mkdocs_page_name = "\u5b57\u5178";
+    var mkdocs_page_input_path = "8_\u5b57\u5178/dict.md";
+    var mkdocs_page_url = "/8_\u5b57\u5178/dict/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -77,24 +77,9 @@
     <a class="" href="../../4_队列/queue/">队列</a>
 	    </li>
           
-            <li class="toctree-l1 current">
+            <li class="toctree-l1">
 		
-    <a class="current" href="./">栈</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l2"><a href="#_1">栈</a></li>
-    
-
-    <li class="toctree-l2"><a href="#adt">栈 ADT</a></li>
-    
-
-    <li class="toctree-l2"><a href="#stack-over-flow">Stack over flow 什么鬼？</a></li>
-    
-
-    <li class="toctree-l2"><a href="#_2">思考题</a></li>
-    
-
-    </ul>
+    <a class="" href="../../5_栈/stack/">栈</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -107,9 +92,27 @@
     <a class="" href="../../7_哈希表/hashtable/">哈希表</a>
 	    </li>
           
-            <li class="toctree-l1">
+            <li class="toctree-l1 current">
 		
-    <a class="" href="../../8_字典/dict/">字典</a>
+    <a class="current" href="./">字典</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#dict">字典 dict</a></li>
+    
+
+    <li class="toctree-l2"><a href="#dict-adt">实现 dict ADT</a></li>
+    
+
+    <li class="toctree-l2"><a href="#hashable">Hashable</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_1">思考题：</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_2">延伸阅读</a></li>
+    
+
+    </ul>
 	    </li>
           
             <li class="toctree-l1">
@@ -139,7 +142,7 @@
     
       
     
-    <li>栈</li>
+    <li>字典</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -149,41 +152,47 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="_1">栈</h1>
-<p>栈这个词实际上在计算机科学里使用很多，除了数据结构外，还有内存里的栈区 （和堆对应），熟悉 C 系语言的话应该不会陌生。
-上一章我们讲到了先进先出 queue，其实用 python 的内置类型 collections.deque 或者我们自己实现的 LinkedList 来实现它都很简单。
-本章我们讲讲 后进先出的栈。</p>
-<p>生活中的数据结构：
-- 栈。好比在桶里头放盘子，先放的盘子放在了底下，后来的盘子放在上边。你要拿的时候，也是先拿最上边的。</p>
-<p>栈其实也很简单，因为基础操作就俩，一个 push 和一个 pop，咦，咋和队列一样的？
-确实方法名字一样，但是得到的结果可是不同的。</p>
-<h1 id="adt">栈 ADT</h1>
-<p>上一章我介绍了我们怎样选取恰到的数据结构来实现新的 ADT？你能想到这里我们应该使用之前提到的哪个数据结构来实现吗？
-你的大脑可能开始高(gui)速(su)旋转了，上几章学过的 array, list, deque, LinkedList, CircularDoubleLinkedList, queue
-等在大脑里呼啸而过，这个时候可能已经一脸愁容了，到底该选啥？</p>
-<p>还用问嘛，当然是时间复杂度最小的啦，大部分情况下空间都是够用的。
-其实你会发现栈比队列还简单，因为它只在顶上操作（想象装着盘子的桶），如果有一种数据结构能方便在尾部增减元素不就满足需求了吗。
-这个时候如果你忘记了，可以翻翻前几章，看看哪个数据结构符合要求。</p>
-<p>想一下，似乎 CircularDoubleLinkedList 循环双端队列是满足的，因为增删最后一个元素都是 O(1)。
-不过看了下示例代码，似乎没有 pop() 方法，对，因为我已经把实现 deque 作为思考题了。😂
-如果之前你没写出来也没关系，这里我们会再实现它。</p>
-<p>视频里我们将借助 CircularDoubleLinkedList 实现 双端队列 Deque ，并且用 Deque 实现 Stack。</p>
-<h1 id="stack-over-flow">Stack over flow 什么鬼？</h1>
-<p>嗯，stackoverflow 不是一个程序员问答网站吗？没错。
-函数的临时变量是存储在栈区的，如果你不幸写了一个没有出口的递归函数，就会这个错。不信你试试：</p>
-<pre><code class="py">def infinite_fib(n):
-    return infinite_fib(n-1) + infinite_fib(n-2)
-infinite_fib(10)
+                <h1 id="dict">字典 dict</h1>
+<p>上一章我们介绍了哈希表，其实 python 内置的 dict 就是用哈希表实现的，所以这一章实现 dict 就非常简单了。
+当然 cpython 使用的是 c 语言实现的，远比我们写的复杂得多 (cpython/Objects/dictobject.c)。
+上一章我们用 python 自己写的一个 Array 来代表定长数组，然后用它实现的 HashTable，它支持三个最基本的方法</p>
+<ul>
+<li>add(key ,value): 有 key 则更新，否则插入</li>
+<li>get(key, default=None): 或者 key 的值，不存在返回默认值 None</li>
+<li>remove(key): 删除一个 key，这里其实不是真删除，而是标记为 Empty</li>
+</ul>
+<p>字典最常使用的场景就是 k,v 存储，经常用作缓存，它的 key 值是唯一的。
+内置库 collections.OrderDict 还保持了 key 的添加顺序，其实用我们之前实现的链表也能自己实现一个 OrderDict。</p>
+<h1 id="dict-adt">实现 dict ADT</h1>
+<p>其实上边 HashTable 实现的三个基本方法就是我们使用字典最常用的三个基本方法， 这里我们继承一下这个类，
+然后实现更多 dict 支持的方法，items(), keys(), values()。不过需要注意的是，在 python2 和 python3 里这些方法
+的返回是不同的，python3 里一大改进就是不再返回浪费内存的 列表，而是返回迭代器，你要获得列表必须用 list() 转换成列表。 这里我们实现 python3 的方式返回迭代器。</p>
+<pre><code class="py">class DictADT(HashTable):
+    pass
 </code></pre>
 
-<p>一大段输出之后就会出现异常： RecursionError: maximum recursion depth exceeded。
-后边会讲到递归，递归是初学者比较难理解的概念，在树的遍历等地方还会看到它。</p>
-<h1 id="_2">思考题</h1>
+<p>视频里我们将演示如何实现这些方法，并且写单侧验证正确性。</p>
+<h1 id="hashable">Hashable</h1>
+<p>作为 dict 的 key 必须是可哈希的，也就是说不能是 list 等可变对象。不信你在 ipython 里运行如下代码：</p>
+<pre><code class="py">d = dict()
+d[[1]] = 1
+# TypeError: unhashable type: 'list'
+</code></pre>
+
+<p>我引用 python 文档里的说法，大家可以自己理解下：</p>
+<blockquote>
+<p>An object is hashable if it has a hash value which never changes during its lifetime (it needs a <strong>hash</strong>() method), and can be compared to other objects (it needs an <strong>eq</strong>() or <strong>cmp</strong>() method). Hashable objects which compare equal must have the same hash value.</p>
+<p>Hashability makes an object usable as a dictionary key and a set member, because these data structures use the hash value internally.</p>
+<p>All of Python’s immutable built-in objects are hashable, while no mutable containers (such as lists or dictionaries) are. Objects which are instances of user-defined classes are hashable by default; they all compare unequal (except with themselves), and their hash value is derived from their id().</p>
+</blockquote>
+<h1 id="_1">思考题：</h1>
 <ul>
-<li>上一章我们用数组实现了队列，其实也能用数组来实现 栈，你能自己用数组来实现一个栈的 ADT 吗？</li>
-<li>这里我们自己实现了 Deque，你能用 python 内置的 collections.deque 实现栈吗？有轮子能直接用的话看起来就简单多了</li>
-<li>哪些经典算法里使用到了栈呢？</li>
+<li>你能在哈希表的基础上实现 dict 的其他操作吗？</li>
+<li>对于 python 来说，哪些内置数据类型是可哈希的呢？</li>
+<li>你了解 python 的 hash 函数吗？</li>
 </ul>
+<h1 id="_2">延伸阅读</h1>
+<p>阅读 python 文档关于 dict 的相关内容</p>
               
             </div>
           </div>
@@ -191,10 +200,10 @@ infinite_fib(10)
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../../6_算法分析/big_o/" class="btn btn-neutral float-right" title="算法分析">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../../9_集合/set/" class="btn btn-neutral float-right" title="集合">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../../4_队列/queue/" class="btn btn-neutral" title="队列"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../7_哈希表/hashtable/" class="btn btn-neutral" title="哈希表"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -220,10 +229,10 @@ infinite_fib(10)
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../../4_队列/queue/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../../7_哈希表/hashtable/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../../6_算法分析/big_o/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../../9_集合/set/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

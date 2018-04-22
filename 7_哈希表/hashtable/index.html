@@ -113,10 +113,23 @@
     <li class="toctree-l2"><a href="#hashtalbe-adt">HashTalbe ADT</a></li>
     
 
-    <li class="toctree-l2"><a href="#_4">延伸阅读</a></li>
+    <li class="toctree-l2"><a href="#_4">思考题</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_5">延伸阅读</a></li>
     
 
     </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../8_字典/dict/">字典</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../9_集合/set/">集合</a>
 	    </li>
           
         </ul>
@@ -178,7 +191,7 @@ h(903) = 903 % M = 6
 h(388) = 388 % M = 11
 </code></pre>
 
-<p>下边我画个图演示整个插入过程:</p>
+<p>下边我画个图演示整个插入过程(纯手工绘制，原谅我字写得不太优雅):</p>
 <p><img alt="" src="../insert_hash.png" /></p>
 <h1 id="collision">哈希冲突 (collision)</h1>
 <p>这里到插入 226 这个元素的时候，不幸地发现 h(226) = h(96) = 5，不同的 key 通过我们的哈希函数计算后得到的下标一样，
@@ -246,14 +259,40 @@ h(388) = 388 % M = 1
 <h1 id="load-factor">装载因子(load factor)</h1>
 <p>如果继续往我们的哈希表里塞东西会发生什么？空间不够用。这里我们定义一个负载因子的概念(load factor)，其实很简单，就是已经使用的槽数比哈希表大小。
 比如我们上边的例子插入了 8 个元素，哈希表总大小是 13， 它的 load factor 就是 <script type="math/tex"> 8/13 \approx 0.62 </script>。当我们继续往哈希表插入数据的时候，很快就不够用了。
-通常当负载因子开始超过 0.8 的时候，就要新开辟空间了并且重新进行散列了。</p>
+通常当负载因子开始超过 0.8 的时候，就要新开辟空间并且重新进行散列了。</p>
 <h1 id="rehashing">重哈希(Rehashing)</h1>
 <p>当负载因子超过 0.8 的时候，需要进行 rehashing 操作了。步骤就是重新开辟一块新的空间，开多大呢？感兴趣的话可以看下 cpython 的 dictobject.c 文件然后搜索
 GROWTH_RATE 这个关键字，你会发现不同版本的 cpython 使用了不同的策略。python3.3 的策略是扩大为已经使用的槽数目的两倍。开辟了新空间以后，会把原来哈希表里
 不为空槽的数据重新插入到新的哈希表里，插入方式和之前一样。这就是 rehashing 操作。</p>
 <h1 id="hashtalbe-adt">HashTalbe ADT</h1>
-<p>这里我们来实现一个简化版的哈希表 ADT，主要是为了让你更好地了解它的工作原理，有了它，后边实现起 dict 和 set 来就小菜一碟了。</p>
-<h1 id="_4">延伸阅读</h1>
+<p>实践是检验真理的唯一标准，这里我们来实现一个简化版的哈希表 ADT，主要是为了让你更好地了解它的工作原理，有了它，后边实现起 dict 和 set 来就小菜一碟了。
+这里我们使用到了定长数组，还记得我们在数组和列表章节里实现的 Array 吧，这里要用上了。</p>
+<p>解决冲突我们使用二次探查法。我们来实现三个哈希表最常用的基本操作，这实际上也是使用字典的时候最常用的操作。</p>
+<ul>
+<li>add(key, value)</li>
+<li>get(key, default)</li>
+<li>remove(key)</li>
+</ul>
+<pre><code class="py">class Slot(object):
+    &quot;&quot;&quot;定义一个 hash 表 数组的槽
+    注意，一个槽有三种状态，看你能否想明白
+    1.从未使用 HashMap.UNUSED。此槽没有被使用和冲突过，查找时只要找到 UNUSED 就不用再继续探查了
+    2.使用过但是 remove 了，此时是 HashMap.EMPTY，该探查点后边的元素扔可能是有key
+    3.槽正在使用 Slot 节点
+    &quot;&quot;&quot;
+    def __init__(self, key, value):
+        self.key, self.value = self.key, self.value
+
+class HashTable(object):
+    pass
+</code></pre>
+
+<p>具体的实现和代码编写在视频里讲解。这个代码可不太好实现，稍不留神就会有错，我们还是通过编写单元测试验证代码的正确性。</p>
+<h1 id="_4">思考题</h1>
+<ul>
+<li>Slot 在二次探查法里为什么不能直接删除？为什么我们要给它定义几个状态？</li>
+</ul>
+<h1 id="_5">延伸阅读</h1>
 <ul>
 <li>《Data Structures and Algorithms in Python》11 章 Hash Tables</li>
 <li>《算法导论》第三版 11 章散列表</li>
@@ -265,6 +304,8 @@ GROWTH_RATE 这个关键字，你会发现不同版本的 cpython 使用了不�
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../8_字典/dict/" class="btn btn-neutral float-right" title="字典">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../../6_算法分析/big_o/" class="btn btn-neutral" title="算法分析"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -295,6 +336,8 @@ GROWTH_RATE 这个关键字，你会发现不同版本的 cpython 使用了不�
       
         <span><a href="../../6_算法分析/big_o/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
+      
+        <span style="margin-left: 15px"><a href="../../8_字典/dict/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
