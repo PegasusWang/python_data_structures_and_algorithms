@@ -145,7 +145,7 @@ class HashTable(object):
     pass
 ```
 
-具体的实现和代码编写在视频里讲解。
+具体的实现和代码编写在视频里讲解。这个代码可不太好实现，稍不留神就会有错，我们还是通过编写单元测试验证代码的正确性。
 
 # 延伸阅读
 - 《Data Structures and Algorithms in Python》11 章 Hash Tables

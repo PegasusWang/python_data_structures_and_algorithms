@@ -60,10 +60,6 @@ class HashTable(object):
         """ 计算key的hash值"""
         return abs(hash(key)) % len(self._table)
 
-    def _hash2(self, key):
-        """ key冲突时候用来计算新槽的位置"""
-        return 1 + abs(hash(key)) % (len(self._table) - 2)
-
     def _find_slot(self, key, for_insert=False):
         """_find_slot
 
@@ -72,21 +68,24 @@ class HashTable(object):
         :return:  slot index or None
         """
         index = self._hash1(key)
-        step = self._hash2(key)
+        base_index = index
+        hash_times = 1
         _len = len(self._table)
 
         if not for_insert:  # 查找是否存在 key
             while self._table[index] is not HashTable.UNUSED:
                 if self._table[index] is HashTable.EMPTY:
-                    index = (index + step) % _len
+                    index = (index + hash_times * hash_times) % _len    # 一个简单的二次方探查
                     continue
                 elif self._table[index].key == key:
                     return index
-                index = (index + step) % _len
+                index = (index + hash_times * hash_times) % _len
+                hash_times += 1
             return None
         else:
             while not self._slot_can_insert(index):  # 循环直到找到一个可以插入的槽
-                index = (index + step) % _len
+                index = (index + hash_times * hash_times) % _len
+                hash_times += 1
             return index
 
     def _slot_can_insert(self, index):
@@ -159,6 +158,7 @@ def test_hash_table():
 
     assert sorted(list(h)) == ['b', 'c']
 
+    # 50 超过了 HashTable 的原始 size，我们测试下是否 reshah 操作能正确工作
     for i in range(50):
         h.add(i, i)
 

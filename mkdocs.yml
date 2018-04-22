@@ -17,3 +17,5 @@ pages:
   - 栈: '5_栈/stack.md'
   - 算法分析: '6_算法分析/big_o.md'
   - 哈希表: '7_哈希表/hashtable.md'
+  - 字典: '8_字典/dict.md'
+  - 集合: '9_集合/set.md'
