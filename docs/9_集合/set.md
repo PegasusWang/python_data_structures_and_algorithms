@@ -35,7 +35,7 @@ class SetADT(HashTable):
         return super(SetADT, self).add(key, True)
 ```
 
-当然其它数学上的操作就麻烦点了。
+当然其它数学上的操作就麻烦点了，不过也很容易实现。
 
 
 # 思考题
@@ -44,4 +44,4 @@ class SetADT(HashTable):
 
 
 # 延伸阅读
-阅读 python 文档关于 set 的相关章节，了解 set 还有哪些操作？比如比较运算符的概念
+阅读 python 文档关于 set 的相关章节，了解 set 还有哪些操作？比如比较运算符的概念，比较两个集合意味着什么。
