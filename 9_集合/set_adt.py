@@ -75,16 +75,16 @@ class HashTable(object):
         if not for_insert:  # 查找是否存在 key
             while self._table[index] is not HashTable.UNUSED:
                 if self._table[index] is HashTable.EMPTY:
-                    index = (index + hash_times * hash_times) % _len    # 一个简单的二次方探查
+                    index = (base_index + hash_times * hash_times) % _len    # 一个简单的二次方探查
                     continue
                 elif self._table[index].key == key:
                     return index
-                index = (index + hash_times * hash_times) % _len
+                index = (base_index + hash_times * hash_times) % _len
                 hash_times += 1
             return None
         else:
             while not self._slot_can_insert(index):  # 循环直到找到一个可以插入的槽
-                index = (index + hash_times * hash_times) % _len
+                index = (base_index + hash_times * hash_times) % _len
                 hash_times += 1
             return index
 
@@ -194,9 +194,9 @@ def test_set_adt():
     sb.add(4)
     sb.add(5)
 
-    sorted(list(sa & sb)) == [3]
-    sorted(list(sa - sb)) == [1, 2]
-    sorted(list(sa | sb)) == [1, 2, 3, 4, 5]
+    assert sorted(list(sa & sb)) == [3]
+    assert sorted(list(sa - sb)) == [1, 2]
+    assert sorted(list(sa | sb)) == [1, 2, 3, 4, 5]
 
 
 if __name__ == '__main__':
