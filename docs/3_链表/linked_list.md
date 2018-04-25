@@ -37,7 +37,7 @@ class LinkedList(object):
 
 来看下时间复杂度：
 
-操作                          | 平均时间复杂度 |
+链表操作                      | 平均时间复杂度 |
 ------------------------------|----------------|
 linked_list.append(value)     | O(1)           |
 linked_list.appendleft(value) | O(1)           |
@@ -67,7 +67,15 @@ class Node(object):
 - 直接删除节点，当然如果给的是一个值，我们还是需要查找这个值在哪个节点？ - 但是如果给了一个节点，我们把它拿掉，直接让它的前后节点互相指过去不就行了？哇欧，删除就是 O(1) 了，两步操作就行啦
 
 好，废话不多说，我们在视频里介绍怎么实现一个双链表 ADT。
+最后让我们看下它的时间复杂度:(这里 CircularDoubleLinkedList 取大写字母缩写为 cdll)
 
+循环双端链表操作                       | 平均时间复杂度 |
+---------------------------------------|----------------|
+cdll.append(value)                     | O(1)           |
+cdll.appendleft(value)                 | O(1)           |
+cdll.remove(node)，注意这里参数是 node | O(1)           |
+cdll.headnode()                        | O(1)           |
+cdll.tailnode()                        | O(1)           |
 
 # 小问题：
 - 这里单链表我没有实现 insert 方法，你能自己尝试实现吗？  insert(value, new_value)，我想在某个值之前插入一个值。你同样需要先查找，所以这个步骤也不够高效。

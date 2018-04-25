@@ -30,6 +30,7 @@ list.insert                           | O(n)           |
 list.pop(index), default last element | O(1)           |
 list.remove                           | O(n)           |
 
+![](./list.png)
 
 # 用 list 实现 Array ADT
 讲完了 list 让我们来实现一个定长的数组 Array ADT，在其他一些语言中，内置的数组结构就是定长的。
