@@ -177,8 +177,9 @@ pip install https://github.com/mitya57/python-markdown-math/archive/master.zip
 
 编写并查看：
 ```sh
-mkdocs serve     # 修改自动更新，http://localhost:8000 访问
+mkdocs serve     # 修改自动更新，浏览器打开 http://localhost:8000 访问
 # 数学公式参考 https://www.zybuluo.com/codeep/note/163962
+mkdocs gh-deploy    # 部署到自己的 github pages
 ```
 
 您的打赏就是我写作的最大动力，呵呵哒!
