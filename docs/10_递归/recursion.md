@@ -127,8 +127,63 @@ def print_num_recursive_revserve(n):
 不幸的是 python 默认不支持尾递归优化（见延伸阅读），不过一般尾递归我们可以用一个迭代来优化它。
 
 
-# 著名的汉诺塔问题
+# 汉诺塔问题
 
+有三根杆子A，B，C。A杆上有N个(N>1)穿孔圆盘，盘的尺寸由下到上依次变小。要求按下列规则将所有圆盘移至C杆：
+但是有两个条件：
+
+- 每次只能移动一个圆盘；
+- 大盘不能叠在小盘上面。
+
+> 最早发明这个问题的人是法国数学家爱德华·卢卡斯。
+> 传说越南河内某间寺院有三根银棒，上串64个金盘。寺院里的僧侣依照一个古老的预言，以上述规则移动这些盘子；预言说当这些盘子移动完毕，世界就会灭亡。
+> 这个传说叫做梵天寺之塔问题（Tower of Brahma puzzle）。但不知道是卢卡斯自创的这个传说，还是他受他人启发。
+
+
+
+![五个盘子的汉诺塔问题](./hanoi_tower.png)
+
+理解这个问题需要我们一些思维上的转换，因为我们正常的思维可能都是从上边最小的盘子开始移动，但是这里我们从移动最底下的盘子开始思考。
+假设我们已经知道了如何移动上边的四个盘子到 B(pole2)，现在把最大的盘子从 A -> C 就很简单了。当把最大的盘子移动到
+C 之后，只需要把 B 上的 4 个盘子从 B -> C 就行。（这里的 pole1, 2, 3 分别就是 A, B, C 杆）
+
+![](./hanoi_four_disks.png)
+
+问题是仍要想办法如何移动上边的 4 个盘子，我们可以同样的方式来移动上边的 4 个盘子，这就是一种递归的解法。
+给定 n 个盘子和三个杆分别是 源杆(Source), 目标杆(Destination)，和中介杆(Intermediate)，我们可以定义如下递归操作：
+
+- 把上边的 n-1 个盘子从 S 移动到 I，借助 D 杆
+- 把最底下的盘子从 S 移动到 D
+- 把 n-1 个盘子从 I 移动到 D，借助 S
+
+我们把它转换成代码：
+
+```py
+def hanoi_move(n, source, dest, intermediate):
+    if n >= 1:  # 递归出口，只剩一个盘子
+        hanoi_move(n-1, source, intermediate, dest)
+        print("Move %s -> %s" % (source, dest))
+        hanoi_move(n-1, intermediate, dest, source)
+hanoi_move(3, 'A', 'C', 'B')
+
+# 输出，建议你手动模拟下。三个盘子 A(Source), B(intermediate), C(Destination)
+"""
+Move A -> C
+Move A -> B
+Move C -> B
+Move A -> C
+Move B -> A
+Move B -> C
+Move A -> C
+"""
+```
+
+<center>
+![三个盘子的汉诺塔解法](./hanoi.gif)
+</center>
+
+是不是很神奇，但是老实说这个过程仅凭大脑空想是比较难以想象出来的。人的大脑『栈』深度很有限，因为你甚至都没法同时记住超过 8 个以上的
+无意义数字，所以用大脑模拟不如用纸笔来模拟下。（不排除有些聪明的同学能迅速在脑瓜里完成这个过程）
 
 # 延伸阅读
 递归是个非常重要的概念，我们后边的数据结构和算法中还会多次碰到它，我建议你多阅读一些资料加深理解：
@@ -137,6 +192,7 @@ def print_num_recursive_revserve(n):
 - 《Data Structures and Algorithms in Python》 第 10 章 Recursion
 - [《Python开启尾递归优化!》](https://segmentfault.com/a/1190000007641519)
 - [尾调用优化](http://www.ruanyifeng.com/blog/2015/04/tail-call.html)
+- [汉诺塔](https://zh.wikipedia.org/wiki/%E6%B1%89%E8%AF%BA%E5%A1%94)
 
 # 思考题
 - 你能举出其他一些使用到递归的例子吗？
