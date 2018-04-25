@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>队列 - Python 数据结构与算法视频教程</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "\u961f\u5217";
+    var mkdocs_page_input_path = "04_\u961f\u5217/queue.md";
+    var mkdocs_page_url = "/04_\u961f\u5217/queue/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Python 数据结构与算法视频教程</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">课程简介</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../00_课程简介之笨方法学算法/why_and_how_to_learn/">课程简介之笨方法学算法</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../01_抽象数据类型和面向对象编程/ADT_OOP/">抽象数据类型和面向对象编程</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../02_数组和列表/array_and_list/">数组和列表</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../03_链表/linked_list/">链表</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">队列</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#_1">队列和栈</a></li>
+    
+
+    <li class="toctree-l2"><a href="#queue">队列 Queue</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_2">用数组实现队列</a></li>
+    
+
+    <li class="toctree-l2"><a href="#double-ended-queue">双端队列 Double ended Queue</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_3">思考题</a></li>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../05_栈/stack/">栈</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../06_算法分析/big_o/">算法分析</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../07_哈希表/hashtable/">哈希表</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../08_字典/dict/">字典</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../09_集合/set/">集合</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../10_递归/recursion/">递归</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Python 数据结构与算法视频教程</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>队列</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="_1">队列和栈</h1>
+<p>前面讲了线性和链式结构，如果你顺利掌握了，下边的队列和栈就小菜一碟了。因为我们会用前两章讲到的东西来实现队列和栈。
+之所以放到一起讲是因为这两个东西很类似，队列是先进先出结构(FIFO, first in first out)，
+栈是后进先出结构(LIFO, last in first out)。</p>
+<p>生活中的数据结构：</p>
+<ul>
+<li>队列。没错就是咱平常排队，第一个来的第一个走</li>
+</ul>
+<p>本章我们详细讲讲常用的队列</p>
+<h1 id="queue">队列 Queue</h1>
+<p>这里卖个关子，如果你熟悉了上两节讲的内容，这里你会选取哪个数据结构作为队列的底层存储？
+还记得第一章讲的如何实现 ADT 吗？我视频了说了三个注意事项：</p>
+<ul>
+<li>1.如何选用恰当的数据结构作为存储？</li>
+<li>2.选取的数据结构能否满足 ADT 的功能需求</li>
+<li>3.实现效率如何？</li>
+</ul>
+<p>我们先来看看 list 可以不？对照这个三个需求，看看能否满足：</p>
+<ul>
+<li>1.我们选择了 list</li>
+<li>2.看起来队列需要从头删除，向尾部增加元素，也就是 list.insert(0, element) 和 list.append(element)</li>
+<li>3.嗯，貌似 list.insert(0, element) 会导致所有list元素后移，O(n)复杂度。append 平均倒是O(1)，但是如果内存不够还要重新分配内存。</li>
+</ul>
+<p>你看，使用了 list 的话频繁 insert(0, element) 和 append 都是非常低效的。</p>
+<p>脑子再转转， 我们第二章实现了 链表 LinkedList，看看能否满足要求：
+- 1.这里选择 LinkedList
+- 2.删除头元素 LinkedList.popleft()，追加 append(element)。都可以满足
+- 3.哇欧，这两个操作都是 O(1) 的，完美。</p>
+<p>好， 就用 LinkedList 了，我们开始实现，具体看视频。这次实现我们还将演示自定义异常和测试异常。</p>
+<h1 id="_2">用数组实现队列</h1>
+<p>难道用数组就不能实现队列了吗？其实还是可以的。只不过数组是预先分配固定内存的，所以如果你知道了队列的最大长度，也是
+可以用数组来实现的。</p>
+<p>想象一下，队列就俩操作，进进出出，一进一出，pop 和 push 操作。
+似乎只要两个下标 head, tail 就可以了。 当我们 push 的时候赋值并且前移 head，pop 的时候前移 tail 就可以了。你可以在纸上
+模拟下试试。列队的长度就是 head-pop，这个长度必须不能大于初始化的最大程度。</p>
+<p>如果 head 先到了数组末尾咋办？重头来呗，只要我们保证 tail 不会超过 head 就行。</p>
+<p>head = 0,1,2,3,4 ... 0,1,2,3,4 ...</p>
+<p>重头再来，循环往复，仿佛一个轮回。。。。
+怎么重头来呢？看上边数组的规律你如果还想不起来用取模，估计小学数学是体育老师教的。</p>
+<pre><code class="py">maxsize = 5
+for i in range(100):
+    print(i % maxsize)
+</code></pre>
+
+<p><img alt="" src="../array_queue.png" /></p>
+<p>我们来实现一个空间有限的循环队列。ArrayQueue，它的实现很简单，但是缺点是需要预先知道队列的长度来分配内存。</p>
+<h1 id="double-ended-queue">双端队列 Double ended Queue</h1>
+<p>看了视频相信你已经会实现队列了，你可能还听过双端队列。上边讲到的队列 队头出，尾尾进，我们如果想头部和尾巴都能进能出呢？
+这就是双端队列了，如果你用过 collections.deque 模块，就是这个东西。他能高效在两头操作。</p>
+<p>假如让你实现你能想起来嘛？
+似乎我们需要一个能 append()  appendleft() popleft() pop() 都是 O(1) 的数据结构。</p>
+<p>上边我们实现 队列的 LinkedList 可以吗？貌似就差一个 pop() 最后边的元素无法实现了。
+对，我们还有双端链表。它有这几个方法：</p>
+<ul>
+<li>append</li>
+<li>appendleft</li>
+<li>headnode()</li>
+<li>tailnode()</li>
+<li>remove(node)    # O(1)</li>
+</ul>
+<p>啊哈，似乎删除头尾都可以啦，而且都是 O(1) 的，完美。
+交给你一个艰巨的任务，实现双端队列 Deque（） ADT。你可以参考前几章的任何代码，挑战一下这个任务，别忘记写单元测试呦。当然如果没想出来也没关系，后边我们实现栈的时候还会用到它，那里我们会实现这个代码。</p>
+<h1 id="_3">思考题</h1>
+<ul>
+<li>你能用 python 的 deque 来实现 queue ADT 吗？</li>
+<li>哪些经典算法里用到了队列呢？</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../05_栈/stack/" class="btn btn-neutral float-right" title="栈">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../../03_链表/linked_list/" class="btn btn-neutral" title="链表"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../../03_链表/linked_list/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../../05_栈/stack/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script src="../../search/require.js"></script>
+      <script src="../../search/search.js"></script>
+
+</body>
+</html>
