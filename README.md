@@ -8,7 +8,9 @@
 ## 链接
 
 [网上阅读《Python 算法与数据结构教程 》](http://ningning.today/python_data_structures_and_algorithms/)
+
 [github 链接](https://github.com/PegasusWang/python_data_structures_and_algorithms)
+
 [readthedoc 电子书下载](http://python-data-structures-and-algorithms.readthedocs.io/zh/latest/)
 
 ## 痛点
