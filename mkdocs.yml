@@ -21,3 +21,4 @@ pages:
   - 集合: '09_集合/set.md'
   - 递归: '10_递归/recursion.md'
   - 线性查找与二分查找: '11_线性查找与二分查找/search.md'
+  - 基本排序算法: '12_基本排序算法/basic_sort.md'
