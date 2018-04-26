@@ -4,7 +4,7 @@
     
     <url>
      <loc>/</loc>
-     <lastmod>2018-04-25</lastmod>
+     <lastmod>2018-04-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -12,7 +12,7 @@
     
     <url>
      <loc>/00_课程简介之笨方法学算法/why_and_how_to_learn/</loc>
-     <lastmod>2018-04-25</lastmod>
+     <lastmod>2018-04-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -20,7 +20,7 @@
     
     <url>
      <loc>/01_抽象数据类型和面向对象编程/ADT_OOP/</loc>
-     <lastmod>2018-04-25</lastmod>
+     <lastmod>2018-04-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -28,7 +28,7 @@
     
     <url>
      <loc>/02_数组和列表/array_and_list/</loc>
-     <lastmod>2018-04-25</lastmod>
+     <lastmod>2018-04-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -36,7 +36,7 @@
     
     <url>
      <loc>/03_链表/linked_list/</loc>
-     <lastmod>2018-04-25</lastmod>
+     <lastmod>2018-04-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -44,7 +44,7 @@
     
     <url>
      <loc>/04_队列/queue/</loc>
-     <lastmod>2018-04-25</lastmod>
+     <lastmod>2018-04-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -52,7 +52,7 @@
     
     <url>
      <loc>/05_栈/stack/</loc>
-     <lastmod>2018-04-25</lastmod>
+     <lastmod>2018-04-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -60,7 +60,7 @@
     
     <url>
      <loc>/06_算法分析/big_o/</loc>
-     <lastmod>2018-04-25</lastmod>
+     <lastmod>2018-04-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -68,7 +68,7 @@
     
     <url>
      <loc>/07_哈希表/hashtable/</loc>
-     <lastmod>2018-04-25</lastmod>
+     <lastmod>2018-04-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -76,7 +76,7 @@
     
     <url>
      <loc>/08_字典/dict/</loc>
-     <lastmod>2018-04-25</lastmod>
+     <lastmod>2018-04-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -84,7 +84,7 @@
     
     <url>
      <loc>/09_集合/set/</loc>
-     <lastmod>2018-04-25</lastmod>
+     <lastmod>2018-04-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -92,7 +92,15 @@
     
     <url>
      <loc>/10_递归/recursion/</loc>
-     <lastmod>2018-04-25</lastmod>
+     <lastmod>2018-04-26</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>/11_线性查找与二分查找/search/</loc>
+     <lastmod>2018-04-26</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
