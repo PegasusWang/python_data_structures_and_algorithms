@@ -94,9 +94,13 @@ def test_select_sort():
 
 
 # 插入排序
-这个拿小盆友举例子就不太好了，除非是叠罗汉。想象你手里有一些扑克牌，它们顺序是散乱的，现在需要你把它们整理成有序的，你会怎么做呢？
+插入排序很多教科书都是用扑克牌的例子讲的，想象你手里有一些扑克牌，它们顺序是散乱的，现在需要你把它们整理成有序的，你会怎么做呢？
 首先拿最顶上的一张，然后拿第二张，第二张点数大，你就把第二张放在第一张的下边，否则放在第一张上边。
 当你拿第三张的时候，你同样会找到适合它大小的位置插入进去。
+
+换成小朋友一样，第一个小盆友只有一个人我们假设是有序的，然后第二个小盆友会跟第一个比，如果第一个高就交换位置。
+接下来第三个小盆友从第二个位置开始比较，如果没第二个高就交换位置，然后没第一个高也交换位置，保持前边三个小盆友身高有序就好。
+依次类推，等到最后一个小盆友也转移到合适的位置，整个队列就是有序的了。
 
 插入排序就是这个道理, 每次挑选下一个元素插入已经排序的数组中,初始时已排序数组只有一个元素。我们就直接上代码吧。
 
@@ -107,14 +111,13 @@ def insertion_sort(seq):
     n = len(seq)
     print(seq)
     for i in range(1, n):
-        value = seq[i]    # save the value to be positioned
-        # find the position where value fits in the ordered part of the list
+        value = seq[i]    # 保存当前位置的值，因为转移的过程中它的位置可能被覆盖
+        # 找到这个值的合适位置，使得前边的数组有序 [0,i] 有序
         pos = i
         while pos > 0 and value < seq[pos-1]:
-            # Shift the items to the right during the search
-            seq[pos] = seq[pos-1]
+            seq[pos] = seq[pos-1]  # 如果前边的元素比它大，就让它一直前移
             pos -= 1
-        seq[pos] = value
+        seq[pos] = value    # 找到了合适的位置赋值就好
         print(seq)
 
 
