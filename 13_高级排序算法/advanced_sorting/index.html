@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>集合 - Python 数据结构与算法视频教程</title>
+  <title>高级排序算法 - Python 数据结构与算法视频教程</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "\u96c6\u5408";
-    var mkdocs_page_input_path = "09_\u96c6\u5408/set.md";
-    var mkdocs_page_url = "/09_\u96c6\u5408/set/";
+    var mkdocs_page_name = "\u9ad8\u7ea7\u6392\u5e8f\u7b97\u6cd5";
+    var mkdocs_page_input_path = "13_\u9ad8\u7ea7\u6392\u5e8f\u7b97\u6cd5/advanced_sorting.md";
+    var mkdocs_page_url = "/13_\u9ad8\u7ea7\u6392\u5e8f\u7b97\u6cd5/advanced_sorting/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -97,30 +97,9 @@
     <a class="" href="../../08_字典/dict/">字典</a>
 	    </li>
           
-            <li class="toctree-l1 current">
+            <li class="toctree-l1">
 		
-    <a class="current" href="./">集合</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l2"><a href="#set">集合 set</a></li>
-    
-
-    <li class="toctree-l2"><a href="#_1">集合操作</a></li>
-    
-
-    <li class="toctree-l2"><a href="#python-frozenset">python frozenset</a></li>
-    
-
-    <li class="toctree-l2"><a href="#set-adt">实现一个 set ADT</a></li>
-    
-
-    <li class="toctree-l2"><a href="#_2">思考题</a></li>
-    
-
-    <li class="toctree-l2"><a href="#_3">延伸阅读</a></li>
-    
-
-    </ul>
+    <a class="" href="../../09_集合/set/">集合</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -142,21 +121,27 @@
 		
     <span class="caption-text">高级排序算法</span>
     <ul class="subnav">
-                <li class="">
+                <li class=" current">
                     
-    <a class="" href="../../13_高级排序算法/advanced_sorting/">高级排序算法</a>
+    <a class="current" href="./">高级排序算法</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#_1">高级排序算法</a></li>
+    
+
+    </ul>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../13_高级排序算法/merge_sort/">分治法与归并排序</a>
+    <a class="" href="../merge_sort/">分治法与归并排序</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../13_高级排序算法/quick_sort/">快速排序</a>
+    <a class="" href="../quick_sort/">快速排序</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../13_高级排序算法/heap_sort/">堆与堆排序</a>
+    <a class="" href="../heap_sort/">堆与堆排序</a>
                 </li>
     </ul>
 	    </li>
@@ -182,8 +167,12 @@
     <li><a href="../..">Docs</a> &raquo;</li>
     
       
+        
+          <li>高级排序算法 &raquo;</li>
+        
+      
     
-    <li>集合</li>
+    <li>高级排序算法</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -193,42 +182,13 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="set">集合 set</h1>
-<p>这一章讲集合，实际上它的底层也是哈希表实现的，所以像实现 DictADT 一样，借助 HashTable 实现它也比较简单。</p>
-<h1 id="_1">集合操作</h1>
-<p>集合可能最常用的就是去重，判断是否存在一个元素等，但是 set 相比 dict 有更丰富的操作，主要是数学概念上的。
-如果你学过《离散数学》中集合相关的概念，基本上是一致的。 python 的 set 提供了如下基本的集合操作，
-假设有两个集合 A，B，有以下操作：</p>
+                <h1 id="_1">高级排序算法</h1>
+<p>本章开始讲几个高级一些的排序算法，因为涉及到分治、递归和一些高级数据结构等，所以比前一章节的基本排序要稍微难理解一些。包括：</p>
 <ul>
-<li>交集: A &amp; B，表示同时在 A 和 B 中的元素。 python 中重载  <code>__and__</code> 实现</li>
-<li>并集: A | B，表示在 A 或者 B 中的元素，两个集合相加。python 中重载 <code>__or__</code> 实现</li>
-<li>差集:  A - B，表示在 A 中但是不在 B 中的元素。 python 中重载 <code>__sub__</code> 实现</li>
-<li>对称差: A ^ B，返回在 A 或 B 但是不在 A、B 中都出现的元素。其实就是 (A|B) - (A&amp;B)， python 中重载 <code>__xor__</code> 实现</li>
+<li><a href="../merge_sort/">分治法与归并排序</a></li>
+<li><a href="../quick_sort/">快速排序</a></li>
+<li><a href="../heap_sort/">堆和堆排序</a></li>
 </ul>
-<p>这里使用的  &amp;, |, -, ^ 在 python 内置的 set 实现中都是重载了内置的运算符。这里我们也用这种方式实现，
-具体实现我会在视频里演示。python 同样实现了  intersection, union, difference, symmetric_difference 这四个方法，
-和使用运算符的功能是一样的。</p>
-<p><img alt="" src="../set.png" /></p>
-<h1 id="python-frozenset">python frozenset</h1>
-<p>在 python 里还有一个 frozenset，看它的名字就知道这种也是集合，但是它的内容是无法变动的。一般我们使用
-它的常见就是用一个可迭代对象初始化它，然后只用来判重等操作。</p>
-<h1 id="set-adt">实现一个 set ADT</h1>
-<p>如何实现一个集合的 ADT 呢，其实还是个哈希表，哈希表不是有 key 和 value 嘛，咱把 value 置为 1 不就行了。</p>
-<pre><code class="py">class SetADT(HashTable):
-
-    def add(self, key):
-        # 集合其实就是一个 dict，只不过我们把它的 value 设置成 1
-        return super(SetADT, self).add(key, True)
-</code></pre>
-
-<p>当然其它数学上的操作就麻烦点了，不过也很容易实现。</p>
-<h1 id="_2">思考题</h1>
-<ul>
-<li>你能尝试实现对称差操作吗？这里我没有实现，留给你作为练习</li>
-<li>你知道如何重载 python 的内置运算符吗？这里我们实现 set 的集合操作就是用到了重载，请阅读相关 python 文档。</li>
-</ul>
-<h1 id="_3">延伸阅读</h1>
-<p>阅读 python 文档关于 set 的相关章节，了解 set 还有哪些操作？比如比较运算符的概念，比较两个集合意味着什么。</p>
               
             </div>
           </div>
@@ -236,10 +196,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../../10_递归/recursion/" class="btn btn-neutral float-right" title="递归">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../merge_sort/" class="btn btn-neutral float-right" title="分治法与归并排序">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../../08_字典/dict/" class="btn btn-neutral" title="字典"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../12_基本排序算法/basic_sort/" class="btn btn-neutral" title="基本排序算法"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -265,10 +225,10 @@
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../../08_字典/dict/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../../12_基本排序算法/basic_sort/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../../10_递归/recursion/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../merge_sort/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
