@@ -31,12 +31,12 @@ def select_sort(seq):
         if min_idx != i:    # swap
             seq[i], seq[min_idx] = seq[min_idx], seq[i]
 
+
 def test_select_sort():
     seq = list(range(10))
     random.shuffle(seq)
     select_sort(seq)
     assert seq == sorted(seq)
-
 
 
 def insertion_sort(seq):

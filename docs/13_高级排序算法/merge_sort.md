@@ -1,0 +1,85 @@
+# 分治法 (Divide and Conquer)
+
+很多有用的算法结构上是递归的，为了解决一个特定问题，算法一次或者多次递归调用其自身以解决若干子问题。
+这些算法典型地遵循分治法的思想：将原问题分解为几个规模较小但是类似于原问题的子问题，递归求解这些子问题，
+然后再合并这些问题的解来建立原问题的解。
+
+分治法在每层递归时有三个步骤：
+
+- **分解**原问题为若干子问题，这些子问题是原问题的规模最小的实例
+- **解决**这些子问题，递归地求解这些子问题。当子问题的规模足够小，就可以直接求解
+- **合并**这些子问题的解成原问题的解
+
+
+# 归并排序
+现在我们就来看下归并排序是是如何利用分治法解决问题的。
+
+- **分解**：将待排序的 n 个元素分成各包含 n/2 个元素的子序列
+- **解决**：使用归并排序递归排序两个子序列
+- **合并**：合并两个已经排序的子序列以产生已排序的答案
+
+考虑我们排序这个数组：[10,23,51,18,4,31,13,5] ，我们递归地将数组进行分解
+
+![](./merge_sort_split.png)
+
+当数组被完全分隔成只有单个元素的数组时，我们需要把它们合并回去，每次两两合并成一个有序的序列。
+
+![](./merge_sort_merge.png)
+
+用递归代码来描述这个问题：
+
+```py
+def merge_sort(seq):
+    if len(seq) <= 1:   # 只有一个元素是递归出口
+        return seq
+    else:
+        mid = int(len(seq)/2)
+        left_half = merge_sort(seq[:mid])
+        right_half = merge_sort(seq[mid:])
+
+        # 合并两个有序的数组
+        new_seq = merge_sorted_list(left_half, right_half)
+        return new_seq
+```
+
+注意我们这里有一个函数没实现，就是如何合并两个有序数组 merge_sorted_list
+
+![](./merge_sorted_array.png)
+
+
+```py
+def merge_sorted_list(sorted_a, sorted_b):
+    """ 合并两个有序序列，返回一个新的有序序列
+
+    :param sorted_a:
+    :param sorted_b:
+    """
+    length_a, length_b = len(sorted_a), len(sorted_b)
+    a = b = 0
+    new_sorted_seq = list()
+
+    while a < length_a and b < length_b:
+        if sorted_a[a] < sorted_b[b]:
+            new_sorted_seq.append(sorted_a[a])
+            a += 1
+        else:
+            new_sorted_seq.append(sorted_b[b])
+            b += 1
+
+    # 最后别忘记把多余的都放到有序数组里
+    while a < length_a:
+        new_sorted_seq.append(sorted_a[a])
+        a += 1
+
+    while b < length_b:
+        new_sorted_seq.append(sorted_b[b])
+        b += 1
+
+    return new_sorted_seq
+```
+
+这样就实现了归并排序。
+
+
+# 延伸阅读
+- 《算法导论》第 2 章

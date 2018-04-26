@@ -173,9 +173,12 @@ Python 抽象程度比较高， 我们能用更少的代码来实现功能，同
 
 安装依赖：
 ```sh
-pip install mkdocs    # 制作电子书
+pip install mkdocs    # 制作电子书, http://markdown-docs-zh.readthedocs.io/zh_CN/latest/
 # https://stackoverflow.com/questions/27882261/mkdocs-and-mathjax/31874157
 pip install https://github.com/mitya57/python-markdown-math/archive/master.zip
+
+# 或者直接
+pip install -r requirements.txt
 ```
 
 编写并查看：
