@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>基本排序算法 - Python 数据结构与算法视频教程</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "\u57fa\u672c\u6392\u5e8f\u7b97\u6cd5";
+    var mkdocs_page_input_path = "12_\u57fa\u672c\u6392\u5e8f\u7b97\u6cd5/basic_sort.md";
+    var mkdocs_page_url = "/12_\u57fa\u672c\u6392\u5e8f\u7b97\u6cd5/basic_sort/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Python 数据结构与算法视频教程</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">课程简介</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../00_课程简介之笨方法学算法/why_and_how_to_learn/">课程简介之笨方法学算法</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../01_抽象数据类型和面向对象编程/ADT_OOP/">抽象数据类型和面向对象编程</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../02_数组和列表/array_and_list/">数组和列表</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../03_链表/linked_list/">链表</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../04_队列/queue/">队列</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../05_栈/stack/">栈</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../06_算法分析/big_o/">算法分析</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../07_哈希表/hashtable/">哈希表</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../08_字典/dict/">字典</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../09_集合/set/">集合</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../10_递归/recursion/">递归</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../11_线性查找与二分查找/search/">线性查找与二分查找</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">基本排序算法</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#_1">基本排序算法</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_2">冒泡排序</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_3">选择排序</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_4">插入排序</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_5">思考题</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_6">延伸阅读</a></li>
+    
+
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Python 数据结构与算法视频教程</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>基本排序算法</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="_1">基本排序算法</h1>
+<p>从本章开始讲常见的基于比较的排序算法，先讲三个简单的但是时间复杂度却不太理想的排序算法，包括冒泡排序、选择排序和插入排序。</p>
+<h1 id="_2">冒泡排序</h1>
+<p>bubble sort 可以说是最简单的一种排序算法了，它的思想如下。对一个数组进行 n 轮迭代，每次比较相邻两个元素，
+如果相邻的元素前者大于后者，就交换它们。因为直接在元素上操作而不是返回新的数组，所以是一个 inplace 的操作。
+这里冒泡的意思其实就是每一轮冒泡一个最大的元素就会通过不断比较和交换相邻元素使它转移到最右边。</p>
+<p>你可以想象假如有 10 个小盆友从左到右站成一排，个头不等。老师想让他们按照个头从低到高站好，于是他开始喊口号。
+每喊一次，从第一个小盆友开始，相邻的小朋友如果身高不是正序就会两两调换，就这样第一轮个头最高的排到了最右边。(冒泡到最右边)
+第二轮依次这么来，从第一个小朋友开始两两交换，这样次高的小盆友又排到了倒数第二个位置。依次类推。</p>
+<p>我们在视频里手动模拟下它的过程。</p>
+<pre><code class="py">import random
+
+
+def bubble_sort(seq):  # O(n^2), n(n-1)/2 = 1/2(n^2 + n)
+    n = len(seq)
+    for i in range(n-1):
+        print(seq)    # 我打印出来让你看清楚每一轮最高、次高、次次高...的小朋友会冒泡到右边
+        for j in range(n-1-i):  # 这里之所以 n-1 还需要 减去 i 是因为每一轮冒泡最大的元素都会冒泡到最后，无需再比较
+            if seq[j] &gt; seq[j+1]:
+                seq[j], seq[j+1] = seq[j+1], seq[j]
+    print(seq)
+
+
+def test_bubble_sort():
+    seq = list(range(10))  # 注意 python3 返回迭代器，所以我都用 list 强转了，python2 range 返回的就是 list
+    random.shuffle(seq)   # shuffle inplace 操作，打乱数组
+    bubble_sort(seq)
+    assert seq == sorted(seq)  # 注意呦，内置的 sorted 就不是 inplace 的，它返回一个新的数组，不影响传入的参数
+
+&quot;&quot;&quot; 我打印出来让你看到每次从最高到次高的小盆友就这么排好序了，因为是随机数，你第一个没有排序的数组应该和我的不一样
+[3, 4, 5, 0, 9, 1, 7, 8, 6, 2]
+[3, 4, 0, 5, 1, 7, 8, 6, 2, 9]
+[3, 0, 4, 1, 5, 7, 6, 2, 8, 9]
+[0, 3, 1, 4, 5, 6, 2, 7, 8, 9]
+[0, 1, 3, 4, 5, 2, 6, 7, 8, 9]
+[0, 1, 3, 4, 2, 5, 6, 7, 8, 9]
+[0, 1, 3, 2, 4, 5, 6, 7, 8, 9]
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+&quot;&quot;&quot;
+</code></pre>
+
+<h1 id="_3">选择排序</h1>
+<p>刚才看到冒泡是每轮迭代中，如果相邻的两个元素前者大于后者了就交换两个相邻元素(假设正序排序)。其实还有一种思路就是，
+每次我们找到最小的元素插入迭代的起始位置，这样每个位置从它自己的位置开始它就是最小的了，一圈下来数组就有序了。
+选择可以理解为 一个 0 到 n-1 的迭代，每次向后查找选择一个最小的元素。</p>
+<p>同样小盆友又来啦，这次我们从第一个开始，从头到尾找一个个头最小的小盆友，然后把它和第一个小盆友交换。
+然后从第二个小盆友开始采取同样的策略，这样一圈下来小盆友就有序了。</p>
+<pre><code class="py">def select_sort(seq):
+    n = len(seq)
+    for i in range(n-1):
+        min_idx = i    # 我们假设当前下标的元素是最小的
+        for j in range(i+1, n):    # 从 i 的后边开始找到最小的元素，得到它的下标
+            if seq[j] &lt; seq[min_idx]:
+                min_idx = j    # 一个 j 循环下来之后就找到了最小的元素它的下标
+        if min_idx != i:    # swap
+            seq[i], seq[min_idx] = seq[min_idx], seq[i]
+
+
+def test_select_sort():
+    seq = list(range(10))
+    random.shuffle(seq)
+    select_sort(seq)
+    assert seq == sorted(seq)
+
+&quot;&quot;&quot;
+[4, 7, 5, 3, 6, 0, 2, 9, 8, 1]
+[0, 7, 5, 3, 6, 4, 2, 9, 8, 1]
+[0, 1, 5, 3, 6, 4, 2, 9, 8, 7]
+[0, 1, 2, 3, 6, 4, 5, 9, 8, 7]
+[0, 1, 2, 3, 6, 4, 5, 9, 8, 7]
+[0, 1, 2, 3, 4, 6, 5, 9, 8, 7]
+[0, 1, 2, 3, 4, 5, 6, 9, 8, 7]
+[0, 1, 2, 3, 4, 5, 6, 9, 8, 7]
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+&quot;&quot;&quot;
+</code></pre>
+
+<h1 id="_4">插入排序</h1>
+<p>这个拿小盆友举例子就不太好了，除非是叠罗汉。想象你手里有一些扑克牌，它们顺序是散乱的，现在需要你把它们整理成有序的，你会怎么做呢？
+首先拿最顶上的一张，然后拿第二张，第二张点数大，你就把第二张放在第一张的下边，否则放在第一张上边。
+当你拿第三张的时候，你同样会找到适合它大小的位置插入进去。</p>
+<p>插入排序就是这个道理, 每次挑选下一个元素插入已经排序的数组中,初始时已排序数组只有一个元素。我们就直接上代码吧。</p>
+<pre><code class="py">def insertion_sort(seq):
+    &quot;&quot;&quot; 每次挑选下一个元素插入已经排序的数组中,初始时已排序数组只有一个元素&quot;&quot;&quot;
+    n = len(seq)
+    print(seq)
+    for i in range(1, n):
+        value = seq[i]    # save the value to be positioned
+        # find the position where value fits in the ordered part of the list
+        pos = i
+        while pos &gt; 0 and value &lt; seq[pos-1]:
+            # Shift the items to the right during the search
+            seq[pos] = seq[pos-1]
+            pos -= 1
+        seq[pos] = value
+        print(seq)
+
+
+&quot;&quot;&quot; 不断把新元素放到已经有序的数组中
+[1, 7, 3, 0, 9, 4, 8, 2, 6, 5]
+[1, 7, 3, 0, 9, 4, 8, 2, 6, 5]
+[1, 3, 7, 0, 9, 4, 8, 2, 6, 5]
+[0, 1, 3, 7, 9, 4, 8, 2, 6, 5]
+[0, 1, 3, 7, 9, 4, 8, 2, 6, 5]
+[0, 1, 3, 4, 7, 9, 8, 2, 6, 5]
+[0, 1, 3, 4, 7, 8, 9, 2, 6, 5]
+[0, 1, 2, 3, 4, 7, 8, 9, 6, 5]
+[0, 1, 2, 3, 4, 6, 7, 8, 9, 5]
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+&quot;&quot;&quot;
+</code></pre>
+
+<h1 id="_5">思考题</h1>
+<ul>
+<li>本章介绍的几个排序算法平均时间复杂度是多少？</li>
+</ul>
+<h1 id="_6">延伸阅读</h1>
+<ul>
+<li>《Data Structures and Algorithms in Python》第5章</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../../11_线性查找与二分查找/search/" class="btn btn-neutral" title="线性查找与二分查找"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../../11_线性查找与二分查找/search/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script src="../../search/require.js"></script>
+      <script src="../../search/search.js"></script>
+
+</body>
+</html>
