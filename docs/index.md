@@ -5,10 +5,17 @@
 笔者尝试录制视频教程帮助 Python 初学者掌握常用算法和数据结构，提升开发技能。
 本教程是付费教程(文字内容和代码免费)，因为笔者录制的过程中除了购买软件、手写板等硬件之外，业余需要花费很多时间和精力来录制视频、查资料、编写课件和代码，养家糊口不容易，希望大家体谅。
 
+## 链接
+
+[网上阅读《Python 算法与数据结构教程 》](http://ningning.today/python_data_structures_and_algorithms/)
+[github 链接](https://github.com/PegasusWang/python_data_structures_and_algorithms)
+[readthedoc 电子书下载](http://python-data-structures-and-algorithms.readthedocs.io/zh/latest/)
+
 ## 痛点
 - 讲 Python 数据结构和算法的资料很少，中文资料更少
 - 很多自学 Python 的工程师对基础不够重视，面试也发现很多数据结构和算法不过关，很多人挂在了基础的数据结构和算法上
 - 缺少工程应用场景下的讲解，很多讲算法的资料太『教科书化』。本书实现的代码工程上可用
+- 网上很多视频教程比较水，收费还很不合理，纯属智商税
 
 ## 作者简介
 目前就职于[知乎](https://www.zhihu.com/people/pegasus-wang/activities)，从实习期间接触 Python 起一直从事 Python 网站后端开发，有一定 Python 的使用和实践经验。
@@ -171,8 +178,9 @@ pip install https://github.com/mitya57/python-markdown-math/archive/master.zip
 
 编写并查看：
 ```sh
-mkdocs serve     # 修改自动更新，http://localhost:8000 访问
+mkdocs serve     # 修改自动更新，浏览器打开 http://localhost:8000 访问
 # 数学公式参考 https://www.zybuluo.com/codeep/note/163962
+mkdocs gh-deploy    # 部署到自己的 github pages
 ```
 
 您的打赏就是我写作的最大动力，呵呵哒!
