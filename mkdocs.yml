@@ -26,4 +26,3 @@ pages:
       - 高级排序算法: '13_高级排序算法/advanced_sorting.md'
       - 分治法与归并排序: '13_高级排序算法/merge_sort.md'
       - 快速排序: '13_高级排序算法/quick_sort.md'
-      - 堆与堆排序: '13_高级排序算法/heap_sort.md'

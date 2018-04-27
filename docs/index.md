@@ -59,8 +59,9 @@
 - 递归
 - 查找：线性查找和二分查找
 - 基本排序算法
-- 高级排序算法: 归并排序、堆排序、快排
+- 高级排序算法: 归并排序、快排
 - 树，二叉树
+- 堆与堆排序
 - 图，dfs 和 bfs
 - python 内置常用数据结构和算法的使用。list, dict, set, collections 模块，heapq 模块
 - 面试笔试常考算法
@@ -173,9 +174,12 @@ Python 抽象程度比较高， 我们能用更少的代码来实现功能，同
 
 安装依赖：
 ```sh
-pip install mkdocs    # 制作电子书
+pip install mkdocs    # 制作电子书, http://markdown-docs-zh.readthedocs.io/zh_CN/latest/
 # https://stackoverflow.com/questions/27882261/mkdocs-and-mathjax/31874157
 pip install https://github.com/mitya57/python-markdown-math/archive/master.zip
+
+# 或者直接
+pip install -r requirements.txt
 ```
 
 编写并查看：
