@@ -48,4 +48,3 @@ def test_merge_sort():
     seq = list(range(10))
     random.shuffle(seq)
     assert merge_sort(seq) == sorted(seq)
-
