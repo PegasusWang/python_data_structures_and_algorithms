@@ -5,19 +5,25 @@ extra_javascript:
 
 markdown_extensions:
   - mdx_math:
-       enable_dollar_delimiter: True #for use of inline $..$
+      enable_dollar_delimiter: True  #for use of inline $..$
 
 pages:
-  - 课程简介: 'index.md'
-  - 课程简介之笨方法学算法: '00_课程简介之笨方法学算法/why_and_how_to_learn.md'
-  - 抽象数据类型和面向对象编程: '01_抽象数据类型和面向对象编程/ADT_OOP.md'
-  - 数组和列表: '02_数组和列表/array_and_list.md'
-  - 链表: '03_链表/linked_list.md'
-  - 队列: '04_队列/queue.md'
-  - 栈: '05_栈/stack.md'
-  - 算法分析: '06_算法分析/big_o.md'
-  - 哈希表: '07_哈希表/hashtable.md'
-  - 字典: '08_字典/dict.md'
-  - 集合: '09_集合/set.md'
-  - 递归: '10_递归/recursion.md'
-  - 线性查找与二分查找: '11_线性查找与二分查找/search.md'
+    - 课程简介: 'index.md'
+    - 课程简介之笨方法学算法: '00_课程简介之笨方法学算法/why_and_how_to_learn.md'
+    - 抽象数据类型和面向对象编程: '01_抽象数据类型和面向对象编程/ADT_OOP.md'
+    - 数组和列表: '02_数组和列表/array_and_list.md'
+    - 链表: '03_链表/linked_list.md'
+    - 队列: '04_队列/queue.md'
+    - 栈: '05_栈/stack.md'
+    - 算法分析: '06_算法分析/big_o.md'
+    - 哈希表: '07_哈希表/hashtable.md'
+    - 字典: '08_字典/dict.md'
+    - 集合: '09_集合/set.md'
+    - 递归: '10_递归/recursion.md'
+    - 线性查找与二分查找: '11_线性查找与二分查找/search.md'
+    - 基本排序算法: '12_基本排序算法/basic_sort.md'
+    - 高级排序算法:
+      - 高级排序算法: '13_高级排序算法/advanced_sorting.md'
+      - 分治法与归并排序: '13_高级排序算法/merge_sort.md'
+      - 快速排序: '13_高级排序算法/quick_sort.md'
+      - 堆与堆排序: '13_高级排序算法/heap_sort.md'

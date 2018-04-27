@@ -8,7 +8,9 @@
 ## 链接
 
 [网上阅读《Python 算法与数据结构教程 》](http://ningning.today/python_data_structures_and_algorithms/)
+
 [github 链接](https://github.com/PegasusWang/python_data_structures_and_algorithms)
+
 [readthedoc 电子书下载](http://python-data-structures-and-algorithms.readthedocs.io/zh/latest/)
 
 ## 痛点
@@ -124,7 +126,7 @@ Python 抽象程度比较高， 我们能用更少的代码来实现功能，同
 ## 资料
 
 - 视频。包含所有讲解视频
-- 代码示例。所有代码我会放到 github 上
+- 代码示例。所有代码我会放到 github 上。注意每一章目录里都有 py 文件，在电子书里看不到。clone 下代码找到对应目录里的 python 文件即是每章涉及到的代码。
 - markdown 讲义，包含视频内容的提要等内容
 - 延伸阅读。我会附上一些阅读资料方便想深入学习的同学
 
