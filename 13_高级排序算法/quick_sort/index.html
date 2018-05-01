@@ -151,6 +151,21 @@
     </ul>
 	    </li>
           
+            <li class="toctree-l1">
+		
+    <a class="" href="../../14_树与二叉树/tree/">树与二叉树</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../15_堆与堆排序/heap_and_heapsort/">堆和堆排序</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../16_优先级队列/priority_queue/">优先级队列</a>
+	    </li>
+          
         </ul>
       </div>
       &nbsp;
@@ -222,7 +237,7 @@ def test_quicksort():
     assert quicksort(seq) == sorted(seq)
 </code></pre>
 
-<p>是不是很简单，下次面试官让你手写快排你再写不出来就有点过分啦。 当然这个实现有两个不好的地方:</p>
+<p>是不是很简单，下次面试官让你手写快排你再写不出来就有点不太合适啦。 当然这个实现有两个不好的地方:</p>
 <ul>
 <li>第一是它需要额外的存储空间，我们想实现 inplace 原地排序。</li>
 <li>第二是它的 partion 操作每次都要两次遍历整个数组，我们想改善一下。</li>
@@ -235,7 +250,7 @@ def test_quicksort():
         quicksort_inplace(array, pivot+1, end)
 </code></pre>
 
-<p>能否实现只遍历一次数组就可以完成 partition 操作呢？实际上是可以的。我们设置首位俩个指针 left, right，两个指针不断向中间收拢。如果遇到 left 位置的元素大于 pivot 并且 right 指向的元素小于 pivot，我们就交换这俩元素，当 left &gt; right 的时候推出就行了，这样实现了一次遍历就完成了 partition。如果你感觉懵逼，纸上画画就立马明白了。我们来撸代码实现：</p>
+<p>能否实现只遍历一次数组就可以完成 partition 操作呢？实际上是可以的。我们设置首位俩个指针 left, right，两个指针不断向中间收拢。如果遇到 left 位置的元素大于 pivot 并且 right 指向的元素小于 pivot，我们就交换这俩元素，当 left &gt; right 的时候退出就行了，这样实现了一次遍历就完成了 partition。如果你感觉懵逼，纸上画画就立马明白了。我们来撸代码实现：</p>
 <pre><code class="py">def partition(array, beg, end):
     pivot_index = beg
     pivot = array[pivot_index]
@@ -294,6 +309,8 @@ def test_partition():
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
+        <a href="../../14_树与二叉树/tree/" class="btn btn-neutral float-right" title="树与二叉树">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
       
         <a href="../merge_sort/" class="btn btn-neutral" title="分治法与归并排序"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
@@ -323,6 +340,8 @@ def test_partition():
       
         <span><a href="../merge_sort/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
+      
+        <span style="margin-left: 15px"><a href="../../14_树与二叉树/tree/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>堆和堆排序 - Python 数据结构与算法视频教程</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "\u5806\u548c\u5806\u6392\u5e8f";
+    var mkdocs_page_input_path = "15_\u5806\u4e0e\u5806\u6392\u5e8f/heap_and_heapsort.md";
+    var mkdocs_page_url = "/15_\u5806\u4e0e\u5806\u6392\u5e8f/heap_and_heapsort/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Python 数据结构与算法视频教程</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">课程简介</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../00_课程简介之笨方法学算法/why_and_how_to_learn/">课程简介之笨方法学算法</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../01_抽象数据类型和面向对象编程/ADT_OOP/">抽象数据类型和面向对象编程</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../02_数组和列表/array_and_list/">数组和列表</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../03_链表/linked_list/">链表</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../04_队列/queue/">队列</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../05_栈/stack/">栈</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../06_算法分析/big_o/">算法分析</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../07_哈希表/hashtable/">哈希表</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../08_字典/dict/">字典</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../09_集合/set/">集合</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../10_递归/recursion/">递归</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../11_线性查找与二分查找/search/">线性查找与二分查找</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../12_基本排序算法/basic_sort/">基本排序算法</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">高级排序算法</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../13_高级排序算法/advanced_sorting/">高级排序算法</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../13_高级排序算法/merge_sort/">分治法与归并排序</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../13_高级排序算法/quick_sort/">快速排序</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../14_树与二叉树/tree/">树与二叉树</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">堆和堆排序</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#heap">堆(heap)</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_1">什么是堆？</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_2">堆的操作</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_3">堆的表示</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_4">实现一个最大堆</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_5">实现堆排序</a></li>
+    
+
+    <li class="toctree-l2"><a href="#python-heapq">python 里的 heapq</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_6">练习题</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_7">延伸阅读</a></li>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../16_优先级队列/priority_queue/">优先级队列</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Python 数据结构与算法视频教程</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>堆和堆排序</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="heap">堆(heap)</h1>
+<p>前面我们讲了两种使用分治和递归解决排序问题的归并排序和快速排序，中间又穿插了一把树和二叉树，
+本章我们开始介绍另一种有用的数据结构堆(heap)， 以及借助堆来实现的堆排序，相比前两种排序算法要稍难实现一些。
+最后我们简单提一下 python 标准库内置的 heapq 模块。</p>
+<h1 id="_1">什么是堆？</h1>
+<p>堆是一种完全二叉树（请你回顾下上一章的概念），有最大堆和最小堆两种。</p>
+<ul>
+<li>最大堆: 对于每个非叶子节点 V，V 的值都比它的两个孩子大，称为 最大堆特性(heap order property)
+最大堆里的根总是存储最大值，最小的值存储在叶节点。</li>
+<li>最小堆：和最大堆相反，每个非叶子节点 V，V 的两个孩子的值都比它大。</li>
+</ul>
+<p><img alt="" src="../heap.png" /></p>
+<h1 id="_2">堆的操作</h1>
+<p>堆提供了很有限的几个操作：</p>
+<ul>
+<li>插入新的值。插入比较麻烦的就是需要维持堆的特性。需要 sift-up 操作，具体会在视频和代码里解释，文字描述起来比较麻烦。</li>
+<li>获取并移除根节点的值。每次我们都可以获取最大值或者最小值。这个时候需要把底层最右边的节点值替换到 root 节点之后
+执行 sift-down 操作。</li>
+</ul>
+<h1 id="_3">堆的表示</h1>
+<p>上一章我们用一个节点类和二叉树类表示树，这里其实用数组就能实现堆。</p>
+<p><img alt="" src="../heap_array.png" /></p>
+<p>仔细观察下，因为完全二叉树的特性，树不会有间隙。对于数组里的一个下标 i，我们可以得到它的父亲和孩子的节点对应的下标：</p>
+<pre><code>parent = int((i-1) / 2)    # 取整
+left = 2 * i + 1
+right = 2 * i + 2
+</code></pre>
+
+<p>超出下标表示没有对应的孩子节点。</p>
+<h1 id="_4">实现一个最大堆</h1>
+<p>我们将在视频里详细描述和编写各个操作</p>
+<pre><code class="py">class MaxHeap(object):
+    def __init__(self, maxsize=None):
+        self.maxsize = maxsize
+        self._elements = Array(maxsize)
+        self._count = 0
+
+    def __len__(self):
+        return self._count
+
+    def add(self, value):
+        if self._count &gt;= self.maxsize:
+            raise Exception('full')
+        self._elements[self._count] = value
+        self._count += 1
+        self._siftup(self._count-1)  # 维持堆的特性
+
+    def _siftup(self, ndx):
+        if ndx &gt; 0:
+            parent = int((ndx-1)/2)
+            if self._elements[ndx] &gt; self._elements[parent]:    # 如果插入的值大于 parent，一直交换
+                self._elements[ndx], self._elements[parent] = self._elements[parent], self._elements[ndx]
+                self._siftup(parent)    # 递归
+
+    def extract(self):
+        if self._count &lt;= 0:
+            raise Exception('empty')
+        value = self._elements[0]    # 保存 root 值
+        self._count -= 1
+        self._elements[0] = self._elements[self._count]    # 最右下的节点放到root后siftDown
+        self._siftdown(0)    # 维持堆特性
+        return value
+
+    def _siftdown(self, ndx):
+        left = 2 * ndx + 1
+        right = 2 * ndx + 2
+        # determine which node contains the larger value
+        largest = ndx
+        if (left &lt; self._count and     # 有左孩子
+                self._elements[left] &gt;= self._elements[largest] and
+                self._elements[left] &gt;= self._elements[right]):  # 原书这个地方没写实际上找的未必是largest
+            largest = left
+        elif right &lt; self._count and self._elements[right] &gt;= self._elements[largest]:
+            largest = right
+        if largest != ndx:
+            self._elements[ndx], self._elements[largest] = self._elements[largest], self._elements[ndx]
+            self._siftdown(largest)
+
+
+def test_maxheap():
+    import random
+    n = 5
+    h = MaxHeap(n)
+    for i in range(n):
+        h.add(i)
+    for i in reversed(range(n)):
+        assert i == h.extract()
+</code></pre>
+
+<h1 id="_5">实现堆排序</h1>
+<p>上边我们实现了最大堆，每次我们都能 extract 一个最大的元素了，于是一个倒序排序函数就能很容易写出来了：</p>
+<pre><code class="py">def heapsort_reverse(array):
+    length = len(array)
+    maxheap = MaxHeap(length)
+    for i in array:
+        maxheap.add(i)
+    res = []
+    for i in range(length):
+        res.append(maxheap.extract())
+    return res
+
+
+def test_heapsort_reverse():
+    import random
+    l = list(range(10))
+    random.shuffle(l)
+    assert heapsort_reverse(l) == sorted(l, reverse=True)
+</code></pre>
+
+<h1 id="python-heapq">python 里的 heapq</h1>
+<p>python 其实自带了 heapq 模块，用来实现堆的相关操作，原理是类似的。请你阅读相关文档。</p>
+<h1 id="_6">练习题</h1>
+<ul>
+<li>这里我用最大堆实现了一个 heapsort_reverse 函数，请你实现一个正序排序的函数。似乎不止一种方式</li>
+<li>请你实现一个最小堆，你需要修改那些代码呢？</li>
+<li>我们实现的堆排序是 inplace 的吗，如果不是，你能改成 inplace 的吗？</li>
+<li>堆排序的时间复杂度是多少？ siftup 和 siftdown 的时间复杂度是多少？</li>
+</ul>
+<h1 id="_7">延伸阅读</h1>
+<ul>
+<li>《算法导论》第 6 章 Heapsort</li>
+<li>《Data Structures and Algorithms in Python》 13.5 节 Heapsort</li>
+<li>阅读 Python heapq 模块的文档</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../16_优先级队列/priority_queue/" class="btn btn-neutral float-right" title="优先级队列">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../../14_树与二叉树/tree/" class="btn btn-neutral" title="树与二叉树"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../../14_树与二叉树/tree/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../../16_优先级队列/priority_queue/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script src="../../search/require.js"></script>
+      <script src="../../search/search.js"></script>
+
+</body>
+</html>

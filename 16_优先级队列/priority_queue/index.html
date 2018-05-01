@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>分治法与归并排序 - Python 数据结构与算法视频教程</title>
+  <title>优先级队列 - Python 数据结构与算法视频教程</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "\u5206\u6cbb\u6cd5\u4e0e\u5f52\u5e76\u6392\u5e8f";
-    var mkdocs_page_input_path = "13_\u9ad8\u7ea7\u6392\u5e8f\u7b97\u6cd5/merge_sort.md";
-    var mkdocs_page_url = "/13_\u9ad8\u7ea7\u6392\u5e8f\u7b97\u6cd5/merge_sort/";
+    var mkdocs_page_name = "\u4f18\u5148\u7ea7\u961f\u5217";
+    var mkdocs_page_input_path = "16_\u4f18\u5148\u7ea7\u961f\u5217/priority_queue.md";
+    var mkdocs_page_url = "/16_\u4f18\u5148\u7ea7\u961f\u5217/priority_queue/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -123,33 +123,15 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="../advanced_sorting/">高级排序算法</a>
-                </li>
-                <li class=" current">
-                    
-    <a class="current" href="./">分治法与归并排序</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l3"><a href="#divide-and-conquer">分治法 (Divide and Conquer)</a></li>
-    
-
-    <li class="toctree-l3"><a href="#_1">归并排序</a></li>
-    
-
-    <li class="toctree-l3"><a href="#_2">时间复杂度</a></li>
-    
-
-    <li class="toctree-l3"><a href="#_3">思考题</a></li>
-    
-
-    <li class="toctree-l3"><a href="#_4">延伸阅读</a></li>
-    
-
-    </ul>
+    <a class="" href="../../13_高级排序算法/advanced_sorting/">高级排序算法</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../quick_sort/">快速排序</a>
+    <a class="" href="../../13_高级排序算法/merge_sort/">分治法与归并排序</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../13_高级排序算法/quick_sort/">快速排序</a>
                 </li>
     </ul>
 	    </li>
@@ -164,9 +146,21 @@
     <a class="" href="../../15_堆与堆排序/heap_and_heapsort/">堆和堆排序</a>
 	    </li>
           
-            <li class="toctree-l1">
+            <li class="toctree-l1 current">
 		
-    <a class="" href="../../16_优先级队列/priority_queue/">优先级队列</a>
+    <a class="current" href="./">优先级队列</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#_1">优先级队列</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_2">实现优先级队列</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_3">练习题</a></li>
+    
+
+    </ul>
 	    </li>
           
         </ul>
@@ -190,12 +184,8 @@
     <li><a href="../..">Docs</a> &raquo;</li>
     
       
-        
-          <li>高级排序算法 &raquo;</li>
-        
-      
     
-    <li>分治法与归并排序</li>
+    <li>优先级队列</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -205,94 +195,52 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="divide-and-conquer">分治法 (Divide and Conquer)</h1>
-<p>很多有用的算法结构上是递归的，为了解决一个特定问题，算法一次或者多次递归调用其自身以解决若干子问题。
-这些算法典型地遵循分治法的思想：将原问题分解为几个规模较小但是类似于原问题的子问题，递归求解这些子问题，
-然后再合并这些问题的解来建立原问题的解。</p>
-<p>分治法在每层递归时有三个步骤：</p>
-<ul>
-<li><strong>分解</strong>原问题为若干子问题，这些子问题是原问题的规模最小的实例</li>
-<li><strong>解决</strong>这些子问题，递归地求解这些子问题。当子问题的规模足够小，就可以直接求解</li>
-<li><strong>合并</strong>这些子问题的解成原问题的解</li>
-</ul>
-<h1 id="_1">归并排序</h1>
-<p>现在我们就来看下归并排序是是如何利用分治法解决问题的。</p>
-<ul>
-<li><strong>分解</strong>：将待排序的 n 个元素分成各包含 n/2 个元素的子序列</li>
-<li><strong>解决</strong>：使用归并排序递归排序两个子序列</li>
-<li><strong>合并</strong>：合并两个已经排序的子序列以产生已排序的答案</li>
-</ul>
-<p>考虑我们排序这个数组：[10,23,51,18,4,31,13,5] ，我们递归地将数组进行分解</p>
-<p><img alt="" src="../merge_sort_split.png" /></p>
-<p>当数组被完全分隔成只有单个元素的数组时，我们需要把它们合并回去，每次两两合并成一个有序的序列。</p>
-<p><img alt="" src="../merge_sort_merge.png" /></p>
-<p>用递归代码来描述这个问题：</p>
-<pre><code class="py">def merge_sort(seq):
-    if len(seq) &lt;= 1:   # 只有一个元素是递归出口
-        return seq
-    else:
-        mid = int(len(seq)/2)
-        left_half = merge_sort(seq[:mid])
-        right_half = merge_sort(seq[mid:])
+                <h1 id="_1">优先级队列</h1>
+<p>你可能比较奇怪，队列不是早就讲了嘛。这里之所以放到这里讲优先级队列，是因为虽然名字有队列，
+但其实是使用堆来实现的。上一章讲完了堆，这一章我们就趁热打铁来实现一个优先级队列。</p>
+<h1 id="_2">实现优先级队列</h1>
+<p>优先级队列(Priority Queue) 顾名思义，就是入队的时候可以给一个优先级，通常是个数字或者时间戳等，
+当出队的时候我们希望按照给定的优先级出队，我们按照 TDD 的方式先来写测试代码：</p>
+<pre><code class="py">def test_priority_queue():
+    size = 5
+    pq = PriorityQueue(size)
+    pq.push(5, 'purple')    # priority, value
+    pq.push(0, 'white')
+    pq.push(3, 'orange')
+    pq.push(1, 'black')
 
-        # 合并两个有序的数组
-        new_seq = merge_sorted_list(left_half, right_half)
-        return new_seq
+    res = []
+    while not pq.is_empty():
+        res.append(pq.pop())
+    assert res == ['purple', 'orange', 'black', 'white']
 </code></pre>
 
-<p>注意我们这里有一个函数没实现，就是如何合并两个有序数组 merge_sorted_list。其实你在纸上画一画，
-合并两个有序数组并不难实现。</p>
-<p><img alt="" src="../merge_sorted_array.png" /></p>
-<pre><code class="py">def merge_sorted_list(sorted_a, sorted_b):
-    &quot;&quot;&quot; 合并两个有序序列，返回一个新的有序序列
+<p>上边就是期望的行为，写完测试代码后我们来编写优先级队列的代码，按照出队的时候最大优先级先出的顺序：</p>
+<pre><code class="py">class PriorityQueue(object):
+    def __init__(self, maxsize):
+        self.maxsize = maxsize
+        self._maxheap = MaxHeap(maxsize)
 
-    :param sorted_a:
-    :param sorted_b:
-    &quot;&quot;&quot;
-    length_a, length_b = len(sorted_a), len(sorted_b)
-    a = b = 0
-    new_sorted_seq = list()
+    def push(self, priority, value):
+        # 注意这里把这个 tuple push 进去，python 比较 tuple 从第一个开始比较
+        # 这样就很巧妙地实现了按照优先级排序
+        entry = (priority, value)    # 入队的时候会根据 priority 维持堆的特性
+        self._maxheap.add(entry)
 
-    while a &lt; length_a and b &lt; length_b:
-        if sorted_a[a] &lt; sorted_b[b]:
-            new_sorted_seq.append(sorted_a[a])
-            a += 1
+    def pop(self, with_priority=False):
+        entry = self._maxheap.extract()
+        if with_priority:
+            return entry
         else:
-            new_sorted_seq.append(sorted_b[b])
-            b += 1
+            return entry[1]
 
-    # 最后别忘记把多余的都放到有序数组里
-    while a &lt; length_a:
-        new_sorted_seq.append(sorted_a[a])
-        a += 1
-
-    while b &lt; length_b:
-        new_sorted_seq.append(sorted_b[b])
-        b += 1
-
-    return new_sorted_seq
+    def is_empty(self):
+        return len(self._maxheap) == 0
 </code></pre>
 
-<p>这样就实现了归并排序，并且你会发现它返回一个新的数组而不是修改原有数组。</p>
-<h1 id="_2">时间复杂度</h1>
-<p>我们来简单看下它归并排序的时间复杂度，假设排序 n 个数字时间复杂度是 T(n)，这里为了方便假设 n 是 2 的幂</p>
-<p>
-<script type="math/tex; mode=display">\begin{align}
-T(n)= \begin{cases} c, & \text {if $n$ = 1} \\ 2T(n/2)+cn, & \text{if $n$ > 1} \end{cases}
-\end{align}</script>
-</p>
-<p><img alt="" src="../merge_sort_recursion_tree.png" /></p>
-<p>总的代价是 <script type="math/tex">cnlg(n)+cn</script> ，忽略常数项可以认为是  O(nlg(n))</p>
-<h1 id="_3">思考题</h1>
+<h1 id="_3">练习题</h1>
 <ul>
-<li>请你完成归并排序的单元测试</li>
-<li>这里实现的归并排序是 inplace 的吗？</li>
-<li>归并排序是稳定的吗？稳定指的是排序前后相同大小的数字依然保持相对顺序。</li>
-</ul>
-<h1 id="_4">延伸阅读</h1>
-<ul>
-<li>《算法导论》第 2 章和第 4 章，你需要了解下『主定理』，以及如何求解形如 <script type="math/tex">T(n)=aT(n/b) + f(n)</script> 的递归式复杂度</li>
-<li>了解算法导论上递归式的三种求解方法：代入法，递归树法，主方法</li>
+<li>请你实现按照小优先级先出队的顺序的优先级队列</li>
 </ul>
               
             </div>
@@ -301,10 +249,8 @@ T(n)= \begin{cases} c, & \text {if $n$ = 1} \\ 2T(n/2)+cn, & \text{if $n$ > 1} \
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../quick_sort/" class="btn btn-neutral float-right" title="快速排序">Next <span class="icon icon-circle-arrow-right"></span></a>
       
-      
-        <a href="../advanced_sorting/" class="btn btn-neutral" title="高级排序算法"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../15_堆与堆排序/heap_and_heapsort/" class="btn btn-neutral" title="堆和堆排序"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -330,10 +276,8 @@ T(n)= \begin{cases} c, & \text {if $n$ = 1} \\ 2T(n/2)+cn, & \text{if $n$ > 1} \
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../advanced_sorting/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../../15_堆与堆排序/heap_and_heapsort/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
-      
-        <span style="margin-left: 15px"><a href="../quick_sort/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

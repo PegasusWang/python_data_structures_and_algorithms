@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>树与二叉树 - Python 数据结构与算法视频教程</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "\u6811\u4e0e\u4e8c\u53c9\u6811";
+    var mkdocs_page_input_path = "14_\u6811\u4e0e\u4e8c\u53c9\u6811/tree.md";
+    var mkdocs_page_url = "/14_\u6811\u4e0e\u4e8c\u53c9\u6811/tree/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Python 数据结构与算法视频教程</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">课程简介</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../00_课程简介之笨方法学算法/why_and_how_to_learn/">课程简介之笨方法学算法</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../01_抽象数据类型和面向对象编程/ADT_OOP/">抽象数据类型和面向对象编程</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../02_数组和列表/array_and_list/">数组和列表</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../03_链表/linked_list/">链表</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../04_队列/queue/">队列</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../05_栈/stack/">栈</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../06_算法分析/big_o/">算法分析</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../07_哈希表/hashtable/">哈希表</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../08_字典/dict/">字典</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../09_集合/set/">集合</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../10_递归/recursion/">递归</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../11_线性查找与二分查找/search/">线性查找与二分查找</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../12_基本排序算法/basic_sort/">基本排序算法</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">高级排序算法</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../13_高级排序算法/advanced_sorting/">高级排序算法</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../13_高级排序算法/merge_sort/">分治法与归并排序</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../13_高级排序算法/quick_sort/">快速排序</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">树与二叉树</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#_1">树和二叉树</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_2">树</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_3">二叉树</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_4">一些特殊的二叉树</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#full-binary-tree">满二叉树(full binary tree)</a></li>
+        
+            <li><a class="toctree-l3" href="#perfect-binary-tree">完美二叉树(perfect binary tree)</a></li>
+        
+            <li><a class="toctree-l3" href="#complete-binary-tree">完全二叉树(complete binary tree)</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l2"><a href="#_5">二叉树的表示</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_6">二叉树的遍历</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_7">反转二叉树</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_8">练习题</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_9">延伸阅读</a></li>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../15_堆与堆排序/heap_and_heapsort/">堆和堆排序</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../16_优先级队列/priority_queue/">优先级队列</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Python 数据结构与算法视频教程</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>树与二叉树</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="_1">树和二叉树</h1>
+<p>前面我们讲了两种使用分治和递归解决排序问题的归并排序和快速排序，堆排序先就此打住，因为涉及到树的概念，所以我们先来讲讲树。
+讲完了树之后后面我们开始介绍一种有用的数据结构堆(heap)， 以及借助堆来实现的堆排序，相比前两种排序算法要稍难理解和实现一些。</p>
+<h1 id="_2">树</h1>
+<p>这里先简单讲讲树的概念。树结构是一种包括节点(nodes)和边(edges)的拥有层级关系的一种结构， 它的形式和家谱树非常类似:</p>
+<p><img alt="" src="../family_tree.png" /></p>
+<p>如果你了解 linux 文件结构（tree 命令），它的结构也是一棵树。我们快速看下树涉及到的一些概念：</p>
+<p><img alt="" src="../tree.png" /></p>
+<ul>
+<li>根节点(root): 树的最上层的节点，任何非空的树都有一个节点</li>
+<li>路径(path): 从起始节点到终止节点经历过的边</li>
+<li>父亲(parent)：除了根节点，每个节点的上一层又边连接的节点就是它的父亲(节点)</li>
+<li>孩子(children): 每个节点由边指向的下一层节点</li>
+<li>兄弟(siblings): 同一个父亲并且处在同一层的节点</li>
+<li>子树(subtree): 每个节点包含它所有的后代组成的子树</li>
+<li>叶子节点(leaf node): 没有孩子的节点成为叶子节点</li>
+</ul>
+<h1 id="_3">二叉树</h1>
+<p>了解完树的结构以后，我们来看树结构里一种简单但是却比较常用的树-二叉树。
+二叉树是一种简单的树，它的每个节点最多只能包含两个孩子，以下都是一些合法的二叉树:</p>
+<p><img alt="" src="../binary_tree.png" />
+<img alt="" src="../binary_tree_level.png" /></p>
+<p>通过上边这幅图再来看几个二叉树相关的概念:</p>
+<ul>
+<li>节点深度(depth): 节点对应的 level 数字</li>
+<li>树的高度(height): 二叉树的高度就是 level 数 + 1，因为 level 从 0开始计算的</li>
+<li>树的宽度(width): 二叉树的宽度指的是包含最多节点的层级的节点数</li>
+<li>树的 size：二叉树的节点总个数。</li>
+</ul>
+<p>一棵 size 为 n 的二叉树高度最多可以是 n，最小的高度是 <script type="math/tex"> \lfloor lgn \rfloor + 1 </script>，这里 log 以 2 为底简写为
+lgn，和算法导论保持一致。这个结果你只需要用高中的累加公式就可以得到。</p>
+<h1 id="_4">一些特殊的二叉树</h1>
+<p>在了解了二叉树的术语和概念之后，我们来看看一些特殊的二叉树，后续章节我们会用到：</p>
+<h3 id="full-binary-tree">满二叉树(full binary tree)</h3>
+<p>如果每个内部节点（非叶节点）都包含两个孩子，就成为满二叉树。下边是一些例子，它可以有多种形状：</p>
+<p><img alt="" src="../full_binary_tree.png" /></p>
+<h3 id="perfect-binary-tree">完美二叉树(perfect binary tree)</h3>
+<p>当所有的叶子节点都在同一层就是完美二叉树，毫无间隙填充了 h 层。</p>
+<p><img alt="" src="../perfect_binary_tree.png" /></p>
+<h3 id="complete-binary-tree">完全二叉树(complete binary tree)</h3>
+<p>当一个高度为 h 的完美二叉树减少到 h-1，并且最底层的槽被毫无间隙地从左到右填充，我们就叫它完全二叉树。
+下图就是完全二叉树的例子：</p>
+<p><img alt="" src="../complete_binary_tree.png" /></p>
+<h1 id="_5">二叉树的表示</h1>
+<p>说了那么多，那么怎么表示一棵二叉树呢？其实你发现会和链表有一些相似之处，一个节点，然后节点需要保存孩子的指针，我以构造下边这个二叉树为例子：
+我们先定义一个类表示节点：</p>
+<p><img alt="" src="../preorder.png" /></p>
+<pre><code class="py">class BinTreeNode(object):
+    def __init__(self, data, left=None, right=None):
+        self.data, self.left, self.right = data, left, right
+</code></pre>
+
+<p>当然和链表类似，root 节点是我们的入口，于是乎定义一个 二叉树：</p>
+<pre><code class="py">class BinTree(object):
+    def __init__(self, root=None):
+        self.root = root
+</code></pre>
+
+<p>怎么构造上图中的二叉树呢，似乎其他课本没找到啥例子，我自己定义了一种方法，首先我们输入节点信息，仔细看下边代码，叶子节点的 left 和 right 都是 None，并且只有一个根节点 A:</p>
+<pre><code class="py">node_list = [
+    {'data': 'A', 'left': 'B', 'right': 'C', 'is_root': True},
+    {'data': 'B', 'left': 'D', 'right': 'E', 'is_root': False},
+    {'data': 'D', 'left': None, 'right': None, 'is_root': False},
+    {'data': 'E', 'left': 'H', 'right': None, 'is_root': False},
+    {'data': 'H', 'left': None, 'right': None, 'is_root': False},
+    {'data': 'C', 'left': 'F', 'right': 'G', 'is_root': False},
+    {'data': 'F', 'left': None, 'right': None, 'is_root': False},
+    {'data': 'G', 'left': 'I', 'right': 'J', 'is_root': False},
+    {'data': 'I', 'left': None, 'right': None, 'is_root': False},
+    {'data': 'J', 'left': None, 'right': None, 'is_root': False},
+]
+</code></pre>
+
+<p>然后我们给 BinTreeNode 定义一个 build_from 方法：</p>
+<pre><code class="py">class BinTree(object):
+    def __init__(self, root=None):
+        self.root = root
+
+    @classmethod
+    def build_from(cls, node_list):
+        &quot;&quot;&quot;通过节点信息构造二叉树
+        第一次遍历我们构造 node 节点
+        第二次遍历我们给 root 和 孩子赋值
+        最后我们用 root 初始化这个类并返回一个对象
+
+        :param node_list: {'data': 'A', 'left': None, 'right': None, 'is_root': False}
+        &quot;&quot;&quot;
+        node_dict = {}
+        for node_data in node_list:
+            data = node_data['data']
+            node_dict[data] = BinTreeNode(data)
+        for node_data in node_list:
+            data = node_data['data']
+            node = node_dict[data]
+            if node_data['is_root']:
+                root = node
+            node.left = node_dict.get(node_data['left'])
+            node.right = node_dict.get(node_data['right'])
+    return cls(root)
+btree = BinTree.build_from(node_list)
+</code></pre>
+
+<p>大功告成，这样我们就构造了一棵二叉树对象。下边我们看看它的一些常用操作。</p>
+<h1 id="_6">二叉树的遍历</h1>
+<p>不直到你有没有发现，二叉树其实是一种递归结构，因为单独拿出来一个 subtree 子树出来，其实它还是一棵树。那遍历它就很方便啦，我们可以直接用递归的方式来遍历它。但是当处理顺序不同的时候，树又分为三种遍历方式:</p>
+<ul>
+<li>先(根)序遍历: 先处理根，之后是左子树，然后是右子树</li>
+<li>中(根)序遍历: 先处理左子树，之后是根，最后是右子树</li>
+<li>后(根)序遍历: 先处理左子树，之后是右子树，最后是根</li>
+</ul>
+<p>我们来看下实现，其实算是比较直白的递归函数:</p>
+<pre><code class="py">class BinTreeNode(object):
+    def __init__(self, data, left=None, right=None):
+        self.data, self.left, self.right = data, left, right
+
+
+class BinTree(object):
+    def __init__(self, root=None):
+        self.root = root
+
+    @classmethod
+    def build_from(cls, node_list):
+        &quot;&quot;&quot;通过节点信息构造二叉树
+        第一次遍历我们构造 node 节点
+        第二次遍历我们给 root 和 孩子赋值
+
+        :param node_list: {'data': 'A', 'left': None, 'right': None, 'is_root': False}
+        &quot;&quot;&quot;
+        node_dict = {}
+        for node_data in node_list:
+            data = node_data['data']
+            node_dict[data] = BinTreeNode(data)
+        for node_data in node_list:
+            data = node_data['data']
+            node = node_dict[data]
+            if node_data['is_root']:
+                root = node
+            node.left = node_dict.get(node_data['left'])
+            node.right = node_dict.get(node_data['right'])
+        return cls(root)
+
+    def preorder_trav(self, subtree):
+        &quot;&quot;&quot; 先(根)序遍历
+
+        :param subtree:
+        &quot;&quot;&quot;
+        if subtree is not None:
+            print(subtree.data)    # 递归函数里先处理根
+            self.preorder_trav(subtree.left)   # 递归处理左子树
+            self.preorder_trav(subtree.right)    # 递归处理右子树
+
+
+node_list = [
+    {'data': 'A', 'left': 'B', 'right': 'C', 'is_root': True},
+    {'data': 'B', 'left': 'D', 'right': 'E', 'is_root': False},
+    {'data': 'D', 'left': None, 'right': None, 'is_root': False},
+    {'data': 'E', 'left': 'H', 'right': None, 'is_root': False},
+    {'data': 'H', 'left': None, 'right': None, 'is_root': False},
+    {'data': 'C', 'left': 'F', 'right': 'G', 'is_root': False},
+    {'data': 'F', 'left': None, 'right': None, 'is_root': False},
+    {'data': 'G', 'left': 'I', 'right': 'J', 'is_root': False},
+    {'data': 'I', 'left': None, 'right': None, 'is_root': False},
+    {'data': 'J', 'left': None, 'right': None, 'is_root': False},
+]
+btree = BinTree.build_from(node_list)
+btree.preorder_trav(btree.root)    # 输出 A, B, D, E, H, C, F, G, I, J
+</code></pre>
+
+<p>怎么样是不是挺简单的，比较直白的递归函数。如果你不明白，视频里我们会画个图来说明。</p>
+<h1 id="_7">反转二叉树</h1>
+<p>之所以单拎出来说这个是因为 mac 下著名的 brew 工具作者据说是因为面试 google 白板编程没写出来反转二叉树跪了。然后人家就去了苹果 😂。其实吧和遍历操作相比也没啥太大区别，递归交换就是了：</p>
+<pre><code class="py">    def reverse(self, subtree):
+        if subtree is not None:
+            subtree.left, subtree.right = subtree.right, subtree.left
+            self.reverse(subtree.left)
+            self.reverse(subtree.right)
+</code></pre>
+
+<h1 id="_8">练习题</h1>
+<ul>
+<li>请你完成二叉树的中序遍历和后序遍历以及单元测试</li>
+<li>树的遍历我们用了 print，请你尝试换成一个 callback，这样就能自定义处理树节点的方式了。</li>
+<li>请问树的遍历操作时间复杂度是多少？假设它的 size 是 n</li>
+</ul>
+<h1 id="_9">延伸阅读</h1>
+<ul>
+<li>《Data Structures and Algorithms in Python》 13 章 Binary Trees</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../15_堆与堆排序/heap_and_heapsort/" class="btn btn-neutral float-right" title="堆和堆排序">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../../13_高级排序算法/quick_sort/" class="btn btn-neutral" title="快速排序"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../../13_高级排序算法/quick_sort/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../../15_堆与堆排序/heap_and_heapsort/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script src="../../search/require.js"></script>
+      <script src="../../search/search.js"></script>
+
+</body>
+</html>
