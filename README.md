@@ -62,6 +62,7 @@
 - 高级排序算法: 归并排序、快排
 - 树，二叉树
 - 堆与堆排序
+- 优先级队列
 - 图，dfs 和 bfs
 - python 内置常用数据结构和算法的使用。list, dict, set, collections 模块，heapq 模块
 - 面试笔试常考算法
@@ -162,8 +163,7 @@ Python 抽象程度比较高， 我们能用更少的代码来实现功能，同
 - Sublime
 - Atom
 - Vscode
-- Vim
-- Emacs
+- Vim/Emacs
 
 
 ## 勘误
