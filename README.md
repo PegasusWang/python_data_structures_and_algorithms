@@ -21,9 +21,10 @@
 - 网上很多视频教程比较水，收费还很不合理，纯属智商税
 
 ## 作者简介
-目前就职于[知乎](https://www.zhihu.com/people/pegasus-wang/activities)，从实习期间接触 Python 起一直从事 Python 网站后端开发，有一定 Python 的使用和实践经验。
+目前就职于[知乎](https://www.zhihu.com/people/pegasus-wang/activities)，任后端工程师，多年一线 Python 开发经验。
 
 知乎专栏：
+
 - [《Python 学习之路》](https://zhuanlan.zhihu.com/c_85234576)
 - [《玩转vim(视频)》](https://zhuanlan.zhihu.com/vim-video)
 
