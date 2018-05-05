@@ -38,6 +38,10 @@ class BST(object):
         else:
             return subtree
 
+    def __contains__(self, key):
+        """实现 in 操作符"""
+        return self._bst_search(self.root, key) is not None
+
     def get(self, key, default=None):
         node = self._bst_search(self.root, key)
         if node is None:
@@ -58,7 +62,13 @@ class BST(object):
         return node.value if node else None
 
     def _bst_insert(self, subtree, key, value):
-        if subtree is None:
+        """ 插入并且返回根节点
+
+        :param subtree:
+        :param key:
+        :param value:
+        """
+        if subtree is None:   # 插入的节点一定是根节点，包括 root 为空的情况
             subtree = BSTNode(key, value)
         elif key < subtree.key:
             subtree.left = self._bst_insert(subtree.left, key, value)
@@ -75,6 +85,35 @@ class BST(object):
             self.root = self._bst_insert(self.root, key, value)
             self.size += 1
             return True
+
+    def _bst_remove(self, subtree, key):
+        """删除节点并返回根节点"""
+        if subtree is None:
+            return None
+        elif key < subtree.key:
+            subtree.left = self._bst_remove(subtree.left, key)
+            return subtree
+        elif key > subtree.key:
+            subtree.right = self._bst_remove(subtree.right, key)
+            return subtree
+        else:  # 找到了需要删除的节点
+            if subtree.left is None and subtree.right is None:    # left node
+                return None
+            elif subtree.left is None or subtree.right is None:  # 只有一个孩子
+                if subtree.left is not None:
+                    return subtree.left
+                else:
+                    return subtree.right
+            else:  # 俩孩子
+                successor_node = self._bst_min_node(subtree.right)
+                subtree.key, subtree.value = successor_node.key, subtree.value
+                subtree.right = self._bst_remove(subtree.right, successor_node.key)
+                return subtree
+
+    def remove(self, key):
+        assert key in self
+        self.size -= 1
+        return self._bst_remove(self.root, key)
 
 
 NODE_LIST = [
@@ -105,3 +144,12 @@ def test_bst_tree():
 
     bst.add(0, 0)
     assert bst.bst_min() == 0
+
+    bst.remove(12)
+    assert bst.get(12) is None
+
+    bst.remove(1)
+    assert bst.get(1) is None
+
+    bst.remove(29)
+    assert bst.get(29) is None
