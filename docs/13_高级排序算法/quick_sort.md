@@ -105,3 +105,4 @@ T(n) = 2T(n/2) + n
 
 # 延伸阅读
 - 《算法导论》第 7 章
+- [《面试必备 | 排序算法的Python实现》](https://zhuanlan.zhihu.com/p/36419582)

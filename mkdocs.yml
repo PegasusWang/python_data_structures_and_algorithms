@@ -30,3 +30,6 @@ pages:
     - 堆和堆排序: '15_堆与堆排序/heap_and_heapsort.md'
     - 优先级队列: '16_优先级队列/priority_queue.md'
     - 二叉查找树: '17_二叉查找树/binary_search_tree.md'
+    - 图与图的遍历: '18_图与图的遍历/graph.md'
+    - python内置常用算法和数据结构: '19_python内置常用算法和数据结构/builtins.md'
+    - 面试指南: '20_面试指南/interview.md'
