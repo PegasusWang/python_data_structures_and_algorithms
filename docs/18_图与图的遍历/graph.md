@@ -46,10 +46,61 @@ graph = {
 ```
 如何『由近及远』地访问节点呢？我们先访问起点 A 的邻居，然后邻居访问完再访问邻居的邻居不就行了？
 就是这个思想，不过我们需要一个队列辅助，队列之前说过是一种先进先出结构，我们只需要把起点的邻居先入队，
-当邻居访问完了再去访问邻居的邻居就可以了，对于已经访问过的节点，我们用一个 set 记录它就好了。
+当邻居访问完了再去访问邻居的邻居就可以了，对于已经访问过的节点，我们用一个 set 记录它就好了。代码如下：
 
+```py
+# -*- coding: utf-8 -*-
+
+from collections import deque
+
+
+GRAPH = {
+    'A': ['B', 'F'],
+    'B': ['C', 'I', 'G'],
+    'C': ['B', 'I', 'D'],
+    'D': ['C', 'I', 'G', 'H', 'E'],
+    'E': ['D', 'H', 'F'],
+    'F': ['A', 'G', 'E'],
+    'G': ['B', 'F', 'H', 'D'],
+    'H': ['G', 'D', 'E'],
+    'I': ['B', 'C', 'D'],
+}
+
+
+class Queue(object):
+    def __init__(self):
+        self._deque = deque()
+
+    def push(self, value):
+        return self._deque.append(value)
+
+    def pop(self):
+        return self._deque.popleft()
+
+    def __len__(self):
+        return len(self._deque)
+
+
+def bfs(graph, start):
+    search_queue = Queue()
+    search_queue.push(start)
+    searched = set()
+    while search_queue:   # 队列不为空就继续
+        cur_node = search_queue.pop()
+        if cur_node not in searched:
+            yield cur_node
+            searched.add(cur_node)
+            for node in graph[cur_node]:
+                search_queue.push(node)
+
+
+print(list(bfs(GRAPH, 'A')))  # 输出 ['A', 'B', 'F', 'C', 'I', 'G', 'E', 'D', 'H']
+```
 
 ![](./bfs.png)
+
+### DFS
+
 
 # 思考题
 
