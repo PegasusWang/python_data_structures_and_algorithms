@@ -32,7 +32,7 @@ def test_quicksort():
     random.shuffle(seq)
     assert quicksort(seq) == sorted(seq)
 ```
-是不是很简单，下次面试官让你手写快排你再写不出来就有点过分啦。 当然这个实现有两个不好的地方:
+是不是很简单，下次面试官让你手写快排你再写不出来就有点不太合适啦。 当然这个实现有两个不好的地方:
 
 - 第一是它需要额外的存储空间，我们想实现 inplace 原地排序。
 - 第二是它的 partion 操作每次都要两次遍历整个数组，我们想改善一下。
@@ -47,7 +47,7 @@ def quicksort_inplace(array, beg, end):    # 注意这里我们都用左闭右�
         quicksort_inplace(array, pivot+1, end)
 ```
 
-能否实现只遍历一次数组就可以完成 partition 操作呢？实际上是可以的。我们设置首位俩个指针 left, right，两个指针不断向中间收拢。如果遇到 left 位置的元素大于 pivot 并且 right 指向的元素小于 pivot，我们就交换这俩元素，当 left > right 的时候推出就行了，这样实现了一次遍历就完成了 partition。如果你感觉懵逼，纸上画画就立马明白了。我们来撸代码实现：
+能否实现只遍历一次数组就可以完成 partition 操作呢？实际上是可以的。我们设置首位俩个指针 left, right，两个指针不断向中间收拢。如果遇到 left 位置的元素大于 pivot 并且 right 指向的元素小于 pivot，我们就交换这俩元素，当 left > right 的时候退出就行了，这样实现了一次遍历就完成了 partition。如果你感觉懵逼，纸上画画就立马明白了。我们来撸代码实现：
 
 ```py
 def partition(array, beg, end):
@@ -105,3 +105,4 @@ T(n) = 2T(n/2) + n
 
 # 延伸阅读
 - 《算法导论》第 7 章
+- [《面试必备 | 排序算法的Python实现》](https://zhuanlan.zhihu.com/p/36419582)
