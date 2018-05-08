@@ -179,7 +179,8 @@ Python 抽象程度比较高， 我们能用更少的代码来实现功能，同
 
 
 ## 本电子书制作和写作方式
-使用 mkdocs 和 markdown 构建，使用  Python-Markdown-Math 完成数学公式
+使用 mkdocs 和 markdown 构建，使用  Python-Markdown-Math 完成数学公式。
+markdown 语法参考：http://xianbai.me/learn-md/article/about/readme.html
 
 安装依赖：
 ```sh
