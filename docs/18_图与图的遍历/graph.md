@@ -93,17 +93,67 @@ def bfs(graph, start):
             for node in graph[cur_node]:
                 search_queue.push(node)
 
-
-print(list(bfs(GRAPH, 'A')))  # 输出 ['A', 'B', 'F', 'C', 'I', 'G', 'E', 'D', 'H']
+print('bfs:')
+bfs(GRAPH, 'A')
+"""
+bfs:
+A
+B
+F
+C
+I
+G
+E
+D
+H
+"""
 ```
 
 ![](./bfs.png)
 
 ### DFS
+深度优先搜索(DFS)是每遇到一个节点，如果没有被访问过，就直接去访问它的邻居节点，不断加深。代码其实很简单：
+
+```
+DFS_SEARCHED = set()
+
+
+def dfs(graph, start):
+    if start not in DFS_SEARCHED:
+        print(start)
+        DFS_SEARCHED.add(start)
+    for node in graph[start]:
+        if node not in DFS_SEARCHED:
+            dfs(graph, node)
+
+
+print('dfs:')
+dfs(GRAPH, 'A')
+
+"""
+DFS_SEARCHED = set()
+
+
+def dfs(graph, start):
+    if start not in DFS_SEARCHED:
+        print(start)
+        DFS_SEARCHED.add(start)
+    for node in graph[start]:
+        if node not in DFS_SEARCHED:
+            dfs(graph, node)   # 递归访问邻居节点
+
+
+print('dfs:')
+dfs(GRAPH, 'A')
+"""
+```
 
 
 # 思考题
+- DFS 中我们使用到了递归，请你用栈来改写这个函数？
 
 # 延伸阅读
+图的算法还有很多，这里就不一一列举了，感兴趣的读者可以继续阅读一下材料。
+
 - [数据结构之图](https://www.zybuluo.com/guoxs/note/249812)
 - 《算法图解》第六章

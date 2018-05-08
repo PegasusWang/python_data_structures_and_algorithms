@@ -70,7 +70,7 @@ for number in to_insert:
     i = 1
     while index in inserted_index_set:   # 如果计算发现已经占用，继续计算得到下一个可用槽的位置
         print('\th({number}) = {number} % M = {index} collision'.format(number=number, index=index))
-        index = (first_index +  i*i) % M
+        index = (first_index +  i*i) % M   # 根据二次方探查的公式重新计算下一个需要插入的位置
         i += 1
     else:
         print('h({number}) = {number} % M = {index}'.format(number=number, index=index))
