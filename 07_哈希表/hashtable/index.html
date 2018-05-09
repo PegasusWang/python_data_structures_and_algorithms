@@ -110,7 +110,7 @@
     <li class="toctree-l2"><a href="#rehashing">重哈希(Rehashing)</a></li>
     
 
-    <li class="toctree-l2"><a href="#hashtalbe-adt">HashTalbe ADT</a></li>
+    <li class="toctree-l2"><a href="#hashtable-adt">HashTable ADT</a></li>
     
 
     <li class="toctree-l2"><a href="#_4">思考题</a></li>
@@ -333,7 +333,7 @@ h(388) = 388 % M = 1
 <p>当负载因子超过 0.8 的时候，需要进行 rehashing 操作了。步骤就是重新开辟一块新的空间，开多大呢？感兴趣的话可以看下 cpython 的 dictobject.c 文件然后搜索
 GROWTH_RATE 这个关键字，你会发现不同版本的 cpython 使用了不同的策略。python3.3 的策略是扩大为已经使用的槽数目的两倍。开辟了新空间以后，会把原来哈希表里
 不为空槽的数据重新插入到新的哈希表里，插入方式和之前一样。这就是 rehashing 操作。</p>
-<h1 id="hashtalbe-adt">HashTalbe ADT</h1>
+<h1 id="hashtable-adt">HashTable ADT</h1>
 <p>实践是检验真理的唯一标准，这里我们来实现一个简化版的哈希表 ADT，主要是为了让你更好地了解它的工作原理，有了它，后边实现起 dict 和 set 来就小菜一碟了。
 这里我们使用到了定长数组，还记得我们在数组和列表章节里实现的 Array 吧，这里要用上了。</p>
 <p>解决冲突我们使用二次探查法。我们来实现三个哈希表最常用的基本操作，这实际上也是使用字典的时候最常用的操作。</p>
