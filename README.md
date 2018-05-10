@@ -14,6 +14,8 @@
 
 [readthedoc 电子书下载](http://python-data-structures-and-algorithms.readthedocs.io/zh/latest/)
 
+[《开源一个 Python 算法和数据结构中文教程[视频]》](https://zhuanlan.zhihu.com/p/36038003)  视频讲解示例
+
 ## 痛点
 - 讲 Python 数据结构和算法的资料很少，中文资料更少
 - 很多自学 Python 的工程师对基础不够重视，面试也发现很多数据结构和算法不过关，很多人挂在了基础的数据结构和算法上
