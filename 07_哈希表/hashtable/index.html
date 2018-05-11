@@ -101,6 +101,9 @@
     <li class="toctree-l2"><a href="#collision">哈希冲突 (collision)</a></li>
     
 
+    <li class="toctree-l2"><a href="#cpython">Cpython 如何解决哈希冲突</a></li>
+    
+
     <li class="toctree-l2"><a href="#_3">哈希函数</a></li>
     
 
@@ -278,7 +281,7 @@ h(388) = 388 % M = 11
 <li>双重散列(double hashing): 重新计算 hash 结果。 <script type="math/tex"> h(k,i) = (h_1(k) + ih_2(k)) \% m </script>
 </li>
 </ul>
-<p>cpython 使用的是二次探查，这里我们也使用二次探查， 我们选一个简单的二次探查函数 <script type="math/tex"> h(k, i) = (home + i^2) \% m </script>，它的意思是如果
+<p>我们选一个简单的二次探查函数 <script type="math/tex"> h(k, i) = (home + i^2) \% m </script>，它的意思是如果
 遇到了冲突，我们就在原始计算的位置不断加上 i 的平方。我写了段代码来模拟整个计算下标的过程：</p>
 <pre><code class="py">inserted_index_set = set()
 M = 13
@@ -321,6 +324,26 @@ h(388) = 388 % M = 1
 <p>遇到冲突之后会重新计算，每个待插入元素最终的下标就是：</p>
 <p><img alt="" src="../quadratic_hash.png" /></p>
 <p><img alt="" src="../quadratic_result.png" /></p>
+<h1 id="cpython">Cpython 如何解决哈希冲突</h1>
+<p>如果你对 cpython 解释器的实现感兴趣，可以参考下这个文件 <a href="https://github.com/python/cpython/blob/master/Objects/dictobject.c#L165">dictobject.c</a>。
+不同 cpython 版本实现的探查方式是不同的，后边我们自己实现 HashTable ADT 的时候会模仿这个探查方式来解决冲突。</p>
+<pre><code>The first half of collision resolution is to visit table indices via this
+recurrence:
+
+    j = ((5*j) + 1) mod 2**i
+
+For any initial j in range(2**i), repeating that 2**i times generates each
+int in range(2**i) exactly once (see any text on random-number generation for
+proof).  By itself, this doesn't help much:  like linear probing (setting
+j += 1, or j -= 1, on each loop trip), it scans the table entries in a fixed
+order.  This would be bad, except that's not the only thing we do, and it's
+actually *good* in the common cases where hash keys are consecutive.  In an
+example that's really too small to make this entirely clear, for a table of
+size 2**3 the order of indices is:
+
+    0 -&gt; 1 -&gt; 6 -&gt; 7 -&gt; 4 -&gt; 5 -&gt; 2 -&gt; 3 -&gt; 0 [and here it's repeating]
+</code></pre>
+
 <h1 id="_3">哈希函数</h1>
 <p>到这里你应该明白哈希表插入的工作原理了，不过有个重要的问题之前没提到，就是 hash 函数怎么选？
 当然是散列得到的冲突越来越小就好啦，也就是说每个 key 都能尽量被等可能地散列到 m 个槽中的任何一个，并且与其他 key 被散列到哪个槽位无关。
