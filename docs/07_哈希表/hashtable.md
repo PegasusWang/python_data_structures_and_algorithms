@@ -53,7 +53,7 @@ h(388) = 388 % M = 11
 - 二次探查(quadratic probing): 当一个槽被占用，以二次方作为偏移量。 $ h(k, i) = (h^\prime(k) + c_1 + c_2i^2) \% m , i=0,1,...,m-1 $
 - 双重散列(double hashing): 重新计算 hash 结果。 $ h(k,i) = (h_1(k) + ih_2(k)) \% m $
 
-cpython 使用的是二次探查，这里我们也使用二次探查， 我们选一个简单的二次探查函数 $ h(k, i) = (home + i^2) \% m $，它的意思是如果
+我们选一个简单的二次探查函数 $ h(k, i) = (home + i^2) \% m $，它的意思是如果
 遇到了冲突，我们就在原始计算的位置不断加上 i 的平方。我写了段代码来模拟整个计算下标的过程：
 
 ```py
@@ -102,6 +102,29 @@ h(388) = 388 % M = 1
 
 ![](quadratic_result.png)
 
+
+# Cpython 如何解决哈希冲突
+如果你对 cpython 解释器的实现感兴趣，可以参考下这个文件 [dictobject.c](https://github.com/python/cpython/blob/master/Objects/dictobject.c#L165)。
+不同 cpython 版本实现的探查方式是不同的，后边我们自己实现 HashTable ADT 的时候会模仿这个探查方式来解决冲突。
+
+
+```
+The first half of collision resolution is to visit table indices via this
+recurrence:
+
+    j = ((5*j) + 1) mod 2**i
+
+For any initial j in range(2**i), repeating that 2**i times generates each
+int in range(2**i) exactly once (see any text on random-number generation for
+proof).  By itself, this doesn't help much:  like linear probing (setting
+j += 1, or j -= 1, on each loop trip), it scans the table entries in a fixed
+order.  This would be bad, except that's not the only thing we do, and it's
+actually *good* in the common cases where hash keys are consecutive.  In an
+example that's really too small to make this entirely clear, for a table of
+size 2**3 the order of indices is:
+
+    0 -> 1 -> 6 -> 7 -> 4 -> 5 -> 2 -> 3 -> 0 [and here it's repeating]
+```
 
 # 哈希函数
 到这里你应该明白哈希表插入的工作原理了，不过有个重要的问题之前没提到，就是 hash 函数怎么选？
