@@ -158,7 +158,6 @@ class SetADT(HashTable):
     def __sub__(self, other_set):
         """差集 A-B"""
         new_set = SetADT()
-        new_set = SetADT()
         for element_a in self:
             if element_a not in other_set:
                 new_set.add(element_a)
