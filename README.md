@@ -30,7 +30,7 @@
 - [《Python 学习之路》](https://zhuanlan.zhihu.com/c_85234576)
 - [《玩转vim(视频)》](https://zhuanlan.zhihu.com/vim-video)
 
-电子书：[《Python web 入坑指南》](http://python-web-guide.readthedocs.io/zh/latest/<Paste>)
+电子书：[《Python web 入坑指南》](http://python-web-guide.readthedocs.io/zh/latest/)
 
 ## 课程内容
 包括我们在业务开发和面试中常用的算法和数据结构，希望可以帮助新人快速上手，很多老手写业务代码写多了很多基础知识忘记了，
