@@ -47,6 +47,8 @@ def merge_sort(seq):
 
 ![](./merge_sorted_array.png)
 
+![](./merge_sorted_array_2.png)
+
 
 ```py
 def merge_sorted_list(sorted_a, sorted_b):
@@ -91,7 +93,15 @@ T(n)= \begin{cases} c, & \text {if $n$ = 1} \\ 2T(n/2)+cn, & \text{if $n$ > 1} \
 
 ![](./merge_sort_recursion_tree.png)
 
-总的代价是 $cnlg(n)+cn$ ，忽略常数项可以认为是  O(nlg(n))
+总的代价是 $cnlg(n)+cn$ ，忽略常数项可以认为是  O(nlg(n))。如果这个图看不懂，我们自己求解下也不难，首先我们简化一下，
+把常数系数当成 1，得到以下递归式：
+
+\begin{align}
+T(n)= \begin{cases} 1, & \text {if $n$ = 1} \\ 2T(n/2)+n, & \text{if $n$ > 1} \end{cases}
+\end{align}
+
+![](./tn.png)
+
 
 # 思考题
 - 请你完成归并排序的单元测试
