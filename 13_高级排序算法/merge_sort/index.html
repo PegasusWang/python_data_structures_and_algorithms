@@ -263,6 +263,7 @@
 <p>注意我们这里有一个函数没实现，就是如何合并两个有序数组 merge_sorted_list。其实你在纸上画一画，
 合并两个有序数组并不难实现。</p>
 <p><img alt="" src="../merge_sorted_array.png" /></p>
+<p><img alt="" src="../merge_sorted_array_2.png" /></p>
 <pre><code class="py">def merge_sorted_list(sorted_a, sorted_b):
     &quot;&quot;&quot; 合并两个有序序列，返回一个新的有序序列
 
@@ -302,7 +303,14 @@ T(n)= \begin{cases} c, & \text {if $n$ = 1} \\ 2T(n/2)+cn, & \text{if $n$ > 1} \
 \end{align}</script>
 </p>
 <p><img alt="" src="../merge_sort_recursion_tree.png" /></p>
-<p>总的代价是 <script type="math/tex">cnlg(n)+cn</script> ，忽略常数项可以认为是  O(nlg(n))</p>
+<p>总的代价是 <script type="math/tex">cnlg(n)+cn</script> ，忽略常数项可以认为是  O(nlg(n))。如果这个图看不懂，我们自己求解下也不难，首先我们简化一下，
+把常数系数当成 1，得到以下递归式：</p>
+<p>
+<script type="math/tex; mode=display">\begin{align}
+T(n)= \begin{cases} 1, & \text {if $n$ = 1} \\ 2T(n/2)+n, & \text{if $n$ > 1} \end{cases}
+\end{align}</script>
+</p>
+<p><img alt="" src="../tn.png" /></p>
 <h1 id="_3">思考题</h1>
 <ul>
 <li>请你完成归并排序的单元测试</li>
