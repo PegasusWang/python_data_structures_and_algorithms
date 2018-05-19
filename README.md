@@ -205,4 +205,5 @@ mkdocs gh-deploy    # 部署到自己的 github pages
 ```
 
 您的打赏就是我写作的最大动力，呵呵哒!
-<center> ![微信打赏](http://7ktuty.com1.z0.glb.clouddn.com/weixin_dashang.png) </center>
+
+![微信打赏](http://7ktuty.com1.z0.glb.clouddn.com/weixin_dashang.png)
