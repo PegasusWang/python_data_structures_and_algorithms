@@ -23,7 +23,7 @@
 - 网上很多视频教程比较水，收费还很不合理，纯属智商税
 
 ## 作者简介
-目前就职于[知乎](https://www.zhihu.com/people/pegasus-wang/activities)，任后端工程师，多年一线 Python 开发经验。
+目前就职于[知乎](https://www.zhihu.com/people/pegasus-wang/activities)，任后端工程师，多年 Python 开发经验。
 
 知乎专栏：
 
@@ -62,7 +62,7 @@
 - 集合
 - 递归
 - 查找：线性查找和二分查找
-- 基本排序算法
+- 基本排序算法: 冒泡、选择、插入排序
 - 高级排序算法: 归并排序、快排
 - 树，二叉树
 - 堆与堆排序
@@ -205,6 +205,4 @@ mkdocs gh-deploy    # 部署到自己的 github pages
 ```
 
 您的打赏就是我写作的最大动力，呵呵哒!
-<center>
-![微信打赏](http://7ktuty.com1.z0.glb.clouddn.com/weixin_dashang.png)
-</center>
+<center> ![微信打赏](http://7ktuty.com1.z0.glb.clouddn.com/weixin_dashang.png) </center>
