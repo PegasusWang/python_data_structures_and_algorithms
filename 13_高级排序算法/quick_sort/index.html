@@ -238,6 +238,7 @@
 <p>合并结果</p>
 </li>
 </ul>
+<p><img alt="" src="../quick_sort.png" /></p>
 <p>根据这个想法我们可以快速写出快排的代码，简直就是在翻译上边的描述：</p>
 <pre><code class="py">def quicksort(array):
     if len(array) &lt; 2:   # 递归出口，空数组或者只有一个元素的数组都是有序的
@@ -271,6 +272,7 @@ def test_quicksort():
 </code></pre>
 
 <p>能否实现只遍历一次数组就可以完成 partition 操作呢？实际上是可以的。我们设置首位俩个指针 left, right，两个指针不断向中间收拢。如果遇到 left 位置的元素大于 pivot 并且 right 指向的元素小于 pivot，我们就交换这俩元素，当 left &gt; right 的时候退出就行了，这样实现了一次遍历就完成了 partition。如果你感觉懵逼，纸上画画就立马明白了。我们来撸代码实现：</p>
+<p><img alt="" src="../partition.png" /></p>
 <pre><code class="py">def partition(array, beg, end):
     pivot_index = beg
     pivot = array[pivot_index]
