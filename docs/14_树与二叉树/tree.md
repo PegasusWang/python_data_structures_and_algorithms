@@ -13,7 +13,7 @@
 
 - 根节点(root): 树的最上层的节点，任何非空的树都有一个节点
 - 路径(path): 从起始节点到终止节点经历过的边
-- 父亲(parent)：除了根节点，每个节点的上一层又边连接的节点就是它的父亲(节点)
+- 父亲(parent)：除了根节点，每个节点的上一层边连接的节点就是它的父亲(节点)
 - 孩子(children): 每个节点由边指向的下一层节点
 - 兄弟(siblings): 同一个父亲并且处在同一层的节点
 - 子树(subtree): 每个节点包含它所有的后代组成的子树
@@ -211,7 +211,9 @@ btree.preorder_trav(btree.root)    # 输出 A, B, D, E, H, C, F, G, I, J
 - 请你完成二叉树的中序遍历和后序遍历以及单元测试
 - 树的遍历我们用了 print，请你尝试换成一个 callback，这样就能自定义处理树节点的方式了。
 - 请问树的遍历操作时间复杂度是多少？假设它的 size 是 n
+- 你能用非递归的方式来实现树的遍历吗？我们知道计算机内部使用了 stack，如果我们自己模拟如何实现？请你尝试完成
 
 
 # 延伸阅读
 - 《Data Structures and Algorithms in Python》 13 章 Binary Trees
+-  [https://www.geeksforgeeks.org/iterative-preorder-traversal/](https://www.geeksforgeeks.org/iterative-preorder-traversal/)
