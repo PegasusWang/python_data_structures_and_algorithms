@@ -7,6 +7,7 @@
 # BST 定义
 
 二叉查找树是这样一种二叉树结构，它的每个节点包含一个 key 和它附带的数据，对于每个内部节点 V：
+
 - 所有 key 小于 V 的都被存储在 V 的左子树
 - 所有 key 大于 V 的都存储在 V 的右子树
 
@@ -164,7 +165,7 @@ bst = BST.build_from(NODE_LIST)
 ![](./bst_remove_leaf.png)
 
 #### 删除只有一个孩子的节点
-删除有一个孩子的节点时，我们拿掉需要删除的节点，之后把它的父亲指向它的孩子就行，以为根据 BST
+删除有一个孩子的节点时，我们拿掉需要删除的节点，之后把它的父亲指向它的孩子就行，因为根据 BST
 左子树都小于节点，右子树都大于节点的特性，删除它之后这个条件依旧满足。
 
 ![](./bst_remove_node_with_one_child.png)
@@ -176,7 +177,7 @@ bst = BST.build_from(NODE_LIST)
 
 但是这种方式可能会影响树的高度，降低查找的效率。这里我们用另一种非常巧妙的方式。
 还记得上边提到的吗，如果你中序遍历 BST 并且输出每个节点的 key，你会发现就是一个有序的数组。
-[1 4 12 23 29 37 41 60 71 84 90 100]。 这里我们定义两个概念，逻辑前任(predecessor)和后继(successor)，请看下图:
+`[1 4 12 23 29 37 41 60 71 84 90 100]`。这里我们定义两个概念，逻辑前任(predecessor)和后继(successor)，请看下图:
 
 ![](./predecessor_successor.png)
 
@@ -222,6 +223,7 @@ bst = BST.build_from(NODE_LIST)
     def remove(self, key):
         assert key in self
         self.size -= 1
+        return self._bst_remove(self.root, key)
 ```
 
 完整代码你可以在本章的 bst.py  找到。
