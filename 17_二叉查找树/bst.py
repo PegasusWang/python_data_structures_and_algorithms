@@ -97,14 +97,14 @@ class BST(object):
             subtree.right = self._bst_remove(subtree.right, key)
             return subtree
         else:  # 找到了需要删除的节点
-            if subtree.left is None and subtree.right is None:    # left node
+            if subtree.left is None and subtree.right is None:    # 叶节点，返回 None 把其父亲指向它的指针置为 None
                 return None
             elif subtree.left is None or subtree.right is None:  # 只有一个孩子
                 if subtree.left is not None:
-                    return subtree.left
+                    return subtree.left   # 返回它的孩子并让它的父亲指过去
                 else:
                     return subtree.right
-            else:  # 俩孩子
+            else:  # 俩孩子，寻找后继节点替换
                 successor_node = self._bst_min_node(subtree.right)
                 subtree.key, subtree.value = successor_node.key, subtree.value
                 subtree.right = self._bst_remove(subtree.right, successor_node.key)

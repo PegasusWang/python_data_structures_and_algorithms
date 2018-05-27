@@ -350,29 +350,13 @@ def dfs(graph, start):
 
 
 print('dfs:')
-dfs(GRAPH, 'A')
+dfs(GRAPH, 'A')  # A B C I D G F E H
 
-&quot;&quot;&quot;
-DFS_SEARCHED = set()
-
-
-def dfs(graph, start):
-    if start not in DFS_SEARCHED:
-        print(start)
-        DFS_SEARCHED.add(start)
-    for node in graph[start]:
-        if node not in DFS_SEARCHED:
-            dfs(graph, node)   # 递归访问邻居节点
-
-
-print('dfs:')
-dfs(GRAPH, 'A')
-&quot;&quot;&quot;
 </code></pre>
 
 <h1 id="_5">思考题</h1>
 <ul>
-<li>DFS 中我们使用到了递归，请你用栈来改写这个函数？</li>
+<li>DFS 中我们使用到了递归，请你用栈来改写这个函数？（代码里有答案，我建议你先尝试自己实现）</li>
 </ul>
 <h1 id="_6">延伸阅读</h1>
 <p>图的算法还有很多，这里就不一一列举了，感兴趣的读者可以继续阅读一下材料。</p>
