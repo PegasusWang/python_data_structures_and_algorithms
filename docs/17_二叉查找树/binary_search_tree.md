@@ -1,8 +1,8 @@
 # 二叉查找树(BST)
 
-二叉树的一种应用就是来实现堆，今天我们再看看用二叉查找树。
-前面有章节说到了查找操作，包括线性查找和二分查找，线性查找效率比较低，二分又要求必须是有序的序列，
-为了维持有序插入的代价比较高。能不能有一种插入和查找都比较快的数据结构呢？二叉查找树就是这样一种结构，可以高效地插入和查询节点。
+二叉树的一种应用就是来实现堆，今天我们再看看用二叉查找树(Binary Search Tree, BST)。
+前面有章节说到了查找操作，包括线性查找、二分查找、哈希查找等，线性查找效率比较低，二分又要求必须是有序的序列，
+为了维持有序插入的代价比较高、哈希查找效率很高但是浪费空间。能不能有一种插入和查找都比较快的数据结构呢？二叉查找树就是这样一种结构，可以高效地插入和查询节点。
 
 # BST 定义
 
@@ -183,7 +183,7 @@ bst = BST.build_from(NODE_LIST)
 
 12 在中序遍历中的逻辑前任和后继分别是 4 和 23 节点。于是我们还有一种方法来删除 12 这个节点：
 
-- 找到节点待删除节点 N(12) 的后继节点 S(23)
+- 找到待删除节点 N(12) 的后继节点 S(23)
 - 复制节点 S 到节点 N
 - 删除节点 S
 
@@ -207,14 +207,14 @@ bst = BST.build_from(NODE_LIST)
             subtree.right = self._bst_remove(subtree.right, key)
             return subtree
         else:  # 找到了需要删除的节点
-            if subtree.left is None and subtree.right is None:    # left node
+            if subtree.left is None and subtree.right is None:    # 叶节点，返回 None 把其父亲指向它的指针置为 None
                 return None
             elif subtree.left is None or subtree.right is None:  # 只有一个孩子
                 if subtree.left is not None:
-                    return subtree.left
+                    return subtree.left   # 返回它的孩子并让它的父亲指过去
                 else:
                     return subtree.right
-            else:  # 俩孩子
+            else:  # 俩孩子，寻找后继节点替换
                 successor_node = self._bst_min_node(subtree.right)
                 subtree.key, subtree.value = successor_node.key, subtree.value
                 subtree.right = self._bst_remove(subtree.right, successor_node.key)
