@@ -25,3 +25,9 @@ Session.vim
 
 # mkdocs
 site/
+
+# vscode
+.vscode/
+
+# pytest
+.pytest_cache/
