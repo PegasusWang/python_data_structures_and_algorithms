@@ -48,3 +48,7 @@ list.remove                           | O(n)           |
 [Python list implementation](https://www.laurentluce.com/posts/python-list-implementation/)
 
 [https://github.com/python/cpython/blob/master/Objects/listobject.c](https://github.com/python/cpython/blob/master/Objects/listobject.c)
+
+
+# 勘误
+视频里的 Array.clear 方法有误。应该是 `for i in range(len(self._items))`，已经在后续所有使用到 Array 的代码里修正
