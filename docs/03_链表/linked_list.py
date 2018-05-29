@@ -68,12 +68,13 @@ class LinkedList(object):
         """
         prevnode = self.root    #
         curnode = self.root.next
-        while curnode.next is not None:
+        for curnode in self.iter_node():
             if curnode.value == value:
                 prevnode.next = curnode.next
                 del curnode
                 self.length -= 1
-                return
+                return 1  # 表明删除成功
+        return -1  # 表明删除失败
 
     def find(self, value):    # O(n)
         """ 查找一个节点，返回序号，从 0 开始
@@ -117,7 +118,8 @@ def test_linked_list():
     assert ll.find(2) == 2
     assert ll.find(3) == -1
 
-    ll.remove(0)
+    assert ll.remove(0) == 1
+    assert ll.remove(3) == -1
     assert len(ll) == 2
     assert ll.find(0) == -1
 
