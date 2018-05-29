@@ -85,3 +85,7 @@ cdll.tailnode()                        | O(1)           |
 # 相关阅读
 
 [那些年，我们一起跪过的算法题- Lru cache[视频]](https://zhuanlan.zhihu.com/p/35175401)
+
+# 勘误：
+
+视频中 LinkedList.remove 方法讲解有遗漏， linked_list.py 文件已经修正，请读者注意。具体请参考 [fix linked_list & add gitigonre](https://github.com/PegasusWang/python_data_structures_and_algorithms/pull/3)
