@@ -85,6 +85,9 @@
     <li class="toctree-l2"><a href="#_3">延伸阅读</a></li>
     
 
+    <li class="toctree-l2"><a href="#_4">勘误</a></li>
+    
+
     </ul>
 	    </li>
           
@@ -281,6 +284,8 @@ Python 的 array 是内存连续、存储的都是同一数据类型的结构，
 <h1 id="_3">延伸阅读</h1>
 <p><a href="https://www.laurentluce.com/posts/python-list-implementation/">Python list implementation</a></p>
 <p><a href="https://github.com/python/cpython/blob/master/Objects/listobject.c">https://github.com/python/cpython/blob/master/Objects/listobject.c</a></p>
+<h1 id="_4">勘误</h1>
+<p>视频里的 Array.clear 方法有误。应该是 <code>for i in range(len(self._items))</code>，已经在后续所有使用到 Array 的代码里修正</p>
               
             </div>
           </div>

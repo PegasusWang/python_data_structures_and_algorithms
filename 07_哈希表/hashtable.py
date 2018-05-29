@@ -19,7 +19,7 @@ class Array(object):
         return self._size
 
     def clear(self, value=None):
-        for i in range(self._items):
+        for i in range(len(self._items)):
             self._items[i] = value
 
     def __iter__(self):
