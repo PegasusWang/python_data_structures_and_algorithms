@@ -8,6 +8,8 @@
 
 ## 链接
 
+[网易云课堂: Python数据结构与算法教程](http://study.163.com/course/introduction.htm?courseId=1005526003)
+
 [网上阅读《Python 算法与数据结构教程 》](http://ningning.today/python_data_structures_and_algorithms/)
 
 [github 链接](https://github.com/PegasusWang/python_data_structures_and_algorithms)
