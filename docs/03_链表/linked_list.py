@@ -74,6 +74,8 @@ class LinkedList(object):
                 del curnode
                 self.length -= 1
                 return 1  # 表明删除成功
+            else:
+                prevnode = curnode
         return -1  # 表明删除失败
 
     def find(self, value):    # O(n)
@@ -113,26 +115,27 @@ def test_linked_list():
     ll.append(0)
     ll.append(1)
     ll.append(2)
+    ll.append(3)
 
-    assert len(ll) == 3
+    assert len(ll) == 4
     assert ll.find(2) == 2
-    assert ll.find(3) == -1
+    assert ll.find(-1) == -1
 
     assert ll.remove(0) == 1
-    assert ll.remove(3) == -1
+    assert ll.remove(10) == -1
+    assert ll.remove(2) == 1
     assert len(ll) == 2
+    assert list(ll) == [1, 3]
     assert ll.find(0) == -1
 
-    assert list(ll) == [1, 2]
-
     ll.appendleft(0)
-    assert list(ll) == [0, 1, 2]
+    assert list(ll) == [0, 1, 3]
     assert len(ll) == 3
 
     headvalue = ll.popleft()
     assert headvalue == 0
     assert len(ll) == 2
-    assert list(ll) == [1, 2]
+    assert list(ll) == [1, 3]
 
     ll.clear()
     assert len(ll) == 0

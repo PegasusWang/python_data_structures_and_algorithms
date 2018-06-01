@@ -69,12 +69,15 @@ class LinkedList(object):
         """
         prevnode = self.root    #
         curnode = self.root.next
-        while curnode.next is not None:
+        for curnode in self.iter_node():
             if curnode.value == value:
                 prevnode.next = curnode.next
                 del curnode
                 self.length -= 1
-                return
+                return 1  # 表明删除成功
+            else:
+                prevnode = curnode
+        return -1  # 表明删除失败
 
     def find(self, value):    # O(n)
         """ 查找一个节点，返回序号，从 0 开始
