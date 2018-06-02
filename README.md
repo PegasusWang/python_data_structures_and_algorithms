@@ -205,7 +205,6 @@ mkdocs serve     # 修改自动更新，浏览器打开 http://localhost:8000 �
 # 数学公式参考 https://www.zybuluo.com/codeep/note/163962
 mkdocs gh-deploy    # 部署到自己的 github pages
 ```
+扫码加入课程：
 
-您的打赏就是我写作的最大动力，呵呵哒!
-
-![微信打赏](http://7ktuty.com1.z0.glb.clouddn.com/weixin_dashang.png)
+![扫码加入课程返现30%](http://7ktuty.com1.z0.glb.clouddn.com/Screen%20Shot%202018-06-02%20at%2020.37.46.png)
