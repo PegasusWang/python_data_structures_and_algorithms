@@ -162,7 +162,7 @@ class Slot(object):
     3.槽正在使用 Slot 节点
     """
     def __init__(self, key, value):
-        self.key, self.value = self.key, self.value
+        self.key, self.value = key, value
 
 class HashTable(object):
     pass
