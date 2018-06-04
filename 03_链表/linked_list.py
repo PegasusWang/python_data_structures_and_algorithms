@@ -71,6 +71,8 @@ class LinkedList(object):
         for curnode in self.iter_node():
             if curnode.value == value:
                 prevnode.next = curnode.next
+                if curnode is self.tailnode:  # NOTE: 注意更新 tailnode
+                    self.tailnode = prevnode
                 del curnode
                 self.length -= 1
                 return 1  # 表明删除成功
@@ -139,6 +141,17 @@ def test_linked_list():
 
     ll.clear()
     assert len(ll) == 0
+
+
+def test_linked_list_remove():
+    ll = LinkedList()
+    ll.append(3)
+    ll.append(4)
+    ll.append(5)
+    ll.append(6)
+    ll.append(7)
+    ll.remove(7)
+    print(list(ll))
 
 
 if __name__ == '__main__':

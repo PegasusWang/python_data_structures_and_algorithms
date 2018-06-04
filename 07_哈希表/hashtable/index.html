@@ -373,7 +373,7 @@ GROWTH_RATE 这个关键字，你会发现不同版本的 cpython 使用了不�
     3.槽正在使用 Slot 节点
     &quot;&quot;&quot;
     def __init__(self, key, value):
-        self.key, self.value = self.key, self.value
+        self.key, self.value = key, value
 
 class HashTable(object):
     pass
