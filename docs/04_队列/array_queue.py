@@ -40,7 +40,7 @@ class ArrayQueue(object):
     def push(self, value):
         if len(self) >= self.maxsize:
             raise FullError('queue full')
-        self.array[self.head] = value
+        self.array[self.head % self.maxsize] = value
         self.head += 1
 
     def pop(self):
@@ -49,7 +49,7 @@ class ArrayQueue(object):
         return value
 
     def __len__(self):
-        return self.head-self.tail
+        return self.head - self.tail
 
 
 def test_queue():
@@ -68,10 +68,13 @@ def test_queue():
     assert q.pop() == 0
     assert q.pop() == 1
 
-    assert len(q) == 3
+    q.push(5)
+
+    assert len(q) == 4
 
     assert q.pop() == 2
     assert q.pop() == 3
     assert q.pop() == 4
+    assert q.pop() == 5
 
     assert len(q) == 0
