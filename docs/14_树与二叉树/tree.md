@@ -121,7 +121,7 @@ class BinTree(object):
                 root = node
             node.left = node_dict.get(node_data['left'])
             node.right = node_dict.get(node_data['right'])
-    return cls(root)
+        return cls(root)
 btree = BinTree.build_from(node_list)
 ```
 
