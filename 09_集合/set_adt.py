@@ -150,9 +150,6 @@ class SetADT(HashTable):
         for element_a in self:
             if element_a in other_set:
                 new_set.add(element_a)
-        for element_b in other_set:
-            if element_b in self:
-                new_set.add(element_b)
         return new_set
 
     def __sub__(self, other_set):
