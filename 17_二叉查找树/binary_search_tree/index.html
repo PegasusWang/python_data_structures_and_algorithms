@@ -396,7 +396,7 @@ bst = BST.build_from(NODE_LIST)
 <ul>
 <li>找到待删除节点 N(12) 的后继节点 S(23)</li>
 <li>复制节点 S 到节点 N</li>
-<li>删除节点 S</li>
+<li>从 N 的右子树中删除节点 S，并更新其删除后继节点后的右子树</li>
 </ul>
 <p>说白了就是找到后继并且替换，这里之所以能保证这种方法是正确的，你会发现替换后依旧是保持了 BST 的性质。
 有个问题是如何找到后继节点呢？待删除节点的右子树的最小的节点不就是后继嘛，上边我们已经实现了找到最小 key 的方法了。</p>
@@ -420,9 +420,9 @@ bst = BST.build_from(NODE_LIST)
                     return subtree.left   # 返回它的孩子并让它的父亲指过去
                 else:
                     return subtree.right
-            else:  # 俩孩子，寻找后继节点替换
+            else:  # 俩孩子，寻找后继节点替换，并从待删节点的右子树中删除后继节点
                 successor_node = self._bst_min_node(subtree.right)
-                subtree.key, subtree.value = successor_node.key, subtree.value
+                subtree.key, subtree.value = successor_node.key, successor_node.value
                 subtree.right = self._bst_remove(subtree.right, successor_node.key)
                 return subtree
 
