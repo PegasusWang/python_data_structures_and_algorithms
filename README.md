@@ -177,6 +177,12 @@ Python 抽象程度比较高， 我们能用更少的代码来实现功能，同
 - Vscode
 - Vim/Emacs
 
+代码中使用到了 pytest 测试框架和 when-changed 文件变动监控工具(方便我们修改完代码后自动执行测试)，你需要用 pip 安装
+
+```py
+pip install pytest
+pip install when-changed
+```
 
 ## 勘误
 
