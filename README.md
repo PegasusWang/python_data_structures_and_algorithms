@@ -184,6 +184,22 @@ pip install pytest
 pip install when-changed
 ```
 
+视频演示里我使用到了一个简单的 test.sh 脚本文件，内容如下:
+
+```sh
+#!/usr/bin/env bash
+
+# pip install when-changed
+ when-changed -v -r -1 -s ./    "py.test -s $1"
+```
+将以上内容放到 test.sh 文件后加上可执行权限, `chmod +x test.sh`，之后就可以用
+
+```
+'./test.sh somefile.py'
+```
+每次我们改动了代码，就会自动执行代码里的单元测试了。pytest 会自动发现以 test 开头的函数并执行测试代码。
+
+
 ## 勘误
 
 输出其实也是一种再学习的过程，中途需要查看大量资料、编写讲义、视频录制、代码编写等，难免有疏漏甚至错误之处。
