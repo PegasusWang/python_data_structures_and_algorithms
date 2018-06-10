@@ -411,6 +411,18 @@
 pip install when-changed
 </code></pre>
 
+<p>视频演示里我使用到了一个简单的 test.sh 脚本文件，内容如下:</p>
+<pre><code class="sh">#!/usr/bin/env bash
+
+# pip install when-changed
+ when-changed -v -r -1 -s ./    &quot;py.test -s $1&quot;
+</code></pre>
+
+<p>将以上内容放到 test.sh 文件后加上可执行权限, <code>chmod +x test.sh</code>，之后就可以用</p>
+<pre><code>'./test.sh somefile.py'
+</code></pre>
+
+<p>每次我们改动了代码，就会自动执行代码里的单元测试了。pytest 会自动发现以 test 开头的函数并执行测试代码。</p>
 <h2 id="_18">勘误</h2>
 <p>输出其实也是一种再学习的过程，中途需要查看大量资料、编写讲义、视频录制、代码编写等，难免有疏漏甚至错误之处。
 有出版社找过笔者想让我出书，一来自己对出书兴趣不大，另外感觉书籍相对视频不够直观，有错误也不能及时修改，打算直接把所有
@@ -489,5 +501,5 @@ mkdocs gh-deploy    # 部署到自己的 github pages
 
 <!--
 MkDocs version : 0.17.3
-Build Date UTC : 2018-06-10 12:00:51
+Build Date UTC : 2018-06-10 12:28:12
 -->
