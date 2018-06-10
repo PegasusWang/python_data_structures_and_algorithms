@@ -106,7 +106,7 @@ class BST(object):
                     return subtree.right
             else:  # 俩孩子，寻找后继节点替换
                 successor_node = self._bst_min_node(subtree.right)
-                subtree.key, subtree.value = successor_node.key, subtree.value
+                subtree.key, subtree.value = successor_node.key, successor_node.value
                 subtree.right = self._bst_remove(subtree.right, successor_node.key)
                 return subtree
 
