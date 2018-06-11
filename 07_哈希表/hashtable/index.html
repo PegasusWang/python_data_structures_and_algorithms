@@ -347,7 +347,7 @@ size 2**3 the order of indices is:
 <h1 id="_3">哈希函数</h1>
 <p>到这里你应该明白哈希表插入的工作原理了，不过有个重要的问题之前没提到，就是 hash 函数怎么选？
 当然是散列得到的冲突越来越小就好啦，也就是说每个 key 都能尽量被等可能地散列到 m 个槽中的任何一个，并且与其他 key 被散列到哪个槽位无关。
-如果你感兴趣，可以阅读后边提到的一些参考资料。</p>
+如果你感兴趣，可以阅读后边提到的一些参考资料。视频里我们使用二次探查函数，它相比线性探查得到的结果冲突会更少。</p>
 <h1 id="load-factor">装载因子(load factor)</h1>
 <p>如果继续往我们的哈希表里塞东西会发生什么？空间不够用。这里我们定义一个负载因子的概念(load factor)，其实很简单，就是已经使用的槽数比哈希表大小。
 比如我们上边的例子插入了 8 个元素，哈希表总大小是 13， 它的 load factor 就是 <script type="math/tex"> 8/13 \approx 0.62 </script>。当我们继续往哈希表插入数据的时候，很快就不够用了。
@@ -359,7 +359,7 @@ GROWTH_RATE 这个关键字，你会发现不同版本的 cpython 使用了不�
 <h1 id="hashtable-adt">HashTable ADT</h1>
 <p>实践是检验真理的唯一标准，这里我们来实现一个简化版的哈希表 ADT，主要是为了让你更好地了解它的工作原理，有了它，后边实现起 dict 和 set 来就小菜一碟了。
 这里我们使用到了定长数组，还记得我们在数组和列表章节里实现的 Array 吧，这里要用上了。</p>
-<p>解决冲突我们使用二次探查法。我们来实现三个哈希表最常用的基本操作，这实际上也是使用字典的时候最常用的操作。</p>
+<p>解决冲突我们使用二次探查法，模拟 cpython 二次探查函数的实现。我们来实现三个哈希表最常用的基本操作，这实际上也是使用字典的时候最常用的操作。</p>
 <ul>
 <li>add(key, value)</li>
 <li>get(key, default)</li>
@@ -388,7 +388,7 @@ class HashTable(object):
 <h1 id="_5">延伸阅读</h1>
 <ul>
 <li>《Data Structures and Algorithms in Python》11 章 Hash Tables</li>
-<li>《算法导论》第三版 11 章散列表</li>
+<li>《算法导论》第三版 11 章散列表，了解几种哈希冲突的解决方式，以及为什么我们选择二次探查而不是线性探查法？</li>
 <li>介绍 c 解释器如何实现的 python dict对象：<a href="http://www.laurentluce.com/posts/python-dictionary-implementation/">Python dictionary implementation</a></li>
 </ul>
               
