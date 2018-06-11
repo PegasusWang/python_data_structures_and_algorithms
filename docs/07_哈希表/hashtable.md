@@ -129,7 +129,7 @@ size 2**3 the order of indices is:
 # 哈希函数
 到这里你应该明白哈希表插入的工作原理了，不过有个重要的问题之前没提到，就是 hash 函数怎么选？
 当然是散列得到的冲突越来越小就好啦，也就是说每个 key 都能尽量被等可能地散列到 m 个槽中的任何一个，并且与其他 key 被散列到哪个槽位无关。
-如果你感兴趣，可以阅读后边提到的一些参考资料。
+如果你感兴趣，可以阅读后边提到的一些参考资料。视频里我们使用二次探查函数，它相比线性探查得到的结果冲突会更少。
 
 
 # 装载因子(load factor)
@@ -147,7 +147,7 @@ GROWTH_RATE 这个关键字，你会发现不同版本的 cpython 使用了不�
 实践是检验真理的唯一标准，这里我们来实现一个简化版的哈希表 ADT，主要是为了让你更好地了解它的工作原理，有了它，后边实现起 dict 和 set 来就小菜一碟了。
 这里我们使用到了定长数组，还记得我们在数组和列表章节里实现的 Array 吧，这里要用上了。
 
-解决冲突我们使用二次探查法。我们来实现三个哈希表最常用的基本操作，这实际上也是使用字典的时候最常用的操作。
+解决冲突我们使用二次探查法，模拟 cpython 二次探查函数的实现。我们来实现三个哈希表最常用的基本操作，这实际上也是使用字典的时候最常用的操作。
 
 - add(key, value)
 - get(key, default)
@@ -176,5 +176,5 @@ class HashTable(object):
 
 # 延伸阅读
 - 《Data Structures and Algorithms in Python》11 章 Hash Tables
-- 《算法导论》第三版 11 章散列表
+- 《算法导论》第三版 11 章散列表，了解几种哈希冲突的解决方式，以及为什么我们选择二次探查而不是线性探查法？
 - 介绍 c 解释器如何实现的 python dict对象：[Python dictionary implementation](http://www.laurentluce.com/posts/python-dictionary-implementation/)
