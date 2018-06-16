@@ -67,7 +67,6 @@ class LinkedList(object):
         :param value:
         """
         prevnode = self.root    #
-        curnode = self.root.next
         for curnode in self.iter_node():
             if curnode.value == value:
                 prevnode.next = curnode.next
