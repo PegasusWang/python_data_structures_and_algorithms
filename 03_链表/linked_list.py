@@ -43,6 +43,8 @@ class LinkedList(object):
         self.length += 1
 
     def appendleft(self, value):
+        if self.maxsize is not None and len(self) > self.maxsize:
+            raise Exception('LinkedList is Full')
         headnode = self.root.next
         node = Node(value)
         self.root.next = node
@@ -100,6 +102,9 @@ class LinkedList(object):
         self.root.next = headnode.next
         self.length -= 1
         value = headnode.value
+
+        if self.tailnode is headnode:   # 勘误：增加单节点删除 tailnode 处理
+            self.tailnode = None
         del headnode
         return value
 
@@ -137,6 +142,12 @@ def test_linked_list():
     assert headvalue == 0
     assert len(ll) == 2
     assert list(ll) == [1, 3]
+
+    assert ll.popleft() == 1
+    assert list(ll) == [3]
+    ll.popleft()
+    assert len(ll) == 0
+    assert ll.tailnode is None
 
     ll.clear()
     assert len(ll) == 0
