@@ -61,7 +61,8 @@ class LinkedList(object):
         while curnode is not self.tailnode:    # 从第一个节点开始遍历
             yield curnode
             curnode = curnode.next    # 移动到下一个节点
-        yield curnode
+        if curnode is not None:
+            yield curnode
 
     def remove(self, value):    # O(n)
         """ 删除包含值的一个节点，将其前一个节点的 next 指向被查询节点的下一个即可
@@ -113,6 +114,7 @@ class LinkedList(object):
             del node
         self.root.next = None
         self.length = 0
+        self.tailnode = None
 
 
 def test_linked_list():
@@ -151,6 +153,7 @@ def test_linked_list():
 
     ll.clear()
     assert len(ll) == 0
+    assert list(ll) == []
 
 
 def test_linked_list_remove():
