@@ -8,7 +8,7 @@ class Bag(object):
         self._items = list()
 
     def add(self, item):
-        if len(self) > self.maxsize:
+        if len(self) >= self.maxsize:
             raise Exception('Full')
         self._items.append(item)
 
