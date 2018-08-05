@@ -1,123 +1,194 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    
     <url>
      <loc>/</loc>
-     <lastmod>2018-07-27</lastmod>
+     <lastmod>2018-08-05</lastmod>
      <changefreq>daily</changefreq>
     </url>
+    
+
+    
     <url>
      <loc>/00_课程简介之笨方法学算法/why_and_how_to_learn/</loc>
-     <lastmod>2018-07-27</lastmod>
+     <lastmod>2018-08-05</lastmod>
      <changefreq>daily</changefreq>
     </url>
+    
+
+    
     <url>
      <loc>/01_抽象数据类型和面向对象编程/ADT_OOP/</loc>
-     <lastmod>2018-07-27</lastmod>
+     <lastmod>2018-08-05</lastmod>
      <changefreq>daily</changefreq>
     </url>
+    
+
+    
     <url>
      <loc>/02_数组和列表/array_and_list/</loc>
-     <lastmod>2018-07-27</lastmod>
+     <lastmod>2018-08-05</lastmod>
      <changefreq>daily</changefreq>
     </url>
+    
+
+    
     <url>
      <loc>/03_链表/linked_list/</loc>
-     <lastmod>2018-07-27</lastmod>
+     <lastmod>2018-08-05</lastmod>
      <changefreq>daily</changefreq>
     </url>
+    
+
+    
     <url>
      <loc>/04_队列/queue/</loc>
-     <lastmod>2018-07-27</lastmod>
+     <lastmod>2018-08-05</lastmod>
      <changefreq>daily</changefreq>
     </url>
+    
+
+    
     <url>
      <loc>/05_栈/stack/</loc>
-     <lastmod>2018-07-27</lastmod>
+     <lastmod>2018-08-05</lastmod>
      <changefreq>daily</changefreq>
     </url>
+    
+
+    
     <url>
      <loc>/06_算法分析/big_o/</loc>
-     <lastmod>2018-07-27</lastmod>
+     <lastmod>2018-08-05</lastmod>
      <changefreq>daily</changefreq>
     </url>
+    
+
+    
     <url>
      <loc>/07_哈希表/hashtable/</loc>
-     <lastmod>2018-07-27</lastmod>
+     <lastmod>2018-08-05</lastmod>
      <changefreq>daily</changefreq>
     </url>
+    
+
+    
     <url>
      <loc>/08_字典/dict/</loc>
-     <lastmod>2018-07-27</lastmod>
+     <lastmod>2018-08-05</lastmod>
      <changefreq>daily</changefreq>
     </url>
+    
+
+    
     <url>
      <loc>/09_集合/set/</loc>
-     <lastmod>2018-07-27</lastmod>
+     <lastmod>2018-08-05</lastmod>
      <changefreq>daily</changefreq>
     </url>
+    
+
+    
     <url>
      <loc>/10_递归/recursion/</loc>
-     <lastmod>2018-07-27</lastmod>
+     <lastmod>2018-08-05</lastmod>
      <changefreq>daily</changefreq>
     </url>
+    
+
+    
     <url>
      <loc>/11_线性查找与二分查找/search/</loc>
-     <lastmod>2018-07-27</lastmod>
+     <lastmod>2018-08-05</lastmod>
      <changefreq>daily</changefreq>
     </url>
+    
+
+    
     <url>
      <loc>/12_基本排序算法/basic_sort/</loc>
-     <lastmod>2018-07-27</lastmod>
+     <lastmod>2018-08-05</lastmod>
      <changefreq>daily</changefreq>
     </url>
+    
+
+    
+        
     <url>
      <loc>/13_高级排序算法/advanced_sorting/</loc>
-     <lastmod>2018-07-27</lastmod>
+     <lastmod>2018-08-05</lastmod>
      <changefreq>daily</changefreq>
     </url>
+        
     <url>
      <loc>/13_高级排序算法/merge_sort/</loc>
-     <lastmod>2018-07-27</lastmod>
+     <lastmod>2018-08-05</lastmod>
      <changefreq>daily</changefreq>
     </url>
+        
     <url>
      <loc>/13_高级排序算法/quick_sort/</loc>
-     <lastmod>2018-07-27</lastmod>
+     <lastmod>2018-08-05</lastmod>
      <changefreq>daily</changefreq>
     </url>
+        
+    
+
+    
     <url>
      <loc>/14_树与二叉树/tree/</loc>
-     <lastmod>2018-07-27</lastmod>
+     <lastmod>2018-08-05</lastmod>
      <changefreq>daily</changefreq>
     </url>
+    
+
+    
     <url>
      <loc>/15_堆与堆排序/heap_and_heapsort/</loc>
-     <lastmod>2018-07-27</lastmod>
+     <lastmod>2018-08-05</lastmod>
      <changefreq>daily</changefreq>
     </url>
+    
+
+    
     <url>
      <loc>/16_优先级队列/priority_queue/</loc>
-     <lastmod>2018-07-27</lastmod>
+     <lastmod>2018-08-05</lastmod>
      <changefreq>daily</changefreq>
     </url>
+    
+
+    
     <url>
      <loc>/17_二叉查找树/binary_search_tree/</loc>
-     <lastmod>2018-07-27</lastmod>
+     <lastmod>2018-08-05</lastmod>
      <changefreq>daily</changefreq>
     </url>
+    
+
+    
     <url>
      <loc>/18_图与图的遍历/graph/</loc>
-     <lastmod>2018-07-27</lastmod>
+     <lastmod>2018-08-05</lastmod>
      <changefreq>daily</changefreq>
     </url>
+    
+
+    
     <url>
      <loc>/19_python内置常用算法和数据结构/builtins/</loc>
-     <lastmod>2018-07-27</lastmod>
+     <lastmod>2018-08-05</lastmod>
      <changefreq>daily</changefreq>
     </url>
+    
+
+    
     <url>
      <loc>/20_面试指南/interview/</loc>
-     <lastmod>2018-07-27</lastmod>
+     <lastmod>2018-08-05</lastmod>
      <changefreq>daily</changefreq>
     </url>
+    
+
 </urlset>
