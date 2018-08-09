@@ -32,7 +32,7 @@ class LinkedList(object):
         return self.length
 
     def append(self, value):    # O(1)
-        if self.maxsize is not None and len(self) > self.maxsize:
+        if self.maxsize is not None and len(self) >= self.maxsize:
             raise Exception('LinkedList is Full')
         node = Node(value)    # 构造节点
         tailnode = self.tailnode
