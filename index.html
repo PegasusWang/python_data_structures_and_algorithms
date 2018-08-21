@@ -288,7 +288,7 @@
 <p>电子书：<a href="http://python-web-guide.readthedocs.io/zh/latest/">《Python web 入坑指南》</a></p>
 <h2 id="_5">课程内容</h2>
 <p>包括我们在业务开发和面试中常用的算法和数据结构，希望可以帮助新人快速上手，很多老手写业务代码写多了很多基础知识忘记了，
-也可以作为回顾。课程尽量用通俗的方式讲解，结合 python 语言和日常开发实践的经验，让没有太多基础和非科班的同学也能够理解。
+也可以作为回顾。课程尽量用通俗的方式讲解，结合 python 语言和日常开发实践的经验。
 对于每个算法和用到的数据结构我们需要知道:</p>
 <ul>
 <li>原理</li>
@@ -336,7 +336,7 @@
 <h2 id="_8">受众</h2>
 <p>想要学习 Python 算法和数据结构的中级同学，包括自学的同学和本科低年级学生等。需要掌握 Python
 的基本语法和面向对象编程的一些概念，有一定的 Python 使用经验。我们这里尽量只使用最基本的 Python 语法，不会再去介绍用到的 Python 语法糖。</p>
-<p><strong>注意啊啊: 教程着重于使用 Python 实现常用算法和数据结构，不适合从来没有学过算法和数据结构的新手同学，购买之前请慎重考虑</strong></p>
+<p><strong>注意啊啊: 教程着重于使用 Python 实现常用算法和数据结构，不适合从来没有学过算法和数据结构的新手同学，购买之前请慎重考虑，请确保你之前看过一本数据结构和算法的教材，最好有过其他语言实现算法的经验。</strong></p>
 <h1 id="_9">预备知识</h1>
 <p>（注意：有些同学看起来很吃力，为了不花冤枉钱，我建议你先看看本电子书的内容和代码是否在自己的理解范围内，再决定是否购买视频。有些概念不是立马就能理解的，需要反复思考实践）</p>
 <ul>
@@ -347,7 +347,7 @@
 <p>这里我参考过三本书，均可以网购纸质版或者网络上搜索电子版：</p>
 <p><a href="https://book.douban.com/subject/26979890/">《算法图解》</a>: 图解的形式很适合新手，示例使用的是 python。建议基础较少的同学看这本书入门</p>
 <p><a href="https://book.douban.com/subject/10607365/">《Data Structures and Algorithms in Python》</a>: 适合对 Python
-和算法比较熟悉的同学，或者是有其他语言编程经验的同学。本书是英文版，缺点是书中错误真的很多，代码有些无法运行而且不够 Pythonic。</p>
+和算法比较熟悉的同学，或者是有其他语言编程经验的同学。本书是英文版，缺点是书中错误真的很多，代码有些无法运行而且不够 Pythonic。该书 <a href="http://bcs.wiley.com/he-bcs/Books?action=resource&amp;bcsId=9003&amp;itemId=0470618299&amp;resourceId=35653">勘误</a></p>
 <p><a href="https://book.douban.com/subject/20432061/">《算法导论》第三版</a>: 喜欢数学证明和板砖书的同学可以参考，有很多高级主题。使用伪代码</p>
 <h2 id="_11">讲课形式</h2>
 <p>绘图演示+手写板+现场编码</p>
@@ -416,7 +416,7 @@ pip install when-changed
 <p>视频演示里我使用到了一个简单的 test.sh 脚本文件，内容如下:</p>
 <pre><code class="sh">#!/usr/bin/env bash
 
-# pip install when-changed
+# pip install when-changed, 监控文件变动并且文件修改之后自动执行 pytest 单测
  when-changed -v -r -1 -s ./    &quot;py.test -s $1&quot;
 </code></pre>
 
@@ -424,7 +424,8 @@ pip install when-changed
 <pre><code>'./test.sh somefile.py'
 </code></pre>
 
-<p>每次我们改动了代码，就会自动执行代码里的单元测试了。pytest 会自动发现以 test 开头的函数并执行测试代码。</p>
+<p>每次我们改动了代码，就会自动执行代码里的单元测试了。pytest 会自动发现以 test
+开头的函数并执行测试代码。良好的工程需要我们用单测来保证，将来即使修改了内部实现逻辑也方便做回归验证。</p>
 <h2 id="_18">勘误</h2>
 <p>输出其实也是一种再学习的过程，中途需要查看大量资料、编写讲义、视频录制、代码编写等，难免有疏漏甚至错误之处。
 有出版社找过笔者想让我出书，一来自己对出书兴趣不大，另外感觉书籍相对视频不够直观，有错误也不能及时修改，打算直接把所有文字内容讲义和代码等放到 github 上，供大家免费查阅。</p>
@@ -455,7 +456,7 @@ pip install -r requirements.txt
 # 如果你 fork 了本项目，可以定期拉取主仓库的代码来获取更新，目前还在不断更新相关章节
 </code></pre>
 
-<p>编写并查看：</p>
+<p>你可以 clone 本项目后在本地编写和查看电子书：</p>
 <pre><code class="sh">mkdocs serve     # 修改自动更新，浏览器打开 http://localhost:8000 访问
 # 数学公式参考 https://www.zybuluo.com/codeep/note/163962
 mkdocs gh-deploy    # 部署到自己的 github pages
@@ -512,6 +513,6 @@ mkdocs gh-deploy    # 部署到自己的 github pages
 </html>
 
 <!--
-MkDocs version : 0.17.3
-Build Date UTC : 2018-08-09 09:02:17
+MkDocs version : 0.17.4
+Build Date UTC : 2018-08-21 15:43:40
 -->
