@@ -242,4 +242,4 @@ bst = BST.build_from(NODE_LIST)
 
 # 延伸阅读
 - 《Data Structures and Algorithms in Python》14 章，树的概念和算法还有很多，我们这里介绍最基本的
-- 了解 mysql 索引使用的 B-Tree 结构
+- 了解 mysql 索引使用的 B-Tree 结构，这个可以是面试的时候数据库的常考点
