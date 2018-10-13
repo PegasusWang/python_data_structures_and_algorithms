@@ -241,5 +241,6 @@ bst = BST.build_from(NODE_LIST)
 
 
 # 延伸阅读
-- 《Data Structures and Algorithms in Python》14 章，树的概念和算法还有很多，我们这里介绍最基本的
-- 了解 mysql 索引使用的 B-Tree 结构，这个可以是面试的时候数据库的常考点
+- 《Data Structures and Algorithms in Python》14 章，树的概念和算法还有很多，我们这里介绍最基本的帮你打个基础
+- 了解 mysql 索引使用的 B-Tree 结构，这个是后端面试数据库的常考点。想想为什么？当元素非常多的时候，二叉树的深度会很深，导致多次磁盘查找。[从B树、B+树、B*树谈到R
+  树](https://blog.csdn.net/v_JULY_v/article/details/6530142)
