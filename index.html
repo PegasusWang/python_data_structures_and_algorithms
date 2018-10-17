@@ -7,24 +7,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="None">
   
-  <link rel="shortcut icon" href="./img/favicon.ico">
+  <link rel="shortcut icon" href="img/favicon.ico">
   <title>课程简介 - Python 数据结构与算法视频教程</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
-  <link rel="stylesheet" href="./css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="./css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="./css/highlight.css">
+  <link rel="stylesheet" href="css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
   
   <script>
     // Current page data
     var mkdocs_page_name = "\u8bfe\u7a0b\u7b80\u4ecb";
     var mkdocs_page_input_path = "index.md";
-    var mkdocs_page_url = "/";
+    var mkdocs_page_url = null;
   </script>
   
-  <script src="./js/jquery-2.1.1.min.js"></script>
-  <script src="./js/modernizr-2.8.3.min.js"></script>
-  <script type="text/javascript" src="./js/highlight.pack.js"></script> 
+  <script src="js/jquery-2.1.1.min.js" defer></script>
+  <script src="js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
   
 </head>
 
@@ -38,7 +39,7 @@
         <a href="." class="icon icon-home"> Python 数据结构与算法视频教程</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -335,7 +336,8 @@
 不过只在 python3.5 下测试过，推荐用相同版本 Python 进行代码编写和测试。</p>
 <h2 id="_8">受众</h2>
 <p>想要学习 Python 算法和数据结构的中级同学，包括自学的同学和本科低年级学生等。需要掌握 Python
-的基本语法和面向对象编程的一些概念，有一定的 Python 使用经验。我们这里尽量只使用最基本的 Python 语法，不会再去介绍用到的 Python 语法糖。</p>
+的基本语法和面向对象编程的一些概念，有一定的 Python 使用经验。我们这里尽量只使用最基本的 Python 语法，不会再去介绍用到的 Python 语法糖。
+数据结构和算法算是本科教育中偏难的课程，既需要你理解其原理，又需要具有有扎实的编程能力。</p>
 <p><strong>请注意: 本教程不是零基础教程，着重于使用 Python 实现常用算法和数据结构，不适合从来没有学过算法和数据结构的新手同学，购买之前请慎重考虑，请确保你之前看过一本数据结构和算法的教材，最好有过其他语言实现算法的经验</strong></p>
 <h1 id="_9">预备知识</h1>
 <p>（注意：有些同学看起来很吃力，为了不花冤枉钱，我建议你先整体浏览本电子书的内容和代码是否在自己的理解范围内，再决定是否购买视频。有些概念不是立马就能理解的，需要反复思考实践）</p>
@@ -504,15 +506,14 @@ mkdocs gh-deploy    # 部署到自己的 github pages
     </span>
 </div>
     <script>var base_url = '.';</script>
-    <script src="./js/theme.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-      <script src="./search/require.js"></script>
-      <script src="./search/search.js"></script>
+    <script src="js/theme.js" defer></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer></script>
+      <script src="search/main.js" defer></script>
 
 </body>
 </html>
 
 <!--
-MkDocs version : 0.17.3
-Build Date UTC : 2018-10-13 13:39:02
+MkDocs version : 1.0.4
+Build Date UTC : 2018-10-17 15:27:36
 -->
