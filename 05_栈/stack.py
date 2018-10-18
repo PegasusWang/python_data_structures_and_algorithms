@@ -142,7 +142,7 @@ def test_deque():
 
 class Stack(object):
     def __init__(self):
-        self.deque = Deque()
+        self.deque = Deque()   # 你可以很容易替换为 python 内置的 collections.deque
 
     def push(self, value):
         self.deque.append(value)
