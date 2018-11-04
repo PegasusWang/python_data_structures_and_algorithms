@@ -8,3 +8,16 @@
 - collections
 - heapq
 - bisect
+
+下边我列了一个常用的表格，如果有遗漏可以在 issue 中提出。确保你了解这些数据结构和算法的使用以及时间、空间复杂度。
+
+|  数据结构/算法 | 语言内置                        | 内置库                                                        |
+|----------------|---------------------------------|---------------------------------------------------------------|
+| 线性结构       | list(列表)/tuple(元祖)          | array(数组，不常用)/collections.namedtuple                    |
+| 链式结构       |                                 | collections.deque(双端队列)                                   |
+| 字典结构       | dict(字典)                      | collections.Counter(计数器)/OrderedDict(有序字典)/defaultdict |
+| 集合结构       | set(集合)/frozenset(不可变集合) |                                                               |
+| 排序算法       | sorted                          |                                                               |
+| 二分算法       |                                 | bisect模块                                                    |
+| 堆算法         |                                 | heapq模块                                                     |
+| 缓存算法       |                                 | functools.lru_cache(Least Recent Used, python3)               |
