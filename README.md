@@ -212,6 +212,7 @@ pip install when-changed
 如果你发现文字内容、代码内容、视频内容有错误或者有疑问，欢迎在 github 上提 issue 讨论(或者网易公开课评论区)，或者直接提 Merge Request，我会尽量及时修正相关内容，防止对读者产生误导。
 同时非常感谢认真学习并及时发现书中错误的同学，非常欢迎针对知识本身的交流和讨论，任何建议和修正我都会认真求证。
 对于提出修正意见或者提交代码的同学，由于人数比较多这里就不一一列举了，可以在以下列表查看，再次感谢你们。笔者信奉开源精神，『眼睛足够多，bug 无处藏』。
+如果您发现视频中的代码有误，请及时使用 git pull 拉取本项目的代码更新，最好用目前最新的代码来学习和实践。
 
 [issue](https://github.com/PegasusWang/python_data_structures_and_algorithms/issues?q=is%3Aissue+is%3Aclosed)
 
