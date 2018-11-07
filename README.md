@@ -218,6 +218,19 @@ pip install when-changed
 
 [contributors](https://github.com/PegasusWang/python_data_structures_and_algorithms/graphs/contributors)
 
+## 如何更新代码(写给不熟悉 git 的同学)
+如果你直接 clone 的本项目的代码仓库，可以直接使用 `git pull origin master` 拉取更新。
+如果你先 fork 到了自己的仓库，然后 clone 到本地的是你自己的仓库，你可以编辑本地项目的 `.git/config`，
+增加如下配置：
+
+```sh
+[remote "pegasuswang"]
+	url = https://github.com/PegasusWang/python_data_structures_and_algorithms.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
+```
+
+然后使用 `git pull pegasuswang master` 拉取更新。
+
 ## 如何提问？
 如果读者关于代码、视频、讲义有任何疑问，欢迎一起讨论
 请注意以下几点：
