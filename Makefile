@@ -2,7 +2,7 @@ push:
 	git push origin master
 
 serve:
-	make serve
+	mkdocs serve
 
 publish:
 	git push origin master
