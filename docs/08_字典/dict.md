@@ -9,7 +9,7 @@
 - remove(key): 删除一个 key，这里其实不是真删除，而是标记为 Empty
 
 字典最常使用的场景就是 k,v 存储，经常用作缓存，它的 key 值是唯一的。
-内置库 collections.OrderDict 还保持了 key 的添加顺序，其实用我们之前实现的链表也能自己实现一个 OrderDict。
+内置库 collections.OrderedDict 还保持了 key 的添加顺序，其实用我们之前实现的链表也能自己实现一个 OrderedDict。
 
 # 实现 dict ADT
 
