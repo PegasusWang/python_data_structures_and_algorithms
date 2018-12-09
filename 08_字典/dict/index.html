@@ -232,7 +232,7 @@
 <li>remove(key): 删除一个 key，这里其实不是真删除，而是标记为 Empty</li>
 </ul>
 <p>字典最常使用的场景就是 k,v 存储，经常用作缓存，它的 key 值是唯一的。
-内置库 collections.OrderDict 还保持了 key 的添加顺序，其实用我们之前实现的链表也能自己实现一个 OrderDict。</p>
+内置库 collections.OrderedDict 还保持了 key 的添加顺序，其实用我们之前实现的链表也能自己实现一个 OrderedDict。</p>
 <h1 id="dict-adt">实现 dict ADT</h1>
 <p>其实上边 HashTable 实现的三个基本方法就是我们使用字典最常用的三个基本方法， 这里我们继承一下这个类，
 然后实现更多 dict 支持的方法，items(), keys(), values()。不过需要注意的是，在 python2 和 python3 里这些方法

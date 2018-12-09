@@ -147,6 +147,9 @@
     <li class="toctree-l3"><a href="#_4">延伸阅读</a></li>
     
 
+    <li class="toctree-l3"><a href="#_5">总结</a></li>
+    
+
     </ul>
                 </li>
     </ul>
@@ -327,6 +330,64 @@ def test_partition():
 <li>《算法导论》第 7 章</li>
 <li><a href="https://zhuanlan.zhihu.com/p/36419582">《面试必备 | 排序算法的Python实现》</a></li>
 </ul>
+<h1 id="_5">总结</h1>
+<p>面试经常问的就是常用排序算法的时间空间复杂，这里列一个表格方便记忆：</p>
+<table>
+<thead>
+<tr>
+<th>排序算法</th>
+<th>最差时间分析</th>
+<th>平均时间复杂度</th>
+<th>稳定度</th>
+<th>空间复杂度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>冒泡排序</td>
+<td>O(n^2)</td>
+<td>O(n^2)</td>
+<td>稳定</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>选择排序</td>
+<td>O(n^2)</td>
+<td>O(n^2)</td>
+<td>不稳定</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>插入排序</td>
+<td>O(n^2)</td>
+<td>O(n^2)</td>
+<td>稳定</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>二叉树排序</td>
+<td>O(n^2)</td>
+<td>O(n*log2n)</td>
+<td>不一顶</td>
+<td>O(n)</td>
+</tr>
+<tr>
+<td>快速排序</td>
+<td>O(n^2)</td>
+<td>O(n*log2n)</td>
+<td>不稳定</td>
+<td>O(log2n)\~O(n)</td>
+</tr>
+<tr>
+<td>堆排序</td>
+<td>O(n*log2n)</td>
+<td>O(n*log2n)</td>
+<td>不稳定</td>
+<td>O(1)</td>
+</tr>
+</tbody>
+</table>
+<p><a href="https://blog.csdn.net/mrlevo520/article/details/77829204&lt;Paste&gt;">数据结构与算法-排序篇-Python描述</a></p>
               
             </div>
           </div>

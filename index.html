@@ -98,6 +98,8 @@
         
             <li><a class="toctree-l3" href="#_18">勘误</a></li>
         
+            <li><a class="toctree-l3" href="#git">如何更新代码(写给不熟悉 git 的同学)</a></li>
+        
             <li><a class="toctree-l3" href="#_19">如何提问？</a></li>
         
             <li><a class="toctree-l3" href="#_20">本电子书制作和写作方式</a></li>
@@ -433,9 +435,20 @@ pip install when-changed
 有出版社找过笔者想让我出书，一来自己对出书兴趣不大，另外感觉书籍相对视频不够直观，有错误也不能及时修改，打算直接把所有文字内容讲义和代码等放到 github 上，供大家免费查阅。</p>
 <p>如果你发现文字内容、代码内容、视频内容有错误或者有疑问，欢迎在 github 上提 issue 讨论(或者网易公开课评论区)，或者直接提 Merge Request，我会尽量及时修正相关内容，防止对读者产生误导。
 同时非常感谢认真学习并及时发现书中错误的同学，非常欢迎针对知识本身的交流和讨论，任何建议和修正我都会认真求证。
-对于提出修正意见或者提交代码的同学，由于人数比较多这里就不一一列举了，可以在以下列表查看，再次感谢你们。笔者信奉开源精神，『眼睛足够多，bug 无处藏』。</p>
+对于提出修正意见或者提交代码的同学，由于人数比较多这里就不一一列举了，可以在以下列表查看，再次感谢你们。笔者信奉开源精神，『眼睛足够多，bug 无处藏』。
+如果您发现视频中的代码有误，请及时使用 git pull 拉取本项目的代码更新，最好用目前最新的代码来学习和实践。</p>
 <p><a href="https://github.com/PegasusWang/python_data_structures_and_algorithms/issues?q=is%3Aissue+is%3Aclosed">issue</a></p>
 <p><a href="https://github.com/PegasusWang/python_data_structures_and_algorithms/graphs/contributors">contributors</a></p>
+<h2 id="git">如何更新代码(写给不熟悉 git 的同学)</h2>
+<p>如果你直接 clone 的本项目的代码仓库，可以直接使用 <code>git pull origin master</code> 拉取更新。
+如果你先 fork 到了自己的仓库，然后 clone 到本地的是你自己的仓库，你可以编辑本地项目的 <code>.git/config</code>，
+增加如下配置：</p>
+<pre><code class="sh">[remote &quot;pegasuswang&quot;]
+    url = https://github.com/PegasusWang/python_data_structures_and_algorithms.git
+    fetch = +refs/heads/*:refs/remotes/origin/*
+</code></pre>
+
+<p>然后使用 <code>git pull pegasuswang master</code> 拉取更新。</p>
 <h2 id="_19">如何提问？</h2>
 <p>如果读者关于代码、视频、讲义有任何疑问，欢迎一起讨论
 请注意以下几点：</p>
@@ -515,5 +528,5 @@ mkdocs gh-deploy    # 部署到自己的 github pages
 
 <!--
 MkDocs version : 1.0.4
-Build Date UTC : 2018-11-04 12:48:11
+Build Date UTC : 2018-12-09 02:34:02
 -->
