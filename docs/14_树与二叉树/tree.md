@@ -229,6 +229,21 @@ btree.preorder_trav(btree.root)    # 输出 A, B, D, E, H, C, F, G, I, J
                 q.append(cur_node.left)
             if cur_node.right:
                 q.append(cur_node.right)
+
+
+from collections import deque
+class Queue(object):  # 借助内置的 deque 我们可以迅速实现一个 Queue
+    def __init__(self):
+        self._items = deque()
+
+    def append(self, value):
+        return self._items.append(value)
+
+    def pop(self):
+        return self._items.popleft()
+
+    def empty(self):
+        return len(self._items) == 0
 ```
 
 

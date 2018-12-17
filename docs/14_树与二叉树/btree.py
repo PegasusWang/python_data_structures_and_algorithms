@@ -1,20 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from collections import deque
-
-
-class Queue(object):
-    def __init__(self):
-        self._items = deque()
-
-    def append(self, value):
-        return self._items.append(value)
-
-    def pop(self):
-        return self._items.popleft()
-
-    def empty(self):
-        return len(self._items) == 0
 
 
 class BinTreeNode(object):
