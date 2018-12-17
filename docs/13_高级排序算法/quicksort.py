@@ -2,14 +2,14 @@
 
 
 def quicksort(array):
-    if len(array) < 2:   # 递归出口，空数组或者只有一个元素的数组都是有序的
+    size = len(array)
+    if not array or size < 2:  # NOTE: 递归出口，空数组或者只有一个元素的数组都是有序的
         return array
-    else:
-        pivot_index = 0    # 选择第一个元素作为主元 pivot
-        pivot = array[pivot_index]
-        less_part = [i for i in array[pivot_index+1:] if i <= pivot]
-        great_part = [i for i in array[pivot_index+1:] if i > pivot]
-        return quicksort(less_part) + [pivot] + quicksort(great_part)
+    pivot_idx = 0
+    pivot = array[pivot_idx]
+    less_part = [array[i] for i in range(size) if array[i] <= pivot and pivot_idx != i]
+    great_part = [array[i] for i in range(size) if array[i] > pivot and pivot_idx != i]
+    return quicksort(less_part) + [pivot] + quicksort(great_part)
 
 
 def test_quicksort():
@@ -23,7 +23,7 @@ def quicksort_inplace(array, beg, end):    # 注意这里我们都用左闭右�
     if beg < end:    # beg == end 的时候递归出口
         pivot = partition(array, beg, end)
         quicksort_inplace(array, beg, pivot)
-        quicksort_inplace(array, pivot+1, end)
+        quicksort_inplace(array, pivot + 1, end)
 
 
 def partition(array, beg, end):
