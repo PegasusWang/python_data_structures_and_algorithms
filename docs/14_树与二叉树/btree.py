@@ -35,6 +35,12 @@ class BinTree(object):
             self.preorder_trav(subtree.left)
             self.preorder_trav(subtree.right)
 
+    def inorder_trav(self, subtree):
+        if subtree is not None:
+            self.preorder_trav(subtree.left)
+            print(subtree.data)
+            self.preorder_trav(subtree.right)
+
     def reverse(self, subtree):
         if subtree is not None:
             subtree.left, subtree.right = subtree.right, subtree.left
