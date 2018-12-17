@@ -197,7 +197,40 @@ btree.preorder_trav(btree.root)    # 输出 A, B, D, E, H, C, F, G, I, J
 
 # 二叉树层序遍历
 
-除了递归的方式遍历之外，我们还可以使用层序遍历的方式。程序遍历比较直白，就是从根节点开始按照一层一层的方式区遍历节点。
+除了递归的方式遍历之外，我们还可以使用层序遍历的方式。层序遍历比较直白，就是从根节点开始按照一层一层的方式遍历节点。
+我们可以从根节点开始，之后把所有当前层的孩子都按照从左到右的顺序放到一个列表里，下一次遍历所有这些孩子就可以了。
+
+```py
+    def layer_trav(self, subtree):
+        cur_nodes = [subtree]
+        next_nodes = []
+        while cur_nodes or next_nodes:
+            for node in cur_nodes:
+                print(node.data)
+                if node.left:
+                    next_nodes.append(node.left)
+                if node.right:
+                    next_nodes.append(node.right)
+            cur_nodes = next_nodes  # 继续遍历下一层
+            next_nodes = []
+```
+
+还有一种方式就是使用一个队列，之前我们直到队列是一个先进先出结构，如果我们按照一层一层的顺序从左往右把节点放到一个队列里，
+也可以实现程序遍历：
+
+```py
+    def layer_trav_use_queue(self, subtree):
+        q = Queue()
+        q.append(subtree)
+        while not q.empty():
+            cur_node = q.pop()
+            print(cur_node.data)
+            if cur_node.left:
+                q.append(cur_node.left)
+            if cur_node.right:
+                q.append(cur_node.right)
+```
+
 
 # 反转二叉树
 之所以单拎出来说这个是因为 mac 下著名的 brew 工具作者据说是因为面试 google 白板编程没写出来反转二叉树跪了。然后人家就去了苹果 😂。其实吧和遍历操作相比也没啥太大区别，递归交换就是了：
@@ -216,6 +249,7 @@ btree.preorder_trav(btree.root)    # 输出 A, B, D, E, H, C, F, G, I, J
 - 树的遍历我们用了 print，请你尝试换成一个 callback，这样就能自定义处理树节点的方式了。
 - 请问树的遍历操作时间复杂度是多少？假设它的 size 是 n
 - 你能用非递归的方式来实现树的遍历吗？我们知道计算机内部使用了 stack，如果我们自己模拟如何实现？请你尝试完成
+- 使用树的层序遍历我们能实现一个树的左右视图，比如从一个二叉树的左边能看到哪些节点。请你尝试做这个练习题 https://leetcode.com/problems/binary-tree-right-side-view/description/
 
 
 # 延伸阅读

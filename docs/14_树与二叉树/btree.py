@@ -1,5 +1,21 @@
 # -*- coding: utf-8 -*-
 
+from collections import deque
+
+
+class Queue(object):
+    def __init__(self):
+        self._items = deque()
+
+    def append(self, value):
+        return self._items.append(value)
+
+    def pop(self):
+        return self._items.popleft()
+
+    def empty(self):
+        return len(self._items) == 0
+
 
 class BinTreeNode(object):
     def __init__(self, data, left=None, right=None):
@@ -47,6 +63,30 @@ class BinTree(object):
             self.reverse(subtree.left)
             self.reverse(subtree.right)
 
+    def layer_trav(self, subtree):
+        cur_nodes = [subtree]
+        next_nodes = []
+        while cur_nodes or next_nodes:
+            for node in cur_nodes:
+                print(node.data)
+                if node.left:
+                    next_nodes.append(node.left)
+                if node.right:
+                    next_nodes.append(node.right)
+            cur_nodes = next_nodes  # 继续遍历下一层
+            next_nodes = []
+
+    def layer_trav_use_queue(self, subtree):
+        q = Queue()
+        q.append(subtree)
+        while not q.empty():
+            cur_node = q.pop()
+            print(cur_node.data)
+            if cur_node.left:
+                q.append(cur_node.left)
+            if cur_node.right:
+                q.append(cur_node.right)
+
 
 node_list = [
     {'data': 'A', 'left': 'B', 'right': 'C', 'is_root': True},
@@ -63,7 +103,13 @@ node_list = [
 
 
 btree = BinTree.build_from(node_list)
+print('====先序遍历=====')
 btree.preorder_trav(btree.root)
+print('====层序遍历=====')
+btree.layer_trav(btree.root)
+print('====用队列层序遍历=====')
+btree.layer_trav_use_queue(btree.root)
+
 btree.reverse(btree.root)
-print('====我是华丽丽滴分割线=====')
+print('====反转之后的结果=====')
 btree.preorder_trav(btree.root)
