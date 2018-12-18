@@ -77,7 +77,7 @@ class BinTree(object):
         self.root = root
 ```
 
-怎么构造上图中的二叉树呢，似乎其他课本没找到啥例子，我自己定义了一种方法，首先我们输入节点信息，仔细看下边代码，叶子节点的 left 和 right 都是 None，并且只有一个根节点 A:
+怎么构造上图中的二叉树呢，似乎其他课本没找到啥例子(有些例子是写了一堆嵌套节点来定义，很难搞清楚层次关系)，我自己定义了一种方法，首先我们输入节点信息，仔细看下边代码，叶子节点的 left 和 right 都是 None，并且只有一个根节点 A:
 
 ```py
 node_list = [
@@ -94,7 +94,7 @@ node_list = [
 ]
 ```
 
-然后我们给 BinTreeNode 定义一个 build_from 方法：
+然后我们给 BinTreeNode 定义一个 build_from 方法，当然你也可以定义一种自己的构造方法：
 
 ```py
 class BinTree(object):

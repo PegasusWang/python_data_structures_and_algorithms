@@ -123,6 +123,7 @@ def test_heapsort_reverse():
 
 # python 里的 heapq
 python 其实自带了 heapq 模块，用来实现堆的相关操作，原理是类似的。请你阅读相关文档并使用内置的 heapq 模块完成堆排序。
+一般我们刷题或者写业务代码的时候，使用这个内置的 heapq 模块就够用了。
 
 # 练习题
 
