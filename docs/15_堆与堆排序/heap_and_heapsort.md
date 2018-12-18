@@ -122,7 +122,7 @@ def test_heapsort_reverse():
 ```
 
 # python 里的 heapq
-python 其实自带了 heapq 模块，用来实现堆的相关操作，原理是类似的。请你阅读相关文档。
+python 其实自带了 heapq 模块，用来实现堆的相关操作，原理是类似的。请你阅读相关文档并使用内置的 heapq 模块完成堆排序。
 
 # 练习题
 
@@ -136,3 +136,7 @@ python 其实自带了 heapq 模块，用来实现堆的相关操作，原理是
 - 《算法导论》第 6 章 Heapsort
 - 《Data Structures and Algorithms in Python》 13.5 节 Heapsort
 - 阅读 Python heapq 模块的文档
+
+# Leetcode
+
+合并 k 个有序链表 https://leetcode.com/problems/merge-k-sorted-lists/description/
