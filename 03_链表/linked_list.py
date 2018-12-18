@@ -119,6 +119,22 @@ class LinkedList(object):
         self.length = 0
         self.tailnode = None
 
+    def reverse(self):
+        """反转链表"""
+        curnode = self.root.next
+        self.tailnode = curnode  # 记得更新 tailnode，多了这个属性处理起来经常忘记
+        prevnode = None
+
+        while curnode:
+            nextnode = curnode.next
+            curnode.next = prevnode
+
+            if nextnode is None:
+                self.root.next = curnode
+
+            prevnode = curnode
+            curnode = nextnode
+
 
 def test_linked_list():
     ll = LinkedList()
@@ -169,6 +185,16 @@ def test_linked_list_remove():
     ll.remove(7)
     print(list(ll))
 
+
+def test_linked_list_reverse():
+    ll = LinkedList()
+    n = 10
+    for i in range(n):
+        ll.append(i)
+    ll.reverse()
+    assert list(ll) == list(reversed(range(n)))
+
+
 def test_linked_list_append():
     ll = LinkedList()
     ll.appendleft(1)
@@ -179,3 +205,4 @@ def test_linked_list_append():
 if __name__ == '__main__':
     test_linked_list()
     test_linked_list_append()
+    test_linked_list_reverse()

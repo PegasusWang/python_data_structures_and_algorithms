@@ -123,3 +123,18 @@ def test_heapsort_reverse():
     l = list(range(10))
     random.shuffle(l)
     assert heapsort_reverse(l) == sorted(l, reverse=True)
+
+
+def heapsort_use_heapq(iterable):
+    from heapq import heappush, heappop
+    items = []
+    for value in iterable:
+        heappush(items, value)
+    return [heappop(items) for i in range(len(items))]
+
+
+def test_heapsort_use_heapq():
+    import random
+    l = list(range(10))
+    random.shuffle(l)
+    assert heapsort_use_heapq(l) == sorted(l)
