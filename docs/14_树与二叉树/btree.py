@@ -73,7 +73,7 @@ class BinTree(object):
             s.push(subtree)
             while not s.empty():
                 peek = s.pop()
-                print(peek.data)
+                print(peek.data)    # 注意这里我用了 print，你可以用 yield 产出值然后在调用的地方转成 list
                 if subtree.left:
                     s.push(subtree.left)
                 if subtree.right:
