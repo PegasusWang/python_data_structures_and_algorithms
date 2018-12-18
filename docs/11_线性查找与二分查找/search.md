@@ -109,3 +109,7 @@ def test_binary_search():
 - 阅读 python 文档关于二分的 bisect 模块。
 - 阅读 python 文档 itertools 相关模块和常见的几个函数 takewhile, dropwhile, from_iterable, count, tee 等用法
 - [每个程序员都应该会点形式化证明](https://zhuanlan.zhihu.com/p/35364999?group_id=967109293607129088)
+
+# Leetcode
+
+找旋转过的排序数组中最小的数。 https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/description/
