@@ -57,3 +57,7 @@ infinite_fib(10)
 - 实际上借助 python 内置的 list/collections.deque 结构就很容易实现一个栈，请你尝试实现，本章我们全部使用自己编写的数据结构而没用到 python 内置的数据结构。
 - 这里我们自己实现了 Deque，你能用 python 内置的 collections.deque 实现栈吗？有轮子能直接用的话看起来就简单多了，这里我们为了学习数据结构的实现就避免了直接使用内置结构
 - 哪些经典算法里使用到了栈呢？
+
+# Leetcode 练习
+
+https://leetcode.com/problems/implement-queue-using-stacks/
