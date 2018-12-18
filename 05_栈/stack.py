@@ -2,6 +2,8 @@
 
 # NOTE: 这里拷贝的 double_link_list.py 里的代码
 
+from collections import deque
+
 
 class Node(object):
 
@@ -149,6 +151,21 @@ class Stack(object):
 
     def pop(self):
         return self.deque.pop()
+
+
+class Stack2(object):
+
+    def __init__(self):
+        self._deque = deque()
+
+    def push(self, value):
+        return self._deque.append(value)
+
+    def pop(self):
+        return self._deque.pop()
+
+    def empty(self):
+        return len(self._deque) == 0
 
 
 def test_stack():
