@@ -1,6 +1,36 @@
 # -*- coding: utf-8 -*-
 
 
+from collections import deque
+
+
+class Queue(object):  # 借助内置的 deque 我们可以迅速实现一个 Queue
+    def __init__(self):
+        self._items = deque()
+
+    def append(self, value):
+        return self._items.append(value)
+
+    def pop(self):
+        return self._items.popleft()
+
+    def empty(self):
+        return len(self._items) == 0
+
+
+class Stack(object):
+    def __init__(self):
+        self._items = deque()
+
+    def push(self, value):
+        return self._items.append(value)
+
+    def pop(self):
+        return self._items.pop()
+
+    def empty(self):
+        return len(self._items) == 0
+
 
 class BinTreeNode(object):
     def __init__(self, data, left=None, right=None):
@@ -35,6 +65,19 @@ class BinTree(object):
             print(subtree.data)
             self.preorder_trav(subtree.left)
             self.preorder_trav(subtree.right)
+
+    def preorder_trav_use_stack(self, subtree):
+        """递归的方式其实是计算机帮我们实现了栈结构，我们可以自己显示的用栈来实现"""
+        s = Stack()
+        if subtree:
+            s.push(subtree)
+            while not s.empty():
+                peek = s.pop()
+                print(peek.data)
+                if subtree.left:
+                    s.push(subtree.left)
+                if subtree.right:
+                    s.push(subtree.right)
 
     def inorder_trav(self, subtree):
         if subtree is not None:
@@ -89,6 +132,8 @@ node_list = [
 
 btree = BinTree.build_from(node_list)
 print('====先序遍历=====')
+btree.preorder_trav(btree.root)
+print('====使用 stack 实现先序遍历=====')
 btree.preorder_trav(btree.root)
 print('====层序遍历=====')
 btree.layer_trav(btree.root)
