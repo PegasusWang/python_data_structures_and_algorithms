@@ -30,3 +30,4 @@
 - [那些年，我们一起跪过的算法题[视频]](https://zhuanlan.zhihu.com/p/35175401)
 - [《程序员面试金典（第5版）》](https://book.douban.com/subject/25753386/)
 - [《剑指Offer》](https://book.douban.com/subject/25910559/)
+- [python leetCode](https://github.com/HuberTRoy/leetCodek)
