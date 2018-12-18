@@ -122,7 +122,7 @@ class LinkedList(object):
     def reverse(self):
         """反转链表"""
         curnode = self.root.next
-        self.tailnode = curnode
+        self.tailnode = curnode  # 记得更新 tailnode，多了这个属性处理起来经常忘记
         prevnode = None
 
         while curnode:
@@ -203,6 +203,6 @@ def test_linked_list_append():
 
 
 if __name__ == '__main__':
-    # test_linked_list()
-    # test_linked_list_append()
+    test_linked_list()
+    test_linked_list_append()
     test_linked_list_reverse()
