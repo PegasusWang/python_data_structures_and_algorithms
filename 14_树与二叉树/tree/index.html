@@ -305,7 +305,7 @@ lgn，和算法导论保持一致。这个结果你只需要用高中的累加�
         self.root = root
 </code></pre>
 
-<p>怎么构造上图中的二叉树呢，似乎其他课本没找到啥例子，我自己定义了一种方法，首先我们输入节点信息，仔细看下边代码，叶子节点的 left 和 right 都是 None，并且只有一个根节点 A:</p>
+<p>怎么构造上图中的二叉树呢，似乎其他课本没找到啥例子(有些例子是写了一堆嵌套节点来定义，很难搞清楚层次关系)，我自己定义了一种方法，首先我们输入节点信息，仔细看下边代码，叶子节点的 left 和 right 都是 None，并且只有一个根节点 A:</p>
 <pre><code class="py">node_list = [
     {'data': 'A', 'left': 'B', 'right': 'C', 'is_root': True},
     {'data': 'B', 'left': 'D', 'right': 'E', 'is_root': False},
@@ -320,7 +320,7 @@ lgn，和算法导论保持一致。这个结果你只需要用高中的累加�
 ]
 </code></pre>
 
-<p>然后我们给 BinTreeNode 定义一个 build_from 方法：</p>
+<p>然后我们给 BinTreeNode 定义一个 build_from 方法，当然你也可以定义一种自己的构造方法：</p>
 <pre><code class="py">class BinTree(object):
     def __init__(self, root=None):
         self.root = root
@@ -420,7 +420,7 @@ btree.preorder_trav(btree.root)    # 输出 A, B, D, E, H, C, F, G, I, J
 <p>除了递归的方式遍历之外，我们还可以使用层序遍历的方式。层序遍历比较直白，就是从根节点开始按照一层一层的方式遍历节点。
 我们可以从根节点开始，之后把所有当前层的孩子都按照从左到右的顺序放到一个列表里，下一次遍历所有这些孩子就可以了。</p>
 <pre><code class="py">    def layer_trav(self, subtree):
-        cur_nodes = [subtree]
+        cur_nodes = [subtree]  # current layer nodes
         next_nodes = []
         while cur_nodes or next_nodes:
             for node in cur_nodes:
