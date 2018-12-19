@@ -57,6 +57,10 @@ def test_partition():
     assert partition(l, 0, len(l)) == 0
     l = [4, 3, 2, 1]
     assert partition(l, 0, len(l)) == 3
+    l = [1]
+    assert partition(l, 0, len(l)) == 0
+    l = [2,1]
+    assert partition(l, 0, len(l)) == 1
 
 
 def test_quicksort_inplace():
@@ -90,6 +94,9 @@ def test_nth_element():
         assert nth_element(l, 0, len(l), i) == i
     for i in reversed(l):
         assert nth_element(l, 0, len(l), i) == i
+
+    array = [3, 2, 1, 5, 6, 4]
+    assert nth_element(array, 0, len(array), 2) == 2
 
 
 if __name__ == '__main__':
