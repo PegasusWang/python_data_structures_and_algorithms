@@ -128,5 +128,5 @@ T(n) = 2T(n/2) + n
 
 # Leetcode
 
-无序数组寻找第 k 大的数字。
+无序数组寻找第 k 大的数字，不止一种方法。
 https://leetcode.com/problems/kth-largest-element-in-an-array/description/
