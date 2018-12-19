@@ -98,6 +98,13 @@ def test_nth_element():
     array = [3, 2, 1, 5, 6, 4]
     assert nth_element(array, 0, len(array), 2) == 2
 
+    array = [2,1]
+    assert nth_element(array, 0, len(array), 1) == 1
+    assert nth_element(array, 0, len(array), 2) == 2
+
+    array = [3,3,3,3,3,3,3,3,3]
+    assert nth_element(array, 0, len(array), 1) == 3
+
 
 if __name__ == '__main__':
     test_nth_element()
