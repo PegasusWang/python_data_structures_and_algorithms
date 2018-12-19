@@ -27,6 +27,7 @@ def quicksort_inplace(array, beg, end):    # 注意这里我们都用左闭右�
 
 
 def partition(array, beg, end):
+    """对给定数组执行 partition 操作，返回新的 pivot 位置"""
     pivot_index = beg
     pivot = array[pivot_index]
     left = pivot_index + 1
@@ -55,7 +56,7 @@ def test_partition():
     l = [1, 2, 3, 4]
     assert partition(l, 0, len(l)) == 0
     l = [4, 3, 2, 1]
-    assert partition(l, 0, len(l))
+    assert partition(l, 0, len(l)) == 3
 
 
 def test_quicksort_inplace():
@@ -65,3 +66,31 @@ def test_quicksort_inplace():
     sorted_seq = sorted(seq)
     quicksort_inplace(seq, 0, len(seq))
     assert seq == sorted_seq
+
+
+def nth_element(array, beg, end, nth):
+    """查找一个数组第 n 大元素"""
+    if beg < end:
+        pivot_idx = partition(array, beg, end)
+        if pivot_idx == nth - 1:    # 数组小标从 0 开始
+            return array[pivot_idx]
+        elif pivot_idx > nth - 1:
+            return nth_element(array, beg, pivot_idx, nth)
+        else:
+            return nth_element(array, pivot_idx + 1, end, nth)
+
+
+def test_nth_element():
+    l1 = [3, 5, 4, 2, 1]
+    assert nth_element(l1, 0, len(l1), 3) == 3
+    assert nth_element(l1, 0, len(l1), 2) == 2
+
+    l = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    for i in l:
+        assert nth_element(l, 0, len(l), i) == i
+    for i in reversed(l):
+        assert nth_element(l, 0, len(l), i) == i
+
+
+if __name__ == '__main__':
+    test_nth_element()
