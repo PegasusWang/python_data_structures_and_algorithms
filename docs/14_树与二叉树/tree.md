@@ -202,7 +202,7 @@ btree.preorder_trav(btree.root)    # 输出 A, B, D, E, H, C, F, G, I, J
 
 ```py
     def layer_trav(self, subtree):
-        cur_nodes = [subtree]
+        cur_nodes = [subtree]  # current layer nodes
         next_nodes = []
         while cur_nodes or next_nodes:
             for node in cur_nodes:
