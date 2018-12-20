@@ -90,3 +90,7 @@ cdll.tailnode()                        | O(1)           |
 # 勘误：
 
 视频中 LinkedList.remove 方法讲解有遗漏， linked_list.py 文件已经修正，请读者注意。具体请参考 [fix linked_list & add gitigonre](https://github.com/PegasusWang/python_data_structures_and_algorithms/pull/3)。视频最后增加了一段勘误说明。
+
+# Leetcode
+
+[LRU Cache](https://leetcode.com/problems/lru-cache/description/)
