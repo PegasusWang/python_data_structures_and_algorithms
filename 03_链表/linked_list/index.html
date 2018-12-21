@@ -339,6 +339,7 @@
 <ul>
 <li>这里单链表我没有实现 insert 方法，你能自己尝试实现吗？  insert(value, new_value)，我想在某个值之前插入一个值。你同样需要先查找，所以这个步骤也不够高效。</li>
 <li>你能尝试自己实现个 lru cache 吗？需要使用到我们这里提到的循环双端链表</li>
+<li>借助内置的 collections.OrderedDict，它有两个方法 popitem 和 move_to_end，我们可以迅速实现一个 LRU cache。请你尝试用 OrderedDict 来实现。</li>
 <li>python 内置库的哪些数据结构使用到了本章讲的链式结构？</li>
 </ul>
 <h1 id="_5">相关阅读</h1>
@@ -346,7 +347,8 @@
 <h1 id="_6">勘误：</h1>
 <p>视频中 LinkedList.remove 方法讲解有遗漏， linked_list.py 文件已经修正，请读者注意。具体请参考 <a href="https://github.com/PegasusWang/python_data_structures_and_algorithms/pull/3">fix linked_list &amp; add gitigonre</a>。视频最后增加了一段勘误说明。</p>
 <h1 id="leetcode">Leetcode</h1>
-<p><a href="https://leetcode.com/problems/lru-cache/description/">LRU Cache</a></p>
+<p>这里有一道关于 LRU 的练习题你可以尝试下。
+<a href="https://leetcode.com/problems/lru-cache/description/">LRU Cache</a></p>
               
             </div>
           </div>
