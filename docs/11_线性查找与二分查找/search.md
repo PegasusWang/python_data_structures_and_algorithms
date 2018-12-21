@@ -110,6 +110,9 @@ def test_binary_search():
 - 阅读 python 文档 itertools 相关模块和常见的几个函数 takewhile, dropwhile, from_iterable, count, tee 等用法
 - [每个程序员都应该会点形式化证明](https://zhuanlan.zhihu.com/p/35364999?group_id=967109293607129088)
 
+
 # Leetcode
 
-找旋转过的排序数组中最小的数。 https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/description/
+[找旋转过的排序数组中最小的数 find-minimum-in-rotated-sorted-array](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/description/)
+
+[已排序的数组中找到第一和最后一个元素 find-first-and-last-position-of-element-in-sorted-array/](https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/submissions/)
