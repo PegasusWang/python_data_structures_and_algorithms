@@ -78,10 +78,13 @@ cdll.remove(node)，注意这里参数是 node | O(1)           |
 cdll.headnode()                        | O(1)           |
 cdll.tailnode()                        | O(1)           |
 
+
 # 小问题：
 - 这里单链表我没有实现 insert 方法，你能自己尝试实现吗？  insert(value, new_value)，我想在某个值之前插入一个值。你同样需要先查找，所以这个步骤也不够高效。
 - 你能尝试自己实现个 lru cache 吗？需要使用到我们这里提到的循环双端链表
+- 借助内置的 collections.OrderedDict，它有两个方法 popitem 和 move_to_end，我们可以迅速实现一个 LRU cache。请你尝试用 OrderedDict 来实现。
 - python 内置库的哪些数据结构使用到了本章讲的链式结构？
+
 
 # 相关阅读
 
@@ -93,4 +96,5 @@ cdll.tailnode()                        | O(1)           |
 
 # Leetcode
 
+这里有一道关于 LRU 的练习题你可以尝试下。
 [LRU Cache](https://leetcode.com/problems/lru-cache/description/)
