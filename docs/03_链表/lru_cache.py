@@ -17,7 +17,7 @@ def cache(func):
     store = {}
 
     @wraps(func)
-    def _(n):
+    def _(n):   # 这里函数没啥意义就随便用下划线命名了
         if n in store:
             return store[n]
         else:
@@ -84,6 +84,13 @@ class LRUCache:
                 self.od.popitem(last=False)
 
     def __call__(self, func):
+        """
+        一个简单的 LRU 实现。有一些问题需要思考下：
+
+        - 这里为了简化默认参数只有一个数字 n，假如可以传入多个参数，如何确定缓存的key 呢？
+        - 这里实现没有考虑线程安全的问题，要如何才能实现线程安全的 LRU 呢？当然如果不是多线程环境下使用是不需要考虑的
+        - 假如这里没有用内置的 dict，你能使用 redis 来实现这个 LRU 吗，如果使用了 redis，我们可以存储更多数据到服务器。而使用字典实际上是换到到了Python进程里(localCache)。
+        """
         def _(n):
             if n in self.od:
                 return self.get(n)
