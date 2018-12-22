@@ -7,9 +7,9 @@ from functools import wraps
 
 
 def fib(n):
-    if n <= 1:
-        return 1
-    return f(n - 1) + f(n - 2)  # 由于涉及到重复计算，这个递归函数在 n 大了以后会非常慢
+    if n <= 1:  # 0 or 1
+        return n
+    return f(n - 1) + f(n - 2)  # 由于涉及到重复计算，这个递归函数在 n 大了以后会非常慢。 O(2^n)
 
 
 def cache(func):
@@ -29,8 +29,8 @@ def cache(func):
 
 @cache
 def f(n):
-    if n <= 1:
-        return 1
+    if n <= 1:  # 0 or 1
+        return n
     return f(n - 1) + f(n - 2)
 
 
@@ -103,8 +103,8 @@ class LRUCache:
 
 @LRUCache(10)
 def f_use_lru(n):
-    if n <= 1:
-        return 1
+    if n <= 1:  # 0 or 1
+        return n
     return f(n - 1) + f(n - 2)
 
 
