@@ -96,13 +96,15 @@
         
             <li><a class="toctree-l3" href="#_17">开发和测试工具</a></li>
         
-            <li><a class="toctree-l3" href="#_18">勘误</a></li>
+            <li><a class="toctree-l3" href="#_18">测试用例设计</a></li>
+        
+            <li><a class="toctree-l3" href="#_19">勘误</a></li>
         
             <li><a class="toctree-l3" href="#git">如何更新代码(写给不熟悉 git 的同学)</a></li>
         
-            <li><a class="toctree-l3" href="#_19">如何提问？</a></li>
+            <li><a class="toctree-l3" href="#_20">如何提问？</a></li>
         
-            <li><a class="toctree-l3" href="#_20">本电子书制作和写作方式</a></li>
+            <li><a class="toctree-l3" href="#_21">本电子书制作和写作方式</a></li>
         
         </ul>
     
@@ -430,7 +432,58 @@ pip install when-changed
 
 <p>每次我们改动了代码，就会自动执行代码里的单元测试了。pytest 会自动发现以 test
 开头的函数并执行测试代码。良好的工程需要我们用单测来保证，将来即使修改了内部实现逻辑也方便做回归验证。</p>
-<h2 id="_18">勘误</h2>
+<p>或者你可以在的 ~/.bashrc  or  ~/.zshrc 里边加上这个映射（别忘记加上之后source下）:</p>
+<pre><code class="sh"># 监控当前文件夹文件变动自动执行命令
+alias watchtest='when-changed -v -r -1 -s ./ '
+</code></pre>
+
+<p>然后在你的代码目录里头执行 <code>watchtest pytest -s somefile.py</code> 一样的效果</p>
+<h2 id="_18">测试用例设计</h2>
+<p>笔者在刚学习编程的时候总是忘记处理一些特例(尤其是动态语言可以传各种值)，为了养成良好的编程和测试习惯，在编写单元测试用例的时候，
+我们注意考虑下如下测试用例(等价类划分)：</p>
+<ul>
+<li>正常值功能测试</li>
+<li>边界值（比如最大最小，最左最右值）</li>
+<li>异常值（比如 None，空值，非法值）</li>
+</ul>
+<pre><code>def binary_search(array, target):
+    if not array:
+        return -1
+    beg, end = 0, len(array)
+    while beg &lt; end:
+        mid = beg + (end - beg) // 2  # py3
+        if array[mid] == target:
+            return mid
+        elif array[mid] &gt; target:
+            end = mid
+        else:
+            beg = mid + 1
+    return -1
+
+
+def test():
+    &quot;&quot;&quot;
+    如何设计测试用例：
+    - 正常值功能测试
+    - 边界值（比如最大最小，最左最右值）
+    - 异常值（比如 None，空值，非法值）
+    &quot;&quot;&quot;
+    # 正常值，包含有和无两种结果
+    assert binary_search([0, 1, 2, 3, 4, 5], 1) == 1
+    assert binary_search([0, 1, 2, 3, 4, 5], 6) == -1
+    assert binary_search([0, 1, 2, 3, 4, 5], -1) == -1
+    # 边界值
+    assert binary_search([0, 1, 2, 3, 4, 5], 0) == 0
+    assert binary_search([0, 1, 2, 3, 4, 5], 5) == 5
+    assert binary_search([0], 0) == 0
+
+    # 异常值
+    assert binary_search([], 1) == -1
+</code></pre>
+
+<p>当然我们也不用做的非常细致，要不然写测试是一件非常繁琐累人的事情，甚至有时候为了测试而测试，只是为了让单测覆盖率好看点。
+当然如果是web应用用户输入，我们要假设所有的参数都是不可信的。 但是很多内部调用的函数我们基于约定来编程，如果你瞎传参数，那就是调用者的责任了。</p>
+<h2 id="_19">勘误</h2>
 <p>输出其实也是一种再学习的过程，中途需要查看大量资料、编写讲义、视频录制、代码编写等，难免有疏漏甚至错误之处。
 有出版社找过笔者想让我出书，一来自己对出书兴趣不大，另外感觉书籍相对视频不够直观，有错误也不能及时修改，打算直接把所有文字内容讲义和代码等放到 github 上，供大家免费查阅。</p>
 <p>如果你发现文字内容、代码内容、视频内容有错误或者有疑问，欢迎在 github 上提 issue 讨论(或者网易公开课评论区)，或者直接提 Merge Request，我会尽量及时修正相关内容，防止对读者产生误导。
@@ -449,7 +502,7 @@ pip install when-changed
 </code></pre>
 
 <p>然后使用 <code>git pull pegasuswang master</code> 拉取更新。</p>
-<h2 id="_19">如何提问？</h2>
+<h2 id="_20">如何提问？</h2>
 <p>如果读者关于代码、视频、讲义有任何疑问，欢迎一起讨论
 请注意以下几点：</p>
 <ul>
@@ -457,7 +510,7 @@ pip install when-changed
 <li>描述尽量具体，视频或者代码哪一部分有问题？请尽量把涉及章节和代码贴出来，方便定位问题。</li>
 <li>如果涉及到代码，提问时请保持代码的格式</li>
 </ul>
-<h2 id="_20">本电子书制作和写作方式</h2>
+<h2 id="_21">本电子书制作和写作方式</h2>
 <p>使用 mkdocs 和 markdown 构建，使用  Python-Markdown-Math 完成数学公式。
 markdown 语法参考：http://xianbai.me/learn-md/article/about/readme.html</p>
 <p>安装依赖：</p>
@@ -528,5 +581,5 @@ mkdocs gh-deploy    # 部署到自己的 github pages
 
 <!--
 MkDocs version : 1.0.4
-Build Date UTC : 2018-12-22 02:52:07
+Build Date UTC : 2018-12-22 16:07:34
 -->

@@ -2,6 +2,7 @@
 
 
 class Node(object):
+    __slots__ = ('value', 'prev', 'next')   # save memory
 
     def __init__(self, value=None, prev=None, next=None):
         self.value, self.prev, self.next = value, prev, next

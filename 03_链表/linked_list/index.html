@@ -293,6 +293,9 @@
 因为缓存在 dict 里查找的时间是 O(1)，你更新访问顺序就 O(n)了，缓存就没了优势。</p>
 <p>这里就要使用到双链表了，相比单链表来说，每个节点既保存了指向下一个节点的指针，同时还保存了上一个节点的指针。</p>
 <pre><code class="py">class Node(object):
+    # 如果节点很多，我们可以用 __slots__ 来节省内存，把属性保存在一个 tuple 而不是 dict 里
+    # 感兴趣可以自行搜索  python  __slots__
+    __slots__ = ('value', 'prev', 'next')
 
     def __init__(self, value=None, prev=None, next=None):
         self.value, self.prev, self.next = value, prev, next

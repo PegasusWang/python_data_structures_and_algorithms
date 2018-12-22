@@ -32,13 +32,11 @@ def merge_sorted_list(sorted_a, sorted_b):
             new_sorted_seq.append(sorted_b[b])
             b += 1
 
-    while a < length_a:
-        new_sorted_seq.append(sorted_a[a])
-        a += 1
-
-    while b < length_b:
-        new_sorted_seq.append(sorted_b[b])
-        b += 1
+    # 如果 a或b 中还有剩余元素，需要放到最后
+    if a < length_a:
+        new_sorted_seq.extend(sorted_a[a:])
+    else:
+        new_sorted_seq.extend(sorted_b[b:])
 
     return new_sorted_seq
 
