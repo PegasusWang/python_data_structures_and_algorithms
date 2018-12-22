@@ -57,6 +57,9 @@ linked_list.remove(value)     | O(n)           |
 
 ```py
 class Node(object):
+    # 如果节点很多，我们可以用 __slots__ 来节省内存，把属性保存在一个 tuple 而不是 dict 里
+    # 感兴趣可以自行搜索  python  __slots__
+    __slots__ = ('value', 'prev', 'next')
 
     def __init__(self, value=None, prev=None, next=None):
         self.value, self.prev, self.next = value, prev, next
