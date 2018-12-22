@@ -12,6 +12,11 @@ def fib(n):
     return f(n - 1) + f(n - 2)  # 由于涉及到重复计算，这个递归函数在 n 大了以后会非常慢。 O(2^n)
 
 
+"""
+下边就来写一个缓存装饰器来优化它。传统方法是用个数组记录之前计算过的值，但是这种方式不够 Pythonic
+"""
+
+
 def cache(func):
     """先引入一个简单的装饰器缓存，其实原理很简单，就是内部用一个字典缓存已经计算过的结果"""
     store = {}
@@ -69,9 +74,10 @@ class LRUCache:
         # OrderedDict 有两个重要的函数用来实现 LRU，一个是 move_to_end，一个是 popitem，请自己看文档
         self.od = OrderedDict()
 
-    def get(self, key):
+    def get(self, key, default=None):
+        val = self.od.get(key, default)  # 如果没有返回 default，保持 dict 语义
         self.od.move_to_end(key)   # 每次访问就把key 放到最后表示最新访问
-        return self.od[key]
+        return val
 
     def add_or_update(self, key, value):
         if key in self.od:  # update
@@ -79,8 +85,7 @@ class LRUCache:
             self.od.move_to_end(key)
         else:  # insert
             self.od[key] = value
-            if len(self.od) > self.capacity:
-                print("FULL ||||||||||||||||")
+            if len(self.od) > self.capacity:  # full
                 self.od.popitem(last=False)
 
     def __call__(self, func):
