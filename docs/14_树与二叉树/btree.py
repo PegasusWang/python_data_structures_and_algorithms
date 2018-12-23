@@ -74,16 +74,16 @@ class BinTree(object):
             while not s.empty():
                 peek = s.pop()
                 print(peek.data)    # 注意这里我用了 print，你可以用 yield 产出值然后在调用的地方转成 list
-                if subtree.left:
-                    s.push(subtree.left)
-                if subtree.right:
-                    s.push(subtree.right)
+                if peek.right:
+                    s.push(peek.right)
+                if peek.left:
+                    s.push(peek.left)
 
     def inorder_trav(self, subtree):
         if subtree is not None:
-            self.preorder_trav(subtree.left)
+            self.inorder_trav(subtree.left)
             print(subtree.data)
-            self.preorder_trav(subtree.right)
+            self.inorder_trav(subtree.right)
 
     def reverse(self, subtree):
         if subtree is not None:
@@ -133,8 +133,10 @@ node_list = [
 btree = BinTree.build_from(node_list)
 print('====先序遍历=====')
 btree.preorder_trav(btree.root)
+
 print('====使用 stack 实现先序遍历=====')
-btree.preorder_trav(btree.root)
+btree.preorder_trav_use_stack(btree.root)
+
 print('====层序遍历=====')
 btree.layer_trav(btree.root)
 print('====用队列层序遍历=====')
