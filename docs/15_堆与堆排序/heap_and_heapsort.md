@@ -125,6 +125,60 @@ def test_heapsort_reverse():
 python 其实自带了 heapq 模块，用来实现堆的相关操作，原理是类似的。请你阅读相关文档并使用内置的 heapq 模块完成堆排序。
 一般我们刷题或者写业务代码的时候，使用这个内置的 heapq 模块就够用了。
 
+
+# Top K 问题
+面试题中有这样一类问题，让求出大量数据中的top k 个元素，比如一亿个数字中最大的100个数字。
+对于这种问题有很多种解法，比如直接排序、mapreduce、trie 树、分治法等，当然如果内存够用直接排序是最简单的。
+如果内存不够用呢？ 这里我们提一下使用固定大小的堆来解决这个问题的方式。
+其实思路比较简单，先迭代前 k 个元素建立一个最小堆，之后的元素如果小于堆顶最小值，跳过，否则替换堆顶元素。
+
+```py
+import heapq
+
+
+class TopK:
+    """获取大量元素 topk 大个元素，固定内存
+    思路：
+    1. 先放入元素前 k 个建立一个最小堆
+    2. 迭代剩余元素：
+        如果当前元素小于堆顶元素，跳过该元素（肯定不是前 k 大）
+        否则替换堆顶元素为当前元素，并重新调整堆
+    """
+
+    def __init__(self, iterable, k):
+        self.minheap = []
+        self.capacity = k
+        self.iterable = iterable
+
+    def push(self, val):
+        if len(self.minheap) >= self.capacity:
+            min_val = self.minheap[0]
+            if val < min_val:  # 当然你可以直接 if val > min_val操作，这里我只是显示指出跳过这个元素
+                pass
+            else:
+                heapq.heapreplace(self.minheap, val)
+        else:
+            heapq.heappush(self.minheap, val)
+
+    def get_topk(self):
+        for val in self.iterable:
+            self.push(val)
+        return self.minheap
+
+
+def test():
+    import random
+    i = list(range(1000))
+    random.shuffle(i)
+    _ = TopK(i, 10)
+    print(_.get_topk())
+
+
+if __name__ == '__main__':
+    test()
+```
+
+
 # 练习题
 
 - 这里我用最大堆实现了一个 heapsort_reverse 函数，请你实现一个正序排序的函数。似乎不止一种方式
