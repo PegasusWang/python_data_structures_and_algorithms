@@ -264,9 +264,14 @@ class Queue(object):  # 借助内置的 deque 我们可以迅速实现一个 Que
 - 树的遍历我们用了 print，请你尝试换成一个 callback，这样就能自定义处理树节点的方式了。
 - 请问树的遍历操作时间复杂度是多少？假设它的 size 是 n
 - 你能用非递归的方式来实现树的遍历吗？我们知道计算机内部使用了 stack，如果我们自己模拟如何实现？请你尝试完成
-- 使用树的层序遍历我们能实现一个树的左右视图，比如从一个二叉树的左边能看到哪些节点。请你尝试做这个练习题 https://leetcode.com/problems/binary-tree-right-side-view/description/
 
 
 # 延伸阅读
 - 《Data Structures and Algorithms in Python》 13 章 Binary Trees
 -  [https://www.geeksforgeeks.org/iterative-preorder-traversal/](https://www.geeksforgeeks.org/iterative-preorder-traversal/)
+
+
+# Leetcode
+
+使用树的层序遍历我们能实现一个树的左右视图，比如从一个二叉树的左边能看到哪些节点。
+请你尝试做这个练习题 https://leetcode.com/problems/binary-tree-right-side-view/description/
