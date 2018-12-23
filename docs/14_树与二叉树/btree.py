@@ -72,12 +72,12 @@ class BinTree(object):
         if subtree:
             s.push(subtree)
             while not s.empty():
-                peek = s.pop()
-                print(peek.data)    # 注意这里我用了 print，你可以用 yield 产出值然后在调用的地方转成 list
-                if peek.right:
-                    s.push(peek.right)
-                if peek.left:
-                    s.push(peek.left)
+                top_node = s.pop()
+                print(top_node.data)    # 注意这里我用了 print，你可以用 yield 产出值然后在调用的地方转成 list
+                if top_node.right:
+                    s.push(top_node.right)
+                if top_node.left:
+                    s.push(top_node.left)
 
     def inorder_trav(self, subtree):
         if subtree is not None:
