@@ -121,7 +121,7 @@ def test_heapsort_reverse():
     assert heapsort_reverse(l) == sorted(l, reverse=True)
 ```
 
-# python 里的 heapq
+# Python 里的 heapq 模块
 python 其实自带了 heapq 模块，用来实现堆的相关操作，原理是类似的。请你阅读相关文档并使用内置的 heapq 模块完成堆排序。
 一般我们刷题或者写业务代码的时候，使用这个内置的 heapq 模块就够用了。
 
@@ -168,7 +168,7 @@ class TopK:
 
 def test():
     import random
-    i = list(range(1000))
+    i = list(range(1000))  # 这里可以是一个可迭代元素，节省内存
     random.shuffle(i)
     _ = TopK(i, 10)
     print(_.get_topk())
@@ -185,6 +185,7 @@ if __name__ == '__main__':
 - 请你实现一个最小堆，你需要修改那些代码呢？
 - 我们实现的堆排序是 inplace 的吗，如果不是，你能改成 inplace 的吗？
 - 堆排序的时间复杂度是多少？ siftup 和 siftdown 的时间复杂度是多少？（小提示：考虑树的高度，它决定了操作次数）
+- 请你思考 Top K 问题的时间复杂度是多少？
 
 
 # 延伸阅读
