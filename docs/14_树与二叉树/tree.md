@@ -275,3 +275,6 @@ class Queue(object):  # 借助内置的 deque 我们可以迅速实现一个 Que
 
 使用树的层序遍历我们能实现一个树的左右视图，比如从一个二叉树的左边能看到哪些节点。
 请你尝试做这个练习题 https://leetcode.com/problems/binary-tree-right-side-view/description/
+
+根据二叉树的 前序和后序遍历，返回一颗完整的二叉树。
+https://leetcode.com/problems/construct-binary-tree-from-preorder-and-postorder-traversal/submissions/
