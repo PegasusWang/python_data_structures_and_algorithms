@@ -94,7 +94,9 @@ class LRUCache:
 
         - 这里为了简化默认参数只有一个数字 n，假如可以传入多个参数，如何确定缓存的key 呢？
         - 这里实现没有考虑线程安全的问题，要如何才能实现线程安全的 LRU 呢？当然如果不是多线程环境下使用是不需要考虑的
-        - 假如这里没有用内置的 dict，你能使用 redis 来实现这个 LRU 吗，如果使用了 redis，我们可以存储更多数据到服务器。而使用字典实际上是换到到了Python进程里(localCache)。
+        - 假如这里没有用内置的 dict，你能使用 redis 来实现这个 LRU 吗，如果使用了 redis，我们可以存储更多数据到服务器。而使用字典实际上是缓存了Python进程里(localCache)。
+        - 这里只是实现了 lru 策略，你能同时实现一个超时 timeout 参数吗？比如像是memcache 实现的 lazy expiration 策略
+        - LRU有个缺点就是，对于周期性的数据访问会导致命中率迅速下降，有一种优化是 LRU-K，访问了次数达到 k 次才会将数据放入缓存
         """
         def _(n):
             if n in self.od:
@@ -124,6 +126,8 @@ def test():
         print(f_use_lru(i))
     print(time.time() - beg)
 
+
+# TODO 要怎么给 lru 写单测？
 
 if __name__ == '__main__':
     test()
