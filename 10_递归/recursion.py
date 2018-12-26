@@ -5,7 +5,7 @@ def fact(n):
     if n == 0:
         return 1
     else:
-        return n * fact(n-1)
+        return n * fact(n - 1)
 
 
 def print_num(n):
@@ -15,14 +15,14 @@ def print_num(n):
 
 def print_num_recursive(n):
     if n > 0:
-        print_num_recursive(n-1)
+        print_num_recursive(n - 1)
         print(n)
 
 
 def print_num_recursive_revserve(n):
     if n > 0:
         print(n)
-        print_num_recursive_revserve(n-1)
+        print_num_recursive_revserve(n - 1)
 
 
 from collections import deque
@@ -54,6 +54,19 @@ def print_num_use_stack(n):
 
 def hanoi_move(n, source, dest, intermediate):
     if n >= 1:  # 递归出口，只剩一个盘子
-        hanoi_move(n-1, source, intermediate, dest)
+        hanoi_move(n - 1, source, intermediate, dest)
         print("Move %s -> %s" % (source, dest))
-        hanoi_move(n-1, intermediate, dest, source)
+        hanoi_move(n - 1, intermediate, dest, source)
+
+
+def flatten(rec_list):
+    for i in rec_list:
+        if isinstance(i, list):
+            for i in flatten(i):
+                yield i
+        else:
+            yield i
+
+
+def test_flatten():
+    assert list(flatten([[[1], 2, 3], [1, 2, 3]])) == [1, 2, 3, 1, 2, 3]
