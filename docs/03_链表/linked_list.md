@@ -99,5 +99,9 @@ cdll.tailnode()                        | O(1)           |
 
 # Leetcode
 
+反转链表 [reverse-linked-list](https://leetcode.com/problems/reverse-linked-list/)
+
 这里有一道关于 LRU 的练习题你可以尝试下。
 [LRU Cache](https://leetcode.com/problems/lru-cache/description/)
+
+合并两个有序链表 [merge-two-sorted-lists](/https://leetcode.com/problems/merge-two-sorted-lists/submissions/)
