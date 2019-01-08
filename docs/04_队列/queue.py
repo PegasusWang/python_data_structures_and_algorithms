@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
 
+from collections import deque
 
 # NOTE：注意这里是第三章 linked_list.py 里的内容，为了使文件自包含，我直接拷贝过来的
+
+
 class Node(object):
     def __init__(self, value=None, next=None):   # 这里我们 root 节点默认都是 None，所以都给了默认值
         self.value = value
@@ -154,3 +157,26 @@ def test_queue():
     with pytest.raises(EmptyError) as excinfo:   # 我们来测试是否真的抛出了异常
         q.pop()   # 继续调用会抛出异常
     assert 'empty queue' == str(excinfo.value)
+
+
+class MyQueue:
+    """
+    使用 collections.deque 可以迅速实现一个队列
+    """
+    def __init__(self):
+        self.items = deque()
+
+    def append(self, val):
+        return self.items.append(val)
+
+    def pop(self):
+        return self.items.popleft()
+
+    def __len__(self):
+        return len(self.items)
+
+    def empty(self):
+        return len(self.items) == 0
+
+    def front(self):
+        return self.items[0]
