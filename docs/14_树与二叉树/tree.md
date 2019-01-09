@@ -264,6 +264,7 @@ class Queue(object):  # 借助内置的 deque 我们可以迅速实现一个 Que
 - 树的遍历我们用了 print，请你尝试换成一个 callback，这样就能自定义处理树节点的方式了。
 - 请问树的遍历操作时间复杂度是多少？假设它的 size 是 n
 - 你能用非递归的方式来实现树的遍历吗？我们知道计算机内部使用了 stack，如果我们自己模拟如何实现？请你尝试完成
+- 只根据二叉树的中序遍历和后序遍历能否确定一棵二叉树？你可以举一个反例吗？
 
 
 # 延伸阅读
@@ -271,10 +272,19 @@ class Queue(object):  # 借助内置的 deque 我们可以迅速实现一个 Que
 -  [https://www.geeksforgeeks.org/iterative-preorder-traversal/](https://www.geeksforgeeks.org/iterative-preorder-traversal/)
 
 
-# Leetcode
+# Leetcode 练习
 
-使用树的层序遍历我们能实现一个树的左右视图，比如从一个二叉树的左边能看到哪些节点。
-请你尝试做这个练习题 https://leetcode.com/problems/binary-tree-right-side-view/description/
+- [leetcode binary-tree-preorder-traversal](https://leetcode.com/problems/binary-tree-preorder-traversal/)
+二叉树的先序遍历
 
+- [leetcode binary-tree-inorder-traversal/](https://leetcode.com/problems/binary-tree-inorder-traversal/)
+二叉树的中序遍历
+
+- [leetcode binary-tree-postorder-traversal](https://leetcode.com/problems/binary-tree-postorder-traversal/)
+二叉树的后序遍历
+
+- [leetcode binary-tree-right-side-view](https://leetcode.com/problems/binary-tree-right-side-view/description/)
+使用树的层序遍历我们能实现一个树的左右视图，比如从一个二叉树的左边能看到哪些节点。 请你尝试做这个练习题
+
+- [leetcode construct-binary-tree-from-preorder-and-postorder-traversal](https://leetcode.com/problems/construct-binary-tree-from-preorder-and-postorder-traversal/submissions/)
 根据二叉树的 前序和后序遍历，返回一颗完整的二叉树。
-https://leetcode.com/problems/construct-binary-tree-from-preorder-and-postorder-traversal/submissions/
