@@ -85,6 +85,12 @@ class BinTree(object):
             print(subtree.data)
             self.inorder_trav(subtree.right)
 
+    def yield_inorder(self, subtree):  # for val in yield_inorder(root): print(val)
+        if subtree:
+            yield from self.inorder(subtree.left)
+            yield subtree.val
+            yield from self.inorder(subtree.right)
+
     def reverse(self, subtree):
         if subtree is not None:
             subtree.left, subtree.right = subtree.right, subtree.left
