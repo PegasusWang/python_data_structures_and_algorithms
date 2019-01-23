@@ -227,6 +227,7 @@ bst = BST.build_from(NODE_LIST)
 ```
 
 完整代码你可以在本章的 bst.py  找到。
+另外推荐一个可以在线演示过程的网址大家可以手动执行下看看效果： https://www.cs.usfca.edu/~galles/visualization/BST.html
 
 # 时间复杂度分析
 
