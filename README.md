@@ -27,7 +27,7 @@
 - 网上很多视频教程不够循序渐进，不成系统
 
 ## 作者简介
-目前就职于[知乎](https://www.zhihu.com/people/pegasus-wang/activities)，任后端工程师，多年 Python 开发经验。
+曾就职于[知乎](https://www.zhihu.com/people/pegasus-wang/activities)，任后端工程师，多年 Python 开发经验。
 
 知乎专栏：
 
@@ -99,7 +99,7 @@ Python 抽象程度比较高， 我们能用更少的代码来实现功能，同
 - 了解基本的数据结构和算法的概念，不适合**完全**没有了解过算法的新手，更不适合 Python 基础都没掌握的同学。购买之前请慎重考虑
 - 无需太多数学基础，仅在算法时间复杂度分析的时候会用到一些简单数学知识。对于学习基础算法，逻辑思维可能更重要一些
 
-## 教材
+## 参考教材和链接
 这里我参考过三本书，均可以网购纸质版或者网络上搜索电子版，建议大家先大致阅读一本教材掌握基本原理：
 
 [《算法图解》](https://book.douban.com/subject/26979890/): 图解的形式很适合新手，示例使用的是 python。推荐基础较少的同学看这本书入门
@@ -108,6 +108,8 @@ Python 抽象程度比较高， 我们能用更少的代码来实现功能，同
 和算法比较熟悉的同学，或者是有其他语言编程经验的同学。本书是英文版，缺点是书中错误真的很多，代码有些无法运行而且不够 Pythonic。该书 [勘误](http://bcs.wiley.com/he-bcs/Books?action=resource&bcsId=9003&itemId=0470618299&resourceId=35653)
 
 [《算法导论》第三版]( https://book.douban.com/subject/20432061/): 喜欢数学证明和板砖书的同学可以参考，有很多高级主题。使用伪代码
+
+[算法可视化](https://www.cs.usfca.edu/~galles/visualization/Algorithms.html) 算法可视化
 
 
 ## 讲课形式
