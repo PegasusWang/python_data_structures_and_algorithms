@@ -109,7 +109,13 @@ Python 抽象程度比较高， 我们能用更少的代码来实现功能，同
 
 [《算法导论》第三版]( https://book.douban.com/subject/20432061/): 喜欢数学证明和板砖书的同学可以参考，有很多高级主题。使用伪代码
 
-[算法可视化](https://www.cs.usfca.edu/~galles/visualization/Algorithms.html) 算法可视化
+## 算法可视化
+
+学习算法的过程中有时候会比较抽象，这里给大家推荐一些可视化的网站，方便更直观地理解：
+
+https://github.com/algorithm-visualizer/algorithm-visualizer
+
+https://www.cs.usfca.edu/~galles/visualization/Algorithms.html
 
 
 ## 讲课形式
