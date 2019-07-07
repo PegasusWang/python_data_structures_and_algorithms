@@ -77,7 +77,10 @@ class LinkedList(object):
             if curnode.value == value:
                 prevnode.next = curnode.next
                 if curnode is self.tailnode:  # NOTE: 注意更新 tailnode
-                    self.tailnode = prevnode
+                    if prevnode is self.root:
+                        self.tailnode = None
+                    else:
+                        self.tailnode = prevnode
                 del curnode
                 self.length -= 1
                 return 1  # 表明删除成功
