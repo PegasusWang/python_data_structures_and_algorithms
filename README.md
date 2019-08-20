@@ -12,7 +12,7 @@
 
 [csdn 学院：Python数据结构与算法教程](https://edu.csdn.net/course/detail/8332)
 
-[网上阅读《Python 算法与数据结构教程 》](http://ningning.today/python_data_structures_and_algorithms/)
+[网上阅读《Python 算法与数据结构教程 》](http://pegasuswang.github.io/python_data_structures_and_algorithms/)
 
 [github 链接](https://github.com/PegasusWang/python_data_structures_and_algorithms)
 
