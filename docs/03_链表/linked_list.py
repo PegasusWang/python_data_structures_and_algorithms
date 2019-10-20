@@ -188,6 +188,12 @@ def test_linked_list_remove():
     ll.remove(7)
     print(list(ll))
 
+def test_single_node():
+    ll = LinkedList()
+    ll.append(0)
+    ll.remove(0)
+    ll.appendleft(1)
+    assert list(ll) == [1]
 
 def test_linked_list_reverse():
     ll = LinkedList()
@@ -206,6 +212,7 @@ def test_linked_list_append():
 
 
 if __name__ == '__main__':
+    test_single_node()
     test_linked_list()
     test_linked_list_append()
     test_linked_list_reverse()
