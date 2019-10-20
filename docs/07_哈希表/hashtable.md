@@ -178,3 +178,4 @@ class HashTable(object):
 - 《Data Structures and Algorithms in Python》11 章 Hash Tables
 - 《算法导论》第三版 11 章散列表，了解几种哈希冲突的解决方式，以及为什么我们选择二次探查而不是线性探查法？
 - 介绍 c 解释器如何实现的 python dict对象：[Python dictionary implementation](http://www.laurentluce.com/posts/python-dictionary-implementation/)
+- [Python hash function implement](https://stackoverflow.com/questions/2070276/where-can-i-find-source-or-algorithm-of-pythons-hash-function)
