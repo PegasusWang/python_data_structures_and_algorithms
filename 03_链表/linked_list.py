@@ -77,7 +77,10 @@ class LinkedList(object):
             if curnode.value == value:
                 prevnode.next = curnode.next
                 if curnode is self.tailnode:  # NOTE: 注意更新 tailnode
-                    self.tailnode = prevnode
+                    if prevnode is self.root:
+                        self.tailnode = None
+                    else:
+                        self.tailnode = prevnode
                 del curnode
                 self.length -= 1
                 return 1  # 表明删除成功
@@ -185,6 +188,13 @@ def test_linked_list_remove():
     ll.remove(7)
     print(list(ll))
 
+def test_single_node():
+    # https://github.com/PegasusWang/python_data_structures_and_algorithms/pull/21
+    ll = LinkedList()
+    ll.append(0)
+    ll.remove(0)
+    ll.appendleft(1)
+    assert list(ll) == [1]
 
 def test_linked_list_reverse():
     ll = LinkedList()
@@ -203,6 +213,7 @@ def test_linked_list_append():
 
 
 if __name__ == '__main__':
+    test_single_node()
     test_linked_list()
     test_linked_list_append()
     test_linked_list_reverse()
