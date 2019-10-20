@@ -29,7 +29,7 @@ class Array(object):
 
 class Slot(object):
     """定义一个 hash 表数组的槽(slot 这里指的就是数组的一个位置)
-    注意，一个槽有三种状态，看你能否想明白。相比链接法解决冲突，二次探查法删除一个 key 的操作稍微复杂。
+    注意，一个槽有三种状态，看你能否想明白。相比链接法解决冲突，探查法删除一个 key 的操作稍微复杂。
     1.从未使用 HashMap.UNUSED。此槽没有被使用和冲突过，查找时只要找到 UNUSED 就不用再继续探查了
     2.使用过但是 remove 了，此时是 HashMap.EMPTY，该探查点后边的元素仍然可能是有key的，需要继续查找
     3.槽正在使用 Slot 节点
@@ -65,23 +65,28 @@ class HashTable(object):
         因为使用的是二次探查的方式，假如有两个元素 A，B 冲突了，首先A hash 得到是 slot 下标5，A 放到了第5个槽，之后插入 B 因为冲突了，所以继续根据二次探查方式放到了 slot8。
         然后删除 A，槽 5 被置为 EMPTY。然后我去查找 B，第一次 hash 得到的是 槽5，但是这个时候我还是需要第二次计算 hash 才能找到 B。但是如果槽是 UNUSED 我就不用继续找了，我认为 B 就是不存在的元素。这个就是 UNUSED 和 EMPTY 的区别。
         """
-        index = self._hash(key)
+        origin_index = index = self._hash(key) # origin_index 判断是否又走到了起点，如果查找一圈了都找不到则无此元素
         _len = len(self._table)
         while self._table[index] is not HashTable.UNUSED:
             if self._table[index] is HashTable.EMPTY:  # 注意如果是 EMPTY，继续寻找下一个槽
-                index = (index*5 + 1) % _len
+                index = (index * 5 + 1) % _len
+                if index == origin_index:
+                    break
                 continue
-            elif self._table[index].key == key:
+            if self._table[index].key == key:  # 找到了key
                 return index
             else:
-                index = (index*5 + 1) % _len
+                index = (index * 5 + 1) % _len  # 没有找到继续找下一个位置
+                if index == origin_index:
+                    break
+
         return None
 
     def _find_slot_for_insert(self, key):
         index = self._hash(key)
         _len = len(self._table)
-        while not self._slot_can_insert(index): # 直到找到一个可以用的槽
-            index = (index*5 + 1) % _len
+        while not self._slot_can_insert(index):  # 直到找到一个可以用的槽
+            index = (index * 5 + 1) % _len
         return index
 
     def _slot_can_insert(self, index):
