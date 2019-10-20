@@ -29,6 +29,8 @@ class Array(object):
 
 class Slot(object):
     """定义一个 hash 表数组的槽(slot 这里指的就是数组的一个位置)
+    hash table 就是一个 数组，每个数组的元素（也叫slot槽）是一个对象，对象包含两个属性 key 和 value。
+
     注意，一个槽有三种状态，看你能否想明白。相比链接法解决冲突，探查法删除一个 key 的操作稍微复杂。
     1.从未使用 HashMap.UNUSED。此槽没有被使用和冲突过，查找时只要找到 UNUSED 就不用再继续探查了
     2.使用过但是 remove 了，此时是 HashMap.EMPTY，该探查点后边的元素仍然可能是有key的，需要继续查找
