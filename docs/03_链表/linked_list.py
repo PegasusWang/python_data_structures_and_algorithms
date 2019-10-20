@@ -189,6 +189,7 @@ def test_linked_list_remove():
     print(list(ll))
 
 def test_single_node():
+    # https://github.com/PegasusWang/python_data_structures_and_algorithms/pull/21
     ll = LinkedList()
     ll.append(0)
     ll.remove(0)
