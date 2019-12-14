@@ -27,7 +27,7 @@
 - 网上很多视频教程不够循序渐进，不成系统
 
 ## 作者简介
-曾就职于[知乎](https://www.zhihu.com/people/pegasus-wang/activities)，任后端工程师，多年 Python 开发经验。
+曾就职于[知乎](https://www.zhihu.com/people/pegasus-wang/activities)，现腾讯后端工程师，多年 Python 开发经验。
 
 知乎专栏：
 
