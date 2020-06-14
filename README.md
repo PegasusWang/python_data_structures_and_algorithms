@@ -8,17 +8,21 @@
 ## 链接
 视频教程已经发布在网易云课堂和 csdn 学院，内容一致，推荐使用网易云课堂。
 
-[网易云课堂: Python数据结构与算法教程](http://study.163.com/course/introduction.htm?courseId=1005526003) 视频教程
+- [网易云课堂: Python数据结构与算法教程](http://study.163.com/course/introduction.htm?courseId=1005526003)
+- [csdn 学院：Python数据结构与算法教程](https://edu.csdn.net/course/detail/8332)
 
-[csdn 学院：Python数据结构与算法教程](https://edu.csdn.net/course/detail/8332)
+电子书地址：
 
-[网上阅读《Python 算法与数据结构教程 》](http://pegasuswang.github.io/python_data_structures_and_algorithms/)
+- [网上阅读《Python 算法与数据结构教程 》](http://pegasuswang.github.io/python_data_structures_and_algorithms/)
+- [github 链接](https://github.com/PegasusWang/python_data_structures_and_algorithms)
+- [readthedoc 电子书下载](http://python-data-structures-and-algorithms.readthedocs.io/zh/latest/)
+- [《开源一个 Python 算法和数据结构中文教程[视频]》](https://zhuanlan.zhihu.com/p/36038003)  视频讲解示例
 
-[github 链接](https://github.com/PegasusWang/python_data_structures_and_algorithms)
+leetcode 实战教程：
 
-[readthedoc 电子书下载](http://python-data-structures-and-algorithms.readthedocs.io/zh/latest/)
+如果您有一定的基础，只是想快速针对面试刷题，也可以直接参考笔者针对《剑指offer》和 leetcode 经典题目的 Python 刷题图解实战。
 
-[《开源一个 Python 算法和数据结构中文教程[视频]》](https://zhuanlan.zhihu.com/p/36038003)  视频讲解示例
+- [图解Python数据结构与算法-实战篇- leetcode经典题目实战](https://edu.csdn.net/course/detail/29389?event_id=1256&event_type=fission&share_username=WangPegasus&sign=22bded1300551606e3882cf6e4a265a1)
 
 ## 痛点
 - 讲 Python 数据结构和算法的资料很少，中文资料更少
@@ -27,7 +31,7 @@
 - 网上很多视频教程不够循序渐进，不成系统
 
 ## 作者简介
-曾就职于[知乎](https://www.zhihu.com/people/pegasus-wang/activities)，现腾讯后端工程师，多年 Python 开发经验。
+曾就职于[知乎](https://www.zhihu.com/people/pegasus-wang/activities)，现腾讯视频后端工程师，多年 Python/Go 开发经验。
 
 知乎专栏：
 
@@ -100,23 +104,21 @@ Python 抽象程度比较高， 我们能用更少的代码来实现功能，同
 - 无需太多数学基础，仅在算法时间复杂度分析的时候会用到一些简单数学知识。对于学习基础算法，逻辑思维可能更重要一些
 
 ## 参考教材和链接
-这里我参考过三本书，均可以网购纸质版或者网络上搜索电子版，建议大家先大致阅读一本教材掌握基本原理：
+这里我参考过三本书，均可以网购纸质版或者网络上搜索电子版，建议大家先大致阅读一本教材掌握基本原理，本教程重点在于 Pythonic 代码实现：
 
 [《算法图解》](https://book.douban.com/subject/26979890/): 图解的形式很适合新手，示例使用的是 python。推荐基础较少的同学看这本书入门
 
 [《Data Structures and Algorithms in Python》]( https://book.douban.com/subject/10607365/): 适合对 Python
 和算法比较熟悉的同学，或者是有其他语言编程经验的同学。本书是英文版，缺点是书中错误真的很多，代码有些无法运行而且不够 Pythonic。该书 [勘误](http://bcs.wiley.com/he-bcs/Books?action=resource&bcsId=9003&itemId=0470618299&resourceId=35653)
 
-[《算法导论》第三版]( https://book.douban.com/subject/20432061/): 喜欢数学证明和板砖书的同学可以参考，有很多高级主题。使用伪代码
+[《算法导论》第三版]( https://book.douban.com/subject/20432061/): 喜欢数学证明和板砖书的同学可以参考，有很多高级主题。使用伪代码可以很快翻译成 Python
 
 ## 算法可视化
 
 学习算法的过程中有时候会比较抽象，这里给大家推荐一些可视化的网站，方便更直观地理解：
 
-https://github.com/algorithm-visualizer/algorithm-visualizer
-
-https://www.cs.usfca.edu/~galles/visualization/Algorithms.html
-
+- https://github.com/algorithm-visualizer/algorithm-visualizer
+- https://www.cs.usfca.edu/~galles/visualization/Algorithms.html
 
 ## 讲课形式
 
@@ -156,7 +158,9 @@ https://www.cs.usfca.edu/~galles/visualization/Algorithms.html
 ## 如何获取每章代码
 
 注意每一章目录里都有 py 文件，在电子书里看不到。clone 下本代码仓库找到对应目录里的 python 文件即是每章涉及到的代码。
-由于代码实现千差万别，本书代码实现具有一定的个人风格，不代表最佳实现，仅供参考。
+由于代码实现千差万别，本书代码实现具有一定的个人风格，不代表最佳实现，仅供参考，笔者尽量使用 python2/3 兼容代码。
+目前已经新增《剑指offer》大部分经典题目的 Python 解法。本项目遵守 MIT 协议，本项目下的所有代码您可以任意学习修改和使用，
+但是直接引用代码请加上本项目 github 地址。
 
 
 ## 如何学习
