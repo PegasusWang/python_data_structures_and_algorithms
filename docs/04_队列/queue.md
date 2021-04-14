@@ -25,9 +25,10 @@
 - 2.看起来队列需要从头删除，向尾部增加元素，也就是 list.pop(0) 和 list.append(element)
 - 3.嗯，貌似 list.pop(0) 会导致所有其后所有元素向前移动一个位置，O(n)复杂度。append 平均倒是O(1)，但是如果内存不够还要重新分配内存。
 
-你看，使用了 list 的话频繁 pop(0) 是非常低效的。
+你看，使用了 list 的话频繁 pop(0) 是非常低效的。(当然list 实现还有另一种方式就是插入用 list.insert(0, item)，删除用list.pop())
 
 脑子再转转， 我们第二章实现了 链表 LinkedList，看看能否满足要求：
+
 - 1.这里选择 LinkedList
 - 2.删除头元素 LinkedList.popleft()，追加 append(element)。都可以满足
 - 3.哇欧，这两个操作都是 O(1) 的，完美。
