@@ -251,7 +251,7 @@
 </script>
 </p>
 <p>这里列举两种方式:</p>
-<pre><code class="py"># version1
+<pre><code class="language-py"># version1
 total_sum = 0
 for i in range(n):
     row_sum[i] = 0
@@ -267,7 +267,6 @@ for i in range(n):
         row_sum[i] = row_sum[i] + matrix[i, j]
     total_sum = total_sum + row_sum[i]    # 注意这里和上边的不同
 </code></pre>
-
 <p>v1 版本的关键操作在 j 循环里，两步加法操作，由于嵌套在第一个循环里，操作步骤是 <script type="math/tex">  (2n) * n = 2n^2  </script>。</p>
 <p>v2 版本的 total_sum 只有 n 次操作，它的操作次数是 <script type="math/tex"> n + n*n = n^2 + n </script>。</p>
 <p>这里你可能还感觉不到它们有多大差别，因为计算机执行的太快了，但是当 n 增长特别快的时候，总的操作次数差距就很明显了：</p>

@@ -249,11 +249,10 @@
 <h1 id="stack-over-flow">Stack over flow 什么鬼？</h1>
 <p>嗯，stackoverflow 不是一个程序员问答网站吗？没错。
 函数的临时变量是存储在栈区的，如果你不幸写了一个没有出口的递归函数，就会这个错。不信你试试：</p>
-<pre><code class="py">def infinite_fib(n):
+<pre><code class="language-py">def infinite_fib(n):
     return infinite_fib(n-1) + infinite_fib(n-2)
 infinite_fib(10)
 </code></pre>
-
 <p>一大段输出之后就会出现异常： RecursionError: maximum recursion depth exceeded。
 后边会讲到递归，递归是初学者比较难理解的概念，在树的遍历等地方还会看到它。</p>
 <h1 id="_2">数据结构头脑风暴法</h1>

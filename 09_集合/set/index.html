@@ -247,13 +247,12 @@
 它的常见就是用一个可迭代对象初始化它，然后只用来判重等操作。</p>
 <h1 id="set-adt">实现一个 set ADT</h1>
 <p>如何实现一个集合的 ADT 呢，其实还是个哈希表，哈希表不是有 key 和 value 嘛，咱把 value 置为 1 不就行了。</p>
-<pre><code class="py">class SetADT(HashTable):
+<pre><code class="language-py">class SetADT(HashTable):
 
     def add(self, key):
         # 集合其实就是一个 dict，只不过我们把它的 value 设置成 1
         return super(SetADT, self).add(key, True)
 </code></pre>
-
 <p>当然其它数学上的操作就麻烦点了，不过也很容易实现。</p>
 <h1 id="_2">思考题</h1>
 <ul>

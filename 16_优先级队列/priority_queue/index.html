@@ -222,7 +222,7 @@
 <h1 id="_2">实现优先级队列</h1>
 <p>优先级队列(Priority Queue) 顾名思义，就是入队的时候可以给一个优先级，通常是个数字或者时间戳等，
 当出队的时候我们希望按照给定的优先级出队，我们按照 TDD(测试驱动开发) 的方式先来写测试代码：</p>
-<pre><code class="py">def test_priority_queue():
+<pre><code class="language-py">def test_priority_queue():
     size = 5
     pq = PriorityQueue(size)
     pq.push(5, 'purple')    # priority, value
@@ -235,9 +235,8 @@
         res.append(pq.pop())
     assert res == ['purple', 'orange', 'black', 'white']
 </code></pre>
-
 <p>上边就是期望的行为，写完测试代码后我们来编写优先级队列的代码，按照出队的时候最大优先级先出的顺序：</p>
-<pre><code class="py">class PriorityQueue(object):
+<pre><code class="language-py">class PriorityQueue(object):
     def __init__(self, maxsize):
         self.maxsize = maxsize
         self._maxheap = MaxHeap(maxsize)
@@ -258,7 +257,6 @@
     def is_empty(self):
         return len(self._maxheap) == 0
 </code></pre>
-
 <h1 id="_3">练习题</h1>
 <ul>
 <li>请你实现按照小优先级先出队的顺序的优先级队列</li>

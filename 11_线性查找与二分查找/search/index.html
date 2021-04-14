@@ -230,7 +230,7 @@
 其实之前我们介绍的哈希表就是非常高效率的查找数据结构，很明显地它是用空间换时间。这一节介绍两个基本的基于线性结构的查找。</p>
 <h1 id="_2">线性查找</h1>
 <p>线性查找就是从头找到尾，直到符合条件了就返回。比如在一个 list 中找到一个等于 5 的元素并返回下标：</p>
-<pre><code class="py">number_list = [0, 1, 2, 3, 4, 5, 6, 7]
+<pre><code class="language-py">number_list = [0, 1, 2, 3, 4, 5, 6, 7]
 
 
 def linear_search(value, iterable):
@@ -243,9 +243,8 @@ def linear_search(value, iterable):
 assert linear_search(5, number_list) == 5
 
 </code></pre>
-
 <p>是不是 so easy。当然我们需要来一点花样，比如传一个谓词进去，你要知道，在 python 里一切皆对象，所以我们可以把函数当成一个参数传给另一个函数。</p>
-<pre><code class="py">def linear_search_v2(predicate, iterable):
+<pre><code class="language-py">def linear_search_v2(predicate, iterable):
     for index, val in enumerate(iterable):
         if predicate(val):
             return index
@@ -254,10 +253,9 @@ assert linear_search(5, number_list) == 5
 
 assert linear_search_v2(lambda x: x == 5, number_list) == 5
 </code></pre>
-
 <p>效果是一样的，但是传入一个谓词函数进去更灵活一些，比如我们可以找到第一个大于或者小于 5 的，从而控制函数的行为。
 还能玩出什么花样呢？前面我们刚学习了递归，能不能发挥自虐精神没事找事用递归来实现呢？</p>
-<pre><code class="py">def linear_search_recusive(array, value):
+<pre><code class="language-py">def linear_search_recusive(array, value):
     if len(array) == 0:
         return -1
     index = len(array)-1
@@ -271,7 +269,6 @@ assert linear_search_recusive(number_list, 8) == -1
 assert linear_search_recusive(number_list, 7) == 7
 assert linear_search_recusive(number_list, 0) == 0
 </code></pre>
-
 <p>这里的 assert 我多写了几个，包括正常情况、异常情况和边界值等，因为递归比较容易出错。注意这里的两个递归出口。
 当然业务代码里如果碰到这种问题我们肯定是选上边最直白的方式来实现，要不你的同事肯定想打你。</p>
 <h1 id="_3">二分查找</h1>
@@ -282,7 +279,7 @@ assert linear_search_recusive(number_list, 0) == 0
 <li>有些民间股神，告诉一堆人某个股票会涨，告诉另一半人会跌。后来真涨了，慢慢又告诉信了他的一半人另一个股票会涨，另一半说会跌。就这样韭菜多了总有一些人信奉他为股神。。。</li>
 </ul>
 <p>其实之前写过博客<a href="https://zhuanlan.zhihu.com/p/35352024">《抱歉，我是开发，你居然让我写单测[视频]》</a>讲过二分查找，当时主要是为了引入单元测试这个概念的，因为很多不正规的项目代码很糙，更别说写单测了。这里我就直接贴代码啦</p>
-<pre><code class="py">def binary_search(sorted_array, val):
+<pre><code class="language-py">def binary_search(sorted_array, val):
     if not sorted_array:
         return -1
 
@@ -313,7 +310,6 @@ def test_binary_search():
     # 边界值
     assert binary_search(a, 0) == 0
 </code></pre>
-
 <h1 id="_4">思考题</h1>
 <ul>
 <li>给你个挑战，用递归来实现本章的二分查找。你要十分注意边界条件，注意用单测测试呦，在你写代码的时候，可能会碰到边界问题或者无穷递归等。 如果你想不起来，可以看看本章的代码示例</li>

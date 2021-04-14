@@ -257,14 +257,13 @@
 <p>注意这个限制条件，可别和堆搞混了。说白了就是对于每个内部节点，左子树的 key 都比它小，右子树都比它大。
 如果中序遍历(二叉树遍历讲过了)这颗二叉树，你会发现输出的顺序正好是有序的。
 我们先来定义一下 BST 的节点结构：</p>
-<pre><code class="py">class BSTNode(object):
+<pre><code class="language-py">class BSTNode(object):
     def __init__(self, key, value, left=None, right=None):
         self.key, self.value, self.left, self.right = key, value, left, right
 </code></pre>
-
 <h1 id="bst_2">构造一个 BST</h1>
 <p>我们还像之前构造二叉树一样，按照上图构造一个 BST 用来演示：</p>
-<pre><code class="py">class BST(object):
+<pre><code class="language-py">class BST(object):
     def __init__(self, root=None):
         self.root = root
 
@@ -303,14 +302,13 @@ NODE_LIST = [
 ]
 bst = BST.build_from(NODE_LIST)
 </code></pre>
-
 <h1 id="bst_3">BST 操作</h1>
 <h2 id="_1">查找</h2>
 <p>如何查找一个指定的节点呢，根据定义我们知道每个内部节点左子树的 key 都比它小，右子树的 key 都比它大，所以
 对于带查找的节点 search_key，从根节点开始，如果 search_key 大于当前 key，就去右子树查找，否则去左子树查找。 一直到当前节点是 None 了说明没找到对应 key。</p>
 <p><img alt="" src="../bst_search.png" /></p>
 <p>好，撸代码：</p>
-<pre><code class="py">    def _bst_search(self, subtree, key):
+<pre><code class="language-py">    def _bst_search(self, subtree, key):
         if subtree is None:   # 没找到
             return None
         elif key &lt; subtree.key:
@@ -327,10 +325,9 @@ bst = BST.build_from(NODE_LIST)
         else:
             return node.value
 </code></pre>
-
 <h2 id="key">获取最大和最小 key 的节点</h2>
 <p>其实还按照其定义，最小值就一直向着左子树找，最大值一直向右子树找，递归查找就行。</p>
-<pre><code class="py">    def _bst_min_node(self, subtree):
+<pre><code class="language-py">    def _bst_min_node(self, subtree):
         if subtree is None:
             return None
         elif subtree.left is None:   # 找到左子树的头
@@ -342,12 +339,11 @@ bst = BST.build_from(NODE_LIST)
         node = self._bst_min_node(self.root)
         return node.value if node else None
 </code></pre>
-
 <h2 id="_2">插入</h2>
 <p>插入节点的时候我们需要一直保持 BST 的性质，每次插入一个节点，我们都通过递归比较把它放到正确的位置。
 你会发现新节点总是被作为叶子结点插入。（请你思考这是为什么）</p>
 <p><img alt="" src="../bst_insert.png" /></p>
-<pre><code class="py">    def _bst_insert(self, subtree, key, value):
+<pre><code class="language-py">    def _bst_insert(self, subtree, key, value):
         &quot;&quot;&quot; 插入并且返回根节点
 
         :param subtree:
@@ -372,7 +368,6 @@ bst = BST.build_from(NODE_LIST)
             self.size += 1
             return True
 </code></pre>
-
 <h2 id="_3">删除节点</h2>
 <p>删除操作相比上边的操作要麻烦很多，首先需要定位一个节点，删除节点后，我们需要始终保持 BST 的性质。
 删除一个节点涉及到三种情况：</p>
@@ -406,7 +401,7 @@ bst = BST.build_from(NODE_LIST)
 有个问题是如何找到后继节点呢？待删除节点的右子树的最小的节点不就是后继嘛，上边我们已经实现了找到最小 key 的方法了。</p>
 <p><img alt="" src="../find_successor.png" /></p>
 <p>我们开始编写代码实现，和之前的操作类似，我们还是通过辅助函数的形式来实现，这个递归函数会比较复杂，请你仔细理解:</p>
-<pre><code class="py">    def _bst_remove(self, subtree, key):
+<pre><code class="language-py">    def _bst_remove(self, subtree, key):
         &quot;&quot;&quot;删除节点并返回根节点&quot;&quot;&quot;
         if subtree is None:
             return None
@@ -435,7 +430,6 @@ bst = BST.build_from(NODE_LIST)
         self.size -= 1
         return self._bst_remove(self.root, key)
 </code></pre>
-
 <p>完整代码你可以在本章的 bst.py  找到。
 另外推荐一个可以在线演示过程的网址大家可以手动执行下看看效果： https://www.cs.usfca.edu/~galles/visualization/BST.html</p>
 <h1 id="_7">时间复杂度分析</h1>

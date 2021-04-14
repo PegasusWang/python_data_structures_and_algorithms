@@ -242,14 +242,16 @@
 <p>我们先来看看 list 可以不？对照这个三个需求，看看能否满足：</p>
 <ul>
 <li>1.我们选择了 list</li>
-<li>2.看起来队列需要从头删除，向尾部增加元素，也就是 list.insert(0, element) 和 list.append(element)</li>
-<li>3.嗯，貌似 list.insert(0, element) 会导致所有list元素后移，O(n)复杂度。append 平均倒是O(1)，但是如果内存不够还要重新分配内存。</li>
+<li>2.看起来队列需要从头删除，向尾部增加元素，也就是 list.pop(0) 和 list.append(element)</li>
+<li>3.嗯，貌似 list.pop(0) 会导致所有其后所有元素向前移动一个位置，O(n)复杂度。append 平均倒是O(1)，但是如果内存不够还要重新分配内存。</li>
 </ul>
-<p>你看，使用了 list 的话频繁 insert(0, element) 和 append 都是非常低效的。</p>
-<p>脑子再转转， 我们第二章实现了 链表 LinkedList，看看能否满足要求：
-- 1.这里选择 LinkedList
-- 2.删除头元素 LinkedList.popleft()，追加 append(element)。都可以满足
-- 3.哇欧，这两个操作都是 O(1) 的，完美。</p>
+<p>你看，使用了 list 的话频繁 pop(0) 是非常低效的。(当然list 实现还有另一种方式就是插入用 list.insert(0, item)，删除用list.pop())</p>
+<p>脑子再转转， 我们第二章实现了 链表 LinkedList，看看能否满足要求：</p>
+<ul>
+<li>1.这里选择 LinkedList</li>
+<li>2.删除头元素 LinkedList.popleft()，追加 append(element)。都可以满足</li>
+<li>3.哇欧，这两个操作都是 O(1) 的，完美。</li>
+</ul>
 <p>好， 就用 LinkedList 了，我们开始实现，具体看视频。这次实现我们还将演示自定义异常和测试异常。</p>
 <h1 id="_2">用数组实现队列</h1>
 <p>难道用数组就不能实现队列了吗？其实还是可以的。只不过数组是预先分配固定内存的，所以如果你知道了队列的最大长度，也是
@@ -261,11 +263,10 @@
 <p>head = 0,1,2,3,4 ... 0,1,2,3,4 ...</p>
 <p>重头再来，循环往复，仿佛一个轮回。。。。
 怎么重头来呢？看上边数组的规律你如果还想不起来用取模，估计小学数学是体育老师教的。</p>
-<pre><code class="py">maxsize = 5
+<pre><code class="language-py">maxsize = 5
 for i in range(100):
     print(i % maxsize)
 </code></pre>
-
 <p><img alt="" src="../array_queue.png" /></p>
 <p>我们来实现一个空间有限的循环队列。ArrayQueue，它的实现很简单，但是缺点是需要预先知道队列的长度来分配内存。</p>
 <h1 id="double-ended-queue">双端队列 Double ended Queue</h1>

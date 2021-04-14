@@ -283,7 +283,7 @@
 <li><a href="http://python-data-structures-and-algorithms.readthedocs.io/zh/latest/">readthedoc 电子书下载</a></li>
 <li><a href="https://zhuanlan.zhihu.com/p/36038003">《开源一个 Python 算法和数据结构中文教程[视频]》</a>  视频讲解示例</li>
 </ul>
-<p>leetcode 实战教程：</p>
+<p>leetcode 实战教程(推荐)：</p>
 <p>如果您有一定的基础，只是想快速针对面试刷题，也可以直接参考笔者针对《剑指offer》和 leetcode 经典题目的 Python 刷题图解实战。</p>
 <ul>
 <li><a href="https://edu.csdn.net/course/detail/29389?event_id=1256&amp;event_type=fission&amp;share_username=WangPegasus&amp;sign=22bded1300551606e3882cf6e4a265a1">图解Python数据结构与算法-实战篇- leetcode经典题目实战</a></li>
@@ -368,10 +368,11 @@
 和算法比较熟悉的同学，或者是有其他语言编程经验的同学。本书是英文版，缺点是书中错误真的很多，代码有些无法运行而且不够 Pythonic。该书 <a href="http://bcs.wiley.com/he-bcs/Books?action=resource&amp;bcsId=9003&amp;itemId=0470618299&amp;resourceId=35653">勘误</a></p>
 <p><a href="https://book.douban.com/subject/20432061/">《算法导论》第三版</a>: 喜欢数学证明和板砖书的同学可以参考，有很多高级主题。使用伪代码可以很快翻译成 Python</p>
 <h2 id="_11">算法可视化</h2>
-<p>学习算法的过程中有时候会比较抽象，这里给大家推荐一些可视化的网站，方便更直观地理解：</p>
+<p>学习算法的过程中有时候会比较抽象，这里给大家推荐一些可视化的网站，方便更直观地理解各种算法和数据结构的执行步骤：</p>
 <ul>
 <li>https://github.com/algorithm-visualizer/algorithm-visualizer</li>
 <li>https://www.cs.usfca.edu/~galles/visualization/Algorithms.html</li>
+<li>https://runestone.academy/runestone/books/published/pythonds/index.html#</li>
 </ul>
 <h2 id="_12">讲课形式</h2>
 <p>绘图演示+手写板+现场编码</p>
@@ -435,28 +436,24 @@
 <li>Vim/Emacs</li>
 </ul>
 <p>注意视频中使用到了 pytest 测试框架和 when-changed 文件变动监控工具(方便我们修改完代码保存后自动执行测试)，你需要用 pip 安装</p>
-<pre><code class="py">pip install pytest
+<pre><code class="language-py">pip install pytest
 pip install when-changed
 </code></pre>
-
 <p>视频演示里我使用到了一个简单的 test.sh 脚本文件，内容如下:</p>
-<pre><code class="sh">#!/usr/bin/env bash
+<pre><code class="language-sh">#!/usr/bin/env bash
 
 # pip install when-changed, 监控文件变动并且文件修改之后自动执行 pytest 单测，方便我们边修改边跑测试
  when-changed -v -r -1 -s ./    &quot;py.test -s $1&quot;
 </code></pre>
-
 <p>将以上内容放到 test.sh 文件后加上可执行权限, <code>chmod +x test.sh</code>，之后就可以用</p>
 <pre><code>'./test.sh somefile.py'
 </code></pre>
-
 <p>每次我们改动了代码，就会自动执行代码里的单元测试了。pytest 会自动发现以 test
 开头的函数并执行测试代码。良好的工程需要我们用单测来保证，将来即使修改了内部实现逻辑也方便做回归验证。</p>
 <p>或者你可以在的 ~/.bashrc  or  ~/.zshrc 里边加上这个映射（别忘记加上之后source下）:</p>
-<pre><code class="sh"># 监控当前文件夹文件变动自动执行命令
+<pre><code class="language-sh"># 监控当前文件夹文件变动自动执行命令
 alias watchtest='when-changed -v -r -1 -s ./ '
 </code></pre>
-
 <p>然后在你的代码目录里头执行 <code>watchtest pytest -s somefile.py</code> 一样的效果</p>
 <h2 id="_19">测试用例设计</h2>
 <p>笔者在刚学习编程的时候总是忘记处理一些特例(尤其是动态语言可以传各种值)，为了养成良好的编程和测试习惯，在编写单元测试用例的时候，
@@ -500,7 +497,6 @@ def test():
     # 异常值
     assert binary_search([], 1) == -1
 </code></pre>
-
 <p>当然我们也不用做的非常细致，要不然写测试是一件非常繁琐累人的事情，甚至有时候为了测试而测试，只是为了让单测覆盖率好看点。
 当然如果是web应用用户输入，我们要假设所有的参数都是不可信的。 但是很多内部调用的函数我们基于约定来编程，如果你瞎传参数，那就是调用者的责任了。</p>
 <h2 id="_20">勘误</h2>
@@ -516,11 +512,10 @@ def test():
 <p>如果你直接 clone 的本项目的代码仓库，可以直接使用 <code>git pull origin master</code> 拉取更新。
 如果你先 fork 到了自己的仓库，然后 clone 到本地的是你自己的仓库，你可以编辑本地项目的 <code>.git/config</code>，
 增加如下配置：</p>
-<pre><code class="sh">[remote &quot;pegasuswang&quot;]
+<pre><code class="language-sh">[remote &quot;pegasuswang&quot;]
     url = https://github.com/PegasusWang/python_data_structures_and_algorithms.git
     fetch = +refs/heads/*:refs/remotes/origin/*
 </code></pre>
-
 <p>然后使用 <code>git pull pegasuswang master</code> 拉取更新。</p>
 <h2 id="_21">如何提问？</h2>
 <p>如果读者关于代码、视频、讲义有任何疑问，欢迎一起讨论
@@ -534,7 +529,7 @@ def test():
 <p>使用 mkdocs 和 markdown 构建，使用  Python-Markdown-Math 完成数学公式。
 markdown 语法参考：http://xianbai.me/learn-md/article/about/readme.html</p>
 <p>安装依赖：</p>
-<pre><code class="sh">pip install mkdocs    # 制作电子书, http://markdown-docs-zh.readthedocs.io/zh_CN/latest/
+<pre><code class="language-sh">pip install mkdocs    # 制作电子书, http://markdown-docs-zh.readthedocs.io/zh_CN/latest/
 # https://stackoverflow.com/questions/27882261/mkdocs-and-mathjax/31874157
 pip install https://github.com/mitya57/python-markdown-math/archive/master.zip
 
@@ -543,13 +538,11 @@ pip install -r requirements.txt
 
 # 如果你 fork 了本项目，可以定期拉取主仓库的代码来获取更新，目前还在不断更新相关章节
 </code></pre>
-
 <p>你可以 clone 本项目后在本地编写和查看电子书：</p>
-<pre><code class="sh">mkdocs serve     # 修改自动更新，浏览器打开 http://localhost:8000 访问
+<pre><code class="language-sh">mkdocs serve     # 修改自动更新，浏览器打开 http://localhost:8000 访问
 # 数学公式参考 https://www.zybuluo.com/codeep/note/163962
 mkdocs gh-deploy    # 部署到自己的 github pages
 </code></pre>
-
 <p>扫码加入课程：</p>
 <p><img alt="扫码加入课程" src="163_course.png" /></p>
               
@@ -601,5 +594,5 @@ mkdocs gh-deploy    # 部署到自己的 github pages
 
 <!--
 MkDocs version : 1.0.4
-Build Date UTC : 2020-06-14 11:25:47
+Build Date UTC : 2021-04-14 05:10:30
 -->

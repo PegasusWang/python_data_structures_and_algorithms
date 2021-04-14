@@ -248,7 +248,7 @@
 <p>当数组被完全分隔成只有单个元素的数组时，我们需要把它们合并回去，每次两两合并成一个有序的序列。</p>
 <p><img alt="" src="../merge_sort_merge.png" /></p>
 <p>用递归代码来描述这个问题：</p>
-<pre><code class="py">def merge_sort(seq):
+<pre><code class="language-py">def merge_sort(seq):
     if len(seq) &lt;= 1:   # 只有一个元素是递归出口
         return seq
     else:
@@ -260,12 +260,11 @@
         new_seq = merge_sorted_list(left_half, right_half)
         return new_seq
 </code></pre>
-
 <p>注意我们这里有一个函数没实现，就是如何合并两个有序数组 merge_sorted_list。其实你在纸上画一画，
 合并两个有序数组并不难实现。</p>
 <p><img alt="" src="../merge_sorted_array.png" /></p>
 <p><img alt="" src="../merge_sorted_array_2.png" /></p>
-<pre><code class="py">def merge_sorted_list(sorted_a, sorted_b):
+<pre><code class="language-py">def merge_sorted_list(sorted_a, sorted_b):
     &quot;&quot;&quot; 合并两个有序序列，返回一个新的有序序列
 
     :param sorted_a:
@@ -291,7 +290,6 @@
 
     return new_sorted_seq
 </code></pre>
-
 <p>这样就实现了归并排序，并且你会发现它返回一个新的数组而不是修改原有数组。</p>
 <h1 id="_2">时间复杂度</h1>
 <p>我们来简单看下它归并排序的时间复杂度，假设排序 n 个数字时间复杂度是 T(n)，这里为了方便假设 n 是 2 的幂</p>

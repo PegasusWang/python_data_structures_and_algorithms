@@ -227,13 +227,12 @@
               
                 <h1 id="python">Python 一切皆对象</h1>
 <p>举个例子，在 python 中我们经常使用的 list</p>
-<pre><code class="py">l = list()    # 实例化一个 list 对象 l
+<pre><code class="language-py">l = list()    # 实例化一个 list 对象 l
 l.append(1)    # 调用 l 的 append 方法
 l.append(2)
 l.remove(1)
 print(len(l))    # 调用对象的 `__len__` 方法
 </code></pre>
-
 <p>在后面实现新的数据类型时，我们将使用 python 的 class 实现，它包含属性和方法。
 属性一般是使用某种特定的数据类型，而方法一般是对属性的操作。
 这里你只需了解这么多就行了， 我们不会使用继承等特性。</p>
@@ -242,11 +241,10 @@ print(len(l))    # 调用对象的 `__len__` 方法
 <p>ADT: Abstract Data Type，抽象数据类型，我们在组合已有的数据结构来实现一种新的数据类型， ADT 定义了类型的数据和操作。</p>
 <p>我们以抽象一个背包(Bag) 数据类型来说明，背包是一种容器类型，我们可以给它添加东西，也可以移除东西，并且我们想知道背包里
 有多少东西。于是我们可以定义一个新的数据类型叫做 Bag.</p>
-<pre><code class="py">class Bag:
+<pre><code class="language-py">class Bag:
     &quot;&quot;&quot; 背包类型 &quot;&quot;&quot;
     pass
 </code></pre>
-
 <h1 id="bag-adt">实现一个 Bag ADT</h1>
 <p>视频中我们将使用 python 的 class 来实现一个新的容器类型叫做 Bag。</p>
 <h1 id="adt_1">实现 ADT 我们应该注意什么？</h1>

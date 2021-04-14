@@ -259,7 +259,7 @@
 </ul>
 <h3 id="bfs">BFS</h3>
 <p>BFS 类似于树的层序遍历，从第一个节点开始，先访问离 A 最近的点，接着访问次近的点。我们先来构造一个图：</p>
-<pre><code class="py">graph = {
+<pre><code class="language-py">graph = {
     'A': ['B', 'F'],
     'B': ['C', 'I', 'G'],
     'C': ['B', 'I', 'D'],
@@ -271,11 +271,10 @@
     'I': ['B', 'C', 'D'],
 }
 </code></pre>
-
 <p>如何『由近及远』地访问节点呢？我们先访问起点 A 的邻居，然后邻居访问完再访问邻居的邻居不就行了？
 就是这个思想，不过我们需要一个队列辅助，队列之前说过是一种先进先出结构，我们只需要把起点的邻居先入队，
 当邻居访问完了再去访问邻居的邻居就可以了，对于已经访问过的节点，我们用一个 set 记录它就好了。代码如下：</p>
-<pre><code class="py"># -*- coding: utf-8 -*-
+<pre><code class="language-py"># -*- coding: utf-8 -*-
 
 from collections import deque
 
@@ -334,7 +333,6 @@ D
 H
 &quot;&quot;&quot;
 </code></pre>
-
 <p><img alt="" src="../bfs.png" /></p>
 <h3 id="dfs">DFS</h3>
 <p>深度优先搜索(DFS)是每遇到一个节点，如果没有被访问过，就直接去访问它的邻居节点，不断加深。代码其实很简单：</p>
@@ -354,7 +352,6 @@ print('dfs:')
 dfs(GRAPH, 'A')  # A B C I D G F E H
 
 </code></pre>
-
 <h1 id="_5">思考题</h1>
 <ul>
 <li>DFS 中我们使用到了递归，请你用栈来改写这个函数？（代码里有答案，我建议你先尝试自己实现）</li>

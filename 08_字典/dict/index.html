@@ -237,18 +237,16 @@
 <p>其实上边 HashTable 实现的三个基本方法就是我们使用字典最常用的三个基本方法， 这里我们继承一下这个类，
 然后实现更多 dict 支持的方法，items(), keys(), values()。不过需要注意的是，在 python2 和 python3 里这些方法
 的返回是不同的，python3 里一大改进就是不再返回浪费内存的 列表，而是返回迭代器，你要获得列表必须用 list() 转换成列表。 这里我们实现 python3 的方式返回迭代器。</p>
-<pre><code class="py">class DictADT(HashTable):
+<pre><code class="language-py">class DictADT(HashTable):
     pass
 </code></pre>
-
 <p>视频里我们将演示如何实现这些方法，并且写单测验证正确性。</p>
 <h1 id="hashable">Hashable</h1>
 <p>作为 dict 的 key 必须是可哈希的，也就是说不能是 list 等可变对象。不信你在 ipython 里运行如下代码：</p>
-<pre><code class="py">d = dict()
+<pre><code class="language-py">d = dict()
 d[[1]] = 1
 # TypeError: unhashable type: 'list'
 </code></pre>
-
 <p>我引用 python 文档里的说法，大家可以自己理解下：</p>
 <pre><code>An object is hashable if it has a hash value which never changes during its lifetime (it needs a __hash__() method), and can be compared to other objects (it needs an __eq__() or __cmp__() method). Hashable objects which compare equal must have the same hash value.
 
@@ -256,7 +254,6 @@ Hashability makes an object usable as a dictionary key and a set member, because
 
 All of Python’s immutable built-in objects are hashable, while no mutable containers (such as lists or dictionaries) are. Objects which are instances of user-defined classes are hashable by default; they all compare unequal (except with themselves), and their hash value is derived from their id().
 </code></pre>
-
 <h1 id="_1">思考题：</h1>
 <ul>
 <li>你能在哈希表的基础上实现 dict 的其他操作吗？</li>

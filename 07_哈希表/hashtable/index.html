@@ -249,7 +249,6 @@
 <p>我们还是以书中的例子说明，假如我们有一个数组 T，包含 M=13 个元素，我们可以定义一个简单的哈希函数 h</p>
 <pre><code>h(key) = key % M
 </code></pre>
-
 <p>这里取模运算使得 h(key) 的结果不会超过数组的长度下标。我们来分别插入以下元素：</p>
 <p>765, 431, 96, 142, 579, 226, 903, 388</p>
 <p>先来计算下它们应用哈希函数后的结果:</p>
@@ -263,7 +262,6 @@ h(226) = 226 % M = 5
 h(903) = 903 % M = 6
 h(388) = 388 % M = 11
 </code></pre>
-
 <p>下边我画个图演示整个插入过程(纯手工绘制，原谅我字写得不太优雅):</p>
 <p><img alt="" src="../insert_hash.png" /></p>
 <h1 id="collision">哈希冲突 (collision)</h1>
@@ -284,7 +282,7 @@ h(388) = 388 % M = 11
 </ul>
 <p>我们选一个简单的二次探查函数 <script type="math/tex"> h(k, i) = (home + i^2) \% m </script>，它的意思是如果
 遇到了冲突，我们就在原始计算的位置不断加上 i 的平方。我写了段代码来模拟整个计算下标的过程：</p>
-<pre><code class="py">inserted_index_set = set()
+<pre><code class="language-py">inserted_index_set = set()
 M = 13
 
 def h(key, M=13):
@@ -303,7 +301,6 @@ for number in to_insert:
         print('h({number}) = {number} % M = {index}'.format(number=number, index=index))
         inserted_index_set.add(index)
 </code></pre>
-
 <p>这段代码输出的结果如下：</p>
 <pre><code>h(765) = 765 % M = 11
 h(431) = 431 % M = 2
@@ -321,7 +318,6 @@ h(903) = 903 % M = 10
     h(388) = 388 % M = 7 collision
 h(388) = 388 % M = 1
 </code></pre>
-
 <p>遇到冲突之后会重新计算，每个待插入元素最终的下标就是：</p>
 <p><img alt="" src="../quadratic_hash.png" /></p>
 <p><img alt="" src="../quadratic_result.png" /></p>
@@ -344,7 +340,6 @@ size 2**3 the order of indices is:
 
     0 -&gt; 1 -&gt; 6 -&gt; 7 -&gt; 4 -&gt; 5 -&gt; 2 -&gt; 3 -&gt; 0 [and here it's repeating]
 </code></pre>
-
 <h1 id="_3">哈希函数</h1>
 <p>到这里你应该明白哈希表插入的工作原理了，不过有个重要的问题之前没提到，就是 hash 函数怎么选？
 当然是散列得到的冲突越来越小就好啦，也就是说每个 key 都能尽量被等可能地散列到 m 个槽中的任何一个，并且与其他 key 被散列到哪个槽位无关。
@@ -366,7 +361,7 @@ GROWTH_RATE 这个关键字，你会发现不同版本的 cpython 使用了不�
 <li>get(key, default)</li>
 <li>remove(key)</li>
 </ul>
-<pre><code class="py">class Slot(object):
+<pre><code class="language-py">class Slot(object):
     &quot;&quot;&quot;定义一个 hash 表 数组的槽
     注意，一个槽有三种状态，看你能否想明白
     1.从未使用 HashMap.UNUSED。此槽没有被使用和冲突过，查找时只要找到 UNUSED 就不用再继续探查了
@@ -379,7 +374,6 @@ GROWTH_RATE 这个关键字，你会发现不同版本的 cpython 使用了不�
 class HashTable(object):
     pass
 </code></pre>
-
 <p>具体的实现和代码编写在视频里讲解。这个代码可不太好实现，稍不留神就会有错，我们还是通过编写单元测试验证代码的正确性。</p>
 <h1 id="_4">思考题</h1>
 <ul>
