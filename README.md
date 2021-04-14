@@ -24,6 +24,11 @@ leetcode 实战教程(推荐)：
 
 - [图解Python数据结构与算法-实战篇- leetcode经典题目实战](https://edu.csdn.net/course/detail/29389?event_id=1256&event_type=fission&share_username=WangPegasus&sign=22bded1300551606e3882cf6e4a265a1)
 
+笔者的其他课程：
+
+- [玩转Vim 从放弃到爱不释手](https://www.imooc.com/learn/1129)
+- [Python工程师面试宝典](https://coding.imooc.com/class/318.html)
+
 ## 痛点
 - 讲 Python 数据结构和算法的资料很少，中文资料更少
 - 很多自学 Python 的工程师对基础不够重视，面试也发现很多数据结构和算法不过关，很多人挂在了基础的数据结构和算法上
