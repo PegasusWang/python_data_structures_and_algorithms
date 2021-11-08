@@ -18,11 +18,11 @@
 - [readthedoc 电子书下载](http://python-data-structures-and-algorithms.readthedocs.io/zh/latest/)
 - [《开源一个 Python 算法和数据结构中文教程[视频]》](https://zhuanlan.zhihu.com/p/36038003)  视频讲解示例
 
-leetcode 实战教程(推荐)：
+leetcode 实战图解教程(推荐)：
 
 如果您有一定的基础，只是想快速针对面试刷题，也可以直接参考笔者针对《剑指offer》和 leetcode 经典题目的 Python 刷题图解实战。
 
-- [图解Python数据结构与算法-实战篇- leetcode经典题目实战](https://edu.csdn.net/course/detail/29389?event_id=1256&event_type=fission&share_username=WangPegasus&sign=22bded1300551606e3882cf6e4a265a1)
+- [图解Python数据结构与算法-实战篇- leetcode经典题目实战](https://study.163.com/course/courseMain.htm?courseId=1212203808&share=2&shareId=400000000496051)
 
 笔者的其他课程：
 
