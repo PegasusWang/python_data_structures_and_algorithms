@@ -9,7 +9,6 @@ markdown_extensions:
 
 nav:
     - 课程简介: 'index.md'
-    - about: "啊/a.md"
     - 00_课程简介之笨方法学算法: '00/why_and_how_to_learn.md'
     - 01_抽象数据类型和面向对象编程: '01/ADT_OOP.md'
     - 02_数组和列表: '02/array_and_list.md'
