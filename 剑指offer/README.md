@@ -8,3 +8,9 @@
 # 勘误
 
 如果您发现缺失的题目或者忘记附上 leetcode 链接，可以直接提交 MR 笔者合并进去。如果有错误也欢迎批评指正，及时修复。
+
+# leetcode
+
+目前 leetcode 中文官方网站已经得到授权，不用辛苦找题目，可以直接在这个题库链接找到大部分题目练习：
+
+https://leetcode-cn.com/problem-list/xb9nqhhg/
