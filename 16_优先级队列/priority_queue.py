@@ -129,3 +129,53 @@ def test_priority_queue():
     while not pq.is_empty():
         res.append(pq.pop())
     assert res == ['purple', 'orange', 'black', 'white']
+
+
+def test_buildin_PriorityQueue():  # python3
+    # https://pythonguides.com/priority-queue-in-python/
+    from queue import PriorityQueue
+    q = PriorityQueue()
+    q.put((10, 'Red balls'))
+    q.put((8, 'Pink balls'))
+    q.put((5, 'White balls'))
+    q.put((4, 'Green balls'))
+    while not q.empty():
+        item = q.get()
+        print(item)
+
+
+def test_buildin_heapq_as_PriorityQueue():
+    import heapq
+    s_roll = []
+    heapq.heappush(s_roll, (4, "Tom"))
+    heapq.heappush(s_roll, (1, "Aruhi"))
+    heapq.heappush(s_roll, (3, "Dyson"))
+    heapq.heappush(s_roll, (2, "Bob"))
+    while s_roll:
+        deque_r = heapq.heappop(s_roll)
+        print(deque_r)
+
+
+# python3 没有了 __cmp__ 魔法函数 https://stackoverflow.com/questions/8276983/why-cant-i-use-the-method-cmp-in-python-3-as-for-python-2
+class Item:
+    def __init__(self, key, weight):
+        self.key, self.weight = key, weight
+
+    def __lt__(self, other): # 看其来 heapq 实现只用了 小于 比较，这里定义了就可以 push 一个 item 类
+        return self.weight < other.weight
+
+    def __eq__(self, other):
+        return self.weight == other.weight
+
+    def __str__(self):
+        return '{}:{}'.format(self.key,self.weight)
+
+
+def test_heap_item():
+    import heapq
+    pq = []
+    heapq.heappush(pq, Item('c', 3))
+    heapq.heappush(pq, Item('a', 1))
+    heapq.heappush(pq, Item('b', 2))
+    while pq:
+        print(heapq.heappop(pq))

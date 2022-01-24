@@ -170,6 +170,12 @@
     <li class="toctree-l2"><a href="#python">Python 常用内置算法和数据结构</a></li>
     
 
+    <li class="toctree-l2"><a href="#_1">一些坑</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_2">链表题目调试函数</a></li>
+    
+
     </ul>
 	    </li>
           
@@ -217,11 +223,11 @@
 如果有需要最好的学习方式就是参考 Python 的官方文档。很多高级的数据结构我们也可以通过 google 搜索现成的库拿来直接用。</p>
 <ul>
 <li>常用内置数据类型：list, tuple, dict, set, frozenset</li>
-<li>collections</li>
-<li>heapq</li>
-<li>bisect</li>
+<li>collections 模块：Counter(计数器), deque(双端队列), OrderedDict(有序字典)，defaultdict(默认值字典)</li>
+<li>heapq: 堆操作</li>
+<li>bisect: 二分查找</li>
 </ul>
-<p>下边我列了一个常用的表格，如果有遗漏可以在 issue 中提出。确保你了解这些数据结构和算法的使用以及时间、空间复杂度。</p>
+<p>下边我列了一个常用 python 内置数据结构和算法的表格，如果有遗漏可以在 issue 中提出。确保你了解这些数据结构和算法的使用以及时间、空间复杂度。</p>
 <table>
 <thead>
 <tr>
@@ -267,12 +273,78 @@
 <td>heapq模块</td>
 </tr>
 <tr>
+<td>优先级队列</td>
+<td></td>
+<td>queue.PriorityQueue</td>
+</tr>
+<tr>
 <td>缓存算法</td>
 <td></td>
 <td>functools.lru_cache(Least Recent Used, python3)</td>
 </tr>
 </tbody>
 </table>
+<h1 id="_1">一些坑</h1>
+<p>如果你经常使用 python2 or python3 刷题（比如力扣leetcode），有一些坑或者技巧需要注意：</p>
+<ul>
+<li>python3 和 python2 的 dict 有所用不同，python3.7 之后的 dict 会保持插入顺序, python2 不要依赖 dict 迭代顺序，请使用 OrderedDict</li>
+<li>正确初始化一个二维数组：<code>dp = [[0 for _ in range(col)] for _ in range(row)]</code>，不要用 <code>dp = [[0] * n] * m</code>， 否则里边都
+引用的同一个 list，修改一个都会变</li>
+<li>python在数值范围建议用：<code>MAXINT = 2**63-1; MININT = -2**63</code> 。因为 python2 sys.maxint 和 python3 sys.maxsize 不统一</li>
+</ul>
+<h1 id="_2">链表题目调试函数</h1>
+<pre><code class="language-py"># 编写链表题目经常用到的一些通用函数和调试函数，定义等，方便代码调试
+
+class ListNode(object):
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+    def __str__(self):
+        return 'Node({})'.format(self.val)
+
+    # 用来输出调试
+    __repr__ = __str__
+
+
+# 缩写，单测方便写，比如构建链表 1-&gt;2-&gt;3  N(1, N(2, N(3)))
+N = Node = ListNode
+
+
+def to_list(head):
+    &quot;&quot;&quot;linked list to python []&quot;&quot;&quot;
+    res = []
+    curnode = head
+    while curnode:
+        res.append(curnode.val)
+        curnode = curnode.next
+    return res
+
+
+def gen_list(nums):
+    &quot;&quot;&quot;用数组生成一个链表方便测试 [1,2,3] 1-&gt;2-&gt;3
+    &quot;&quot;&quot;
+    if not nums:
+        return None
+    head = ListNode(nums[0])
+    pre = head
+    for i in range(1, len(nums)):
+        node = ListNode(nums[i])
+        pre.next = node
+        pre = node
+    return head
+
+
+def print_list(head):
+    &quot;&quot;&quot;打印链表&quot;&quot;&quot;
+    cur = head
+    res = &quot;&quot;
+    while cur:
+        res += &quot;{}-&gt;&quot;.format(cur.val)
+        cur = cur.next
+    res += &quot;nil&quot;
+    print(res)
+</code></pre>
               
             </div>
           </div>
