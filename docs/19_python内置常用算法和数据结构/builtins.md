@@ -23,3 +23,69 @@
 | 堆算法        |                                 | heapq模块                                                     |
 | 优先级队列    |                                 | queue.PriorityQueue                                           |
 | 缓存算法      |                                 | functools.lru_cache(Least Recent Used, python3)               |
+
+# 一些坑
+
+如果你经常使用 python2 or python3 刷题（比如力扣leetcode），有一些坑或者技巧需要注意：
+
+- python3 和 python2 的 dict 有所用不同，python3.7 之后的 dict 会保持插入顺序, python2 不要依赖 dict 迭代顺序，请使用 OrderedDict
+- 正确初始化一个二维数组：`dp = [[0 for _ in range(col)] for _ in range(row)]`，不要用 `dp = [[0] * n] * m`， 否则里边都
+引用的同一个 list，修改一个都会变
+- python在数值范围建议用：`MAXINT = 2**63-1; MININT = -2**63` 。因为 python2 sys.maxint 和 python3 sys.maxsize 不统一
+
+
+# 链表题目调试函数
+
+```py
+# 编写链表题目经常用到的一些通用函数和调试函数，定义等，方便代码调试
+
+class ListNode(object):
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+    def __str__(self):
+        return 'Node({})'.format(self.val)
+
+    # 用来输出调试
+    __repr__ = __str__
+
+
+# 缩写，单测方便写，比如构建链表 1->2->3  N(1, N(2, N(3)))
+N = Node = ListNode
+
+
+def to_list(head):
+    """linked list to python []"""
+    res = []
+    curnode = head
+    while curnode:
+        res.append(curnode.val)
+        curnode = curnode.next
+    return res
+
+
+def gen_list(nums):
+    """用数组生成一个链表方便测试 [1,2,3] 1->2->3
+    """
+    if not nums:
+        return None
+    head = ListNode(nums[0])
+    pre = head
+    for i in range(1, len(nums)):
+        node = ListNode(nums[i])
+        pre.next = node
+        pre = node
+    return head
+
+
+def print_list(head):
+    """打印链表"""
+    cur = head
+    res = ""
+    while cur:
+        res += "{}->".format(cur.val)
+        cur = cur.next
+    res += "nil"
+    print(res)
+```
