@@ -176,6 +176,9 @@
     <li class="toctree-l2"><a href="#_2">链表题目调试函数</a></li>
     
 
+    <li class="toctree-l2"><a href="#_3">内置库实现优先级队列的三种方式</a></li>
+    
+
     </ul>
 	    </li>
           
@@ -291,6 +294,7 @@
 <li>正确初始化一个二维数组：<code>dp = [[0 for _ in range(col)] for _ in range(row)]</code>，不要用 <code>dp = [[0] * n] * m</code>， 否则里边都
 引用的同一个 list，修改一个都会变</li>
 <li>python在数值范围建议用：<code>MAXINT = 2**63-1; MININT = -2**63</code> 。因为 python2 sys.maxint 和 python3 sys.maxsize 不统一</li>
+<li>优先级队列：使用内置的 heapq ，定义一个 Item 类实现"小于" 魔术方法就可以实现</li>
 </ul>
 <h1 id="_2">链表题目调试函数</h1>
 <pre><code class="language-py"># 编写链表题目经常用到的一些通用函数和调试函数，定义等，方便代码调试
@@ -344,6 +348,66 @@ def print_list(head):
         cur = cur.next
     res += &quot;nil&quot;
     print(res)
+</code></pre>
+<h1 id="_3">内置库实现优先级队列的三种方式</h1>
+<pre><code class="language-py">def test_buildin_PriorityQueue():  # python3
+    &quot;&quot;&quot;
+    测试内置的 PriorityQueue
+    https://pythonguides.com/priority-queue-in-python/
+    &quot;&quot;&quot;
+    from queue import PriorityQueue
+    q = PriorityQueue()
+    q.put((10, 'Red balls'))
+    q.put((8, 'Pink balls'))
+    q.put((5, 'White balls'))
+    q.put((4, 'Green balls'))
+    while not q.empty():
+        item = q.get()
+        print(item)
+
+
+def test_buildin_heapq_as_PriorityQueue():
+    &quot;&quot;&quot;
+    测试使用 heapq 实现优先级队列，保存一个 tuple 比较元素(tuple第一个元素是优先级)
+    &quot;&quot;&quot;
+    import heapq
+    s_roll = []
+    heapq.heappush(s_roll, (4, &quot;Tom&quot;))
+    heapq.heappush(s_roll, (1, &quot;Aruhi&quot;))
+    heapq.heappush(s_roll, (3, &quot;Dyson&quot;))
+    heapq.heappush(s_roll, (2, &quot;Bob&quot;))
+    while s_roll:
+        deque_r = heapq.heappop(s_roll)
+        print(deque_r)
+
+
+# python3 没有了 __cmp__ 魔法函数 https://stackoverflow.com/questions/8276983/why-cant-i-use-the-method-cmp-in-python-3-as-for-python-2
+class Item:
+    def __init__(self, key, weight):
+        self.key, self.weight = key, weight
+
+    def __lt__(self, other): # 看其来 heapq 实现只用了 小于 比较，这里定义了就可以 push 一个 item 类
+        return self.weight &lt; other.weight
+
+    def __eq__(self, other):
+        return self.weight == other.weight
+
+    def __str__(self):
+        return '{}:{}'.format(self.key,self.weight)
+
+
+def test_heap_item():
+    &quot;&quot;&quot;
+    测试使用 Item 类实现优先级队列，因为 heapq 内置使用的是小于运算法，
+    重写魔术 &lt; 比较方法即可实现
+    &quot;&quot;&quot;
+    import heapq
+    pq = []
+    heapq.heappush(pq, Item('c', 3))
+    heapq.heappush(pq, Item('a', 1))
+    heapq.heappush(pq, Item('b', 2))
+    while pq:
+        print(heapq.heappop(pq))
 </code></pre>
               
             </div>
