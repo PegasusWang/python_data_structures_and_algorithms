@@ -132,7 +132,10 @@ def test_priority_queue():
 
 
 def test_buildin_PriorityQueue():  # python3
-    # https://pythonguides.com/priority-queue-in-python/
+    """
+    测试内置的 PriorityQueue
+    https://pythonguides.com/priority-queue-in-python/
+    """
     from queue import PriorityQueue
     q = PriorityQueue()
     q.put((10, 'Red balls'))
@@ -145,6 +148,9 @@ def test_buildin_PriorityQueue():  # python3
 
 
 def test_buildin_heapq_as_PriorityQueue():
+    """
+    测试使用 heapq 实现优先级队列，保存一个 tuple 比较元素(tuple第一个元素是优先级)
+    """
     import heapq
     s_roll = []
     heapq.heappush(s_roll, (4, "Tom"))
@@ -172,6 +178,10 @@ class Item:
 
 
 def test_heap_item():
+    """
+    测试使用 Item 类实现优先级队列，因为 heapq 内置使用的是小于运算法，
+    重写魔术 < 比较方法即可实现
+    """
     import heapq
     pq = []
     heapq.heappush(pq, Item('c', 3))

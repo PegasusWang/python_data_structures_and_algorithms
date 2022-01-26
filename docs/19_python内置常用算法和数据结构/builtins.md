@@ -32,6 +32,7 @@
 - 正确初始化一个二维数组：`dp = [[0 for _ in range(col)] for _ in range(row)]`，不要用 `dp = [[0] * n] * m`， 否则里边都
 引用的同一个 list，修改一个都会变
 - python在数值范围建议用：`MAXINT = 2**63-1; MININT = -2**63` 。因为 python2 sys.maxint 和 python3 sys.maxsize 不统一
+- 优先级队列：使用内置的 heapq ，定义一个 Item 类实现"小于" 魔术方法就可以实现
 
 
 # 链表题目调试函数
@@ -88,4 +89,68 @@ def print_list(head):
         cur = cur.next
     res += "nil"
     print(res)
+```
+
+
+# 内置库实现优先级队列的三种方式
+
+```py
+def test_buildin_PriorityQueue():  # python3
+    """
+    测试内置的 PriorityQueue
+    https://pythonguides.com/priority-queue-in-python/
+    """
+    from queue import PriorityQueue
+    q = PriorityQueue()
+    q.put((10, 'Red balls'))
+    q.put((8, 'Pink balls'))
+    q.put((5, 'White balls'))
+    q.put((4, 'Green balls'))
+    while not q.empty():
+        item = q.get()
+        print(item)
+
+
+def test_buildin_heapq_as_PriorityQueue():
+    """
+    测试使用 heapq 实现优先级队列，保存一个 tuple 比较元素(tuple第一个元素是优先级)
+    """
+    import heapq
+    s_roll = []
+    heapq.heappush(s_roll, (4, "Tom"))
+    heapq.heappush(s_roll, (1, "Aruhi"))
+    heapq.heappush(s_roll, (3, "Dyson"))
+    heapq.heappush(s_roll, (2, "Bob"))
+    while s_roll:
+        deque_r = heapq.heappop(s_roll)
+        print(deque_r)
+
+
+# python3 没有了 __cmp__ 魔法函数 https://stackoverflow.com/questions/8276983/why-cant-i-use-the-method-cmp-in-python-3-as-for-python-2
+class Item:
+    def __init__(self, key, weight):
+        self.key, self.weight = key, weight
+
+    def __lt__(self, other): # 看其来 heapq 实现只用了 小于 比较，这里定义了就可以 push 一个 item 类
+        return self.weight < other.weight
+
+    def __eq__(self, other):
+        return self.weight == other.weight
+
+    def __str__(self):
+        return '{}:{}'.format(self.key,self.weight)
+
+
+def test_heap_item():
+    """
+    测试使用 Item 类实现优先级队列，因为 heapq 内置使用的是小于运算法，
+    重写魔术 < 比较方法即可实现
+    """
+    import heapq
+    pq = []
+    heapq.heappush(pq, Item('c', 3))
+    heapq.heappush(pq, Item('a', 1))
+    heapq.heappush(pq, Item('b', 2))
+    while pq:
+        print(heapq.heappop(pq))
 ```
