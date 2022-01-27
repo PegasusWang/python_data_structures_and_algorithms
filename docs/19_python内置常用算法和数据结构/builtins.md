@@ -12,21 +12,21 @@
 
 下边我列了一个常用 python 内置数据结构和算法的表格，如果有遗漏可以在 issue 中提出。确保你了解这些数据结构和算法的使用以及时间、空间复杂度。
 
-| 数据结构/算法 | 语言内置                        | 内置库                                                        |
-|---------------|---------------------------------|---------------------------------------------------------------|
-| 线性结构      | list(列表)/tuple(元祖)          | array(数组，不常用)/collections.namedtuple                    |
-| 链式结构      |                                 | collections.deque(双端队列)                                   |
-| 字典结构      | dict(字典)                      | collections.Counter(计数器)/OrderedDict(有序字典)/defaultdict |
-| 集合结构      | set(集合)/frozenset(不可变集合) |                                                               |
-| 排序算法      | sorted                          |                                                               |
-| 二分算法      |                                 | bisect模块                                                    |
-| 堆算法        |                                 | heapq模块                                                     |
-| 优先级队列    |                                 | queue.PriorityQueue                                           |
-| 缓存算法      |                                 | functools.lru_cache(Least Recent Used, python3)               |
+| 数据结构/算法 | 语言内置                        | 内置库                                                                  |
+|---------------|---------------------------------|-------------------------------------------------------------------------|
+| 线性结构      | list(列表)/tuple(元祖)          | array(数组，不常用)/collections.namedtuple                              |
+| 链式结构      |                                 | collections.deque(双端队列)                                             |
+| 字典结构      | dict(字典)                      | collections.Counter(计数器)/OrderedDict(有序字典)/defaultdict(默认字典) |
+| 集合结构      | set(集合)/frozenset(不可变集合) |                                                                         |
+| 排序算法      | sorted                          |                                                                         |
+| 二分算法      |                                 | bisect模块                                                              |
+| 堆算法        |                                 | heapq模块                                                               |
+| 优先级队列    |                                 | queue.PriorityQueue/heapq                                               |
+| 缓存算法      |                                 | functools.lru_cache(Least Recent Used, python3)                         |
 
 # 一些坑
 
-如果你经常使用 python2 or python3 刷题（比如力扣leetcode），有一些坑或者技巧需要注意：
+如果你使用 python2 or python3 刷题（比如力扣leetcode），有一些坑或者技巧需要注意：
 
 - python3 和 python2 的 dict 有所用不同，python3.7 之后的 dict 会保持插入顺序, python2 不要依赖 dict 迭代顺序，请使用 OrderedDict
 - 正确初始化一个二维数组：`dp = [[0 for _ in range(col)] for _ in range(row)]`，不要用 `dp = [[0] * n] * m`， 否则里边都
