@@ -1,4 +1,4 @@
-# Python 常用内置算法和数据结构
+# Python 刷题常用内置算法和数据结构
 
 相信到这里大家对常用的数据结构和算法及其实现都比较熟悉了。
 之前在每章的数据结构和算法中涉及到的章节我都会提到对应的 python 内置模块，一般如果内置的可以满足需求，我们优先使用内置模块，
@@ -22,7 +22,7 @@
 | 二分算法      |                                 | bisect模块                                                              |
 | 堆算法        |                                 | heapq模块                                                               |
 | 优先级队列    |                                 | queue.PriorityQueue/heapq                                               |
-| 缓存算法      |                                 | functools.lru_cache(Least Recent Used, python3)                         |
+| 缓存算法      |                                 | functools.lru_cache(Least Recent Used, python3)/cache                   |
 
 # 一些坑
 
@@ -32,8 +32,28 @@
 - 正确初始化一个二维数组：`dp = [[0 for _ in range(col)] for _ in range(row)]`，不要用 `dp = [[0] * n] * m`， 否则里边都
 引用的同一个 list，修改一个都会变
 - python在数值范围建议用：`MAXINT = 2**63-1; MININT = -2**63` 。因为 python2 sys.maxint 和 python3 sys.maxsize 不统一
-- 优先级队列：使用内置的 heapq ，定义一个 Item 类实现"小于" 魔术方法就可以实现
+- 优先级队列：使用内置queue.PriorityQueue or heapq ，定义一个 Item 类实现"小于" 魔术方法就可以实现，下边有代码演示
 - python3 的 functools 模块自带了 cache(等价于lru_cache(maxsize=None)) 和 lru_cache 装饰器，在一些需要递归记忆化搜索的时候会很方便
+
+# python int 值范围
+
+```
+# 乘方 （比较推荐，py2/3 都兼容不容易出错)
+MAXINT = 2**63-1
+MININT = -2**63
+
+# py3
+import sys
+MAXINT = sys.maxsize
+MININT = -sys.maxsize - 1
+
+# py2
+sys.maxint
+
+# 位运算
+MAXINT = (1<<63) - 1
+MININT = ~MAXINT
+```
 
 
 # 链表题目调试函数
@@ -154,4 +174,47 @@ def test_heap_item():
     heapq.heappush(pq, Item('b', 2))
     while pq:
         print(heapq.heappop(pq))
+```
+
+
+# lru_cache/cache 优化记忆化搜索
+
+python3 functools 模块的 cache 功能和 lru_cache(maxsize=None) 一样，不过更加轻量更快。在记忆化递归搜索的时候很方便。
+举一个力扣上的例子，如果不加 cache 递归函数因为会大量重复计算直接超时，但是加一个装饰器就可以通过。
+
+```py
+"""
+[337] 打家劫舍 III
+https://leetcode-cn.com/problems/house-robber-iii/description/
+"""
+from functools import cache, lru_cache  # cache 等价于 functools.lru_cache(maxsize=None)
+
+
+class Solution(object):
+    def rob(self, root):
+        """
+        思路 1：递归求解（注意不加 cache 会超时！！)
+        :type root: TreeNode
+        :rtype: int
+        """
+        # @lru_cache(maxsize=None)
+        @cache  # NOTE: 不加 cache 会直接超时，就只能用动态规划了
+        def dfs(root):
+            if root is None:
+                return 0
+
+            if root.left is None and root.right is None:  # 左右孩子都是空
+                return root.val
+            # 不偷父节点,考虑偷 root 的左右孩子
+            val1 = dfs(root.left) + dfs(root.right)
+            # 偷父节点
+            val2 = root.val
+            if root.left:
+                val2 += dfs(root.left.left) + dfs(root.left.right)
+            if root.right:
+                val2 += dfs(root.right.left) + dfs(root.right.right)
+            return max(val1, val2)
+
+        return dfs(root)
+
 ```
