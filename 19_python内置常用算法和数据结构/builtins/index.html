@@ -253,7 +253,7 @@
 <tr>
 <td>字典结构</td>
 <td>dict(字典)</td>
-<td>collections.Counter(计数器)/OrderedDict(有序字典)/defaultdict</td>
+<td>collections.Counter(计数器)/OrderedDict(有序字典)/defaultdict(默认字典)</td>
 </tr>
 <tr>
 <td>集合结构</td>
@@ -278,7 +278,7 @@
 <tr>
 <td>优先级队列</td>
 <td></td>
-<td>queue.PriorityQueue</td>
+<td>queue.PriorityQueue/heapq</td>
 </tr>
 <tr>
 <td>缓存算法</td>
@@ -288,13 +288,14 @@
 </tbody>
 </table>
 <h1 id="_1">一些坑</h1>
-<p>如果你经常使用 python2 or python3 刷题（比如力扣leetcode），有一些坑或者技巧需要注意：</p>
+<p>如果你使用 python2 or python3 刷题（比如力扣leetcode），有一些坑或者技巧需要注意：</p>
 <ul>
 <li>python3 和 python2 的 dict 有所用不同，python3.7 之后的 dict 会保持插入顺序, python2 不要依赖 dict 迭代顺序，请使用 OrderedDict</li>
 <li>正确初始化一个二维数组：<code>dp = [[0 for _ in range(col)] for _ in range(row)]</code>，不要用 <code>dp = [[0] * n] * m</code>， 否则里边都
 引用的同一个 list，修改一个都会变</li>
 <li>python在数值范围建议用：<code>MAXINT = 2**63-1; MININT = -2**63</code> 。因为 python2 sys.maxint 和 python3 sys.maxsize 不统一</li>
 <li>优先级队列：使用内置的 heapq ，定义一个 Item 类实现"小于" 魔术方法就可以实现</li>
+<li>python3 的 functools 模块自带了 cache(等价于lru_cache(maxsize=None)) 和 lru_cache 装饰器，在一些需要递归记忆化搜索的时候会很方便</li>
 </ul>
 <h1 id="_2">链表题目调试函数</h1>
 <pre><code class="language-py"># 编写链表题目经常用到的一些通用函数和调试函数，定义等，方便代码调试
