@@ -33,6 +33,7 @@
 引用的同一个 list，修改一个都会变
 - python在数值范围建议用：`MAXINT = 2**63-1; MININT = -2**63` 。因为 python2 sys.maxint 和 python3 sys.maxsize 不统一
 - 优先级队列：使用内置的 heapq ，定义一个 Item 类实现"小于" 魔术方法就可以实现
+- python3 的 functools 模块自带了 cache(等价于lru_cache(maxsize=None)) 和 lru_cache 装饰器，在一些需要递归记忆化搜索的时候会很方便
 
 
 # 链表题目调试函数
