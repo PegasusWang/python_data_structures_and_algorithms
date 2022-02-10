@@ -55,6 +55,19 @@ MAXINT = (1<<63) - 1
 MININT = ~MAXINT
 ```
 
+# python dict 排序
+
+```py
+# 补充 python 根据 key，value 排序字典的
+d = {'d': 4, 'a': 1, 'b': 2, 'c':3}
+# sort by key and reverse
+dict(sorted(d.items()))  # {'a': 1, 'b': 2, 'c': 3, 'd': 4}
+dict(sorted(d.items(), reverse=True)) # {'d': 4, 'c': 3, 'b': 2, 'a': 1}
+
+# sort by value and reverse
+dict(sorted(d.items(), key = lambda kv:kv[1])) # {'a': 1, 'b': 2, 'c': 3, 'd': 4}
+dict(sorted(d.items(), key = lambda kv:kv[1], reverse=True)) # {'d': 4, 'c': 3, 'b': 2, 'a': 1}
+```
 
 # 链表题目调试函数
 
