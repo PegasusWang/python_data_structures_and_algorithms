@@ -176,6 +176,9 @@
     <li class="toctree-l2"><a href="#python-int">python int 值范围</a></li>
     
 
+    <li class="toctree-l2"><a href="#python-dict">python dict 排序</a></li>
+    
+
     <li class="toctree-l2"><a href="#_2">链表题目调试函数</a></li>
     
 
@@ -183,6 +186,9 @@
     
 
     <li class="toctree-l2"><a href="#lru_cachecache">lru_cache/cache 优化记忆化搜索</a></li>
+    
+
+    <li class="toctree-l2"><a href="#leetcode">leetcode 二叉树调试函数</a></li>
     
 
     </ul>
@@ -319,6 +325,17 @@ sys.maxint
 # 位运算
 MAXINT = (1&lt;&lt;63) - 1
 MININT = ~MAXINT
+</code></pre>
+<h1 id="python-dict">python dict 排序</h1>
+<pre><code class="language-py"># 补充 python 根据 key，value 排序字典的
+d = {'d': 4, 'a': 1, 'b': 2, 'c':3}
+# sort by key and reverse
+dict(sorted(d.items()))  # {'a': 1, 'b': 2, 'c': 3, 'd': 4}
+dict(sorted(d.items(), reverse=True)) # {'d': 4, 'c': 3, 'b': 2, 'a': 1}
+
+# sort by value and reverse
+dict(sorted(d.items(), key = lambda kv:kv[1])) # {'a': 1, 'b': 2, 'c': 3, 'd': 4}
+dict(sorted(d.items(), key = lambda kv:kv[1], reverse=True)) # {'d': 4, 'c': 3, 'b': 2, 'a': 1}
 </code></pre>
 <h1 id="_2">链表题目调试函数</h1>
 <pre><code class="language-py"># 编写链表题目经常用到的一些通用函数和调试函数，定义等，方便代码调试
@@ -470,6 +487,120 @@ class Solution(object):
 
         return dfs(root)
 
+</code></pre>
+<h1 id="leetcode">leetcode 二叉树调试函数</h1>
+<pre><code class="language-py">&quot;&quot;&quot;
+二叉树树相关问题调试函数
+&quot;&quot;&quot;
+
+
+class TreeNode(object):  # leetcode tree 节点定义
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+    def __str__(self):
+        return &quot;TreeNode:{} left:{} right:{}&quot;.format(self.val, self.left, self.right)
+    __repr__ = __str__
+
+
+def gen_tree_from_lc_input(vals_str):  # [1,2,3] -&gt; root TreeNode
+    &quot;&quot;&quot; 根据 输入生成一个 tree，返回 root 节点，注意输入字符串
+    # [450] 删除二叉搜索树中的节点
+    # https://leetcode-cn.com/problems/delete-node-in-a-bst/description/
+    # 比如 450 题目单测代码可以这么写
+    def test():
+        s = Solution()
+        root = gen_tree_from_lc_input(&quot;[2,1]&quot;)
+        key = 1
+        res = &quot;[2]&quot;
+        assert to_lc_tree_str(s.deleteNode(root, key)) == res
+    &quot;&quot;&quot;
+    import ast
+    valids = vals_str.replace(&quot;null&quot;, &quot;None&quot;)
+    vals = ast.literal_eval(valids)
+    # 以下就是 gen_tree 函数的内容，为了方便单独使用不调用函数了
+    if not vals:
+        return None
+    nodemap = {}
+    for i in range(len(vals)):
+        if vals[i] is not None:  # 一开始写的 if vals[i]，但是 0 节点就错了!!!
+            nodemap[i] = TreeNode(vals[i])
+        else:
+            nodemap[i] = None
+
+    root = nodemap[0]
+    for i in range(len(vals)):
+        l = 2*i + 1
+        r = 2*i + 2
+        cur = nodemap.get(i, None)
+        left = nodemap.get(l, None)
+        right = nodemap.get(r, None)
+        if cur:
+            cur.left = left
+            cur.right = right
+    return root
+
+
+def to_lc_tree_str(root):  # root TreeNode -&gt; [1,2,3,null]
+    &quot;&quot;&quot;返回层序序列化后的树字符串，可以和 leetcode 输出结果比对字符串&quot;&quot;&quot;
+    import json
+    if not root:
+        return '[]'
+    curnodes = [root]
+    res = [root.val]
+    while curnodes:
+        nextnodes = []
+        for node in curnodes:
+            if node:
+                if node.left:
+                    nextnodes.append(node.left)
+                    res.append(node.left.val)
+                else:
+                    nextnodes.append(None)
+                    res.append(None)
+                if node.right:
+                    nextnodes.append(node.right)
+                    res.append(node.right.val)
+                else:
+                    nextnodes.append(None)
+                    res.append(None)
+        curnodes = nextnodes
+
+    while res[-1] is None:  # 最后空节点去掉
+        res.pop()
+    s = json.dumps(res)
+    s = s.replace(&quot; &quot;, &quot;&quot;)
+    return s
+
+
+def gen_tree(vals):
+    &quot;&quot;&quot;
+    根据层序遍历结果生成二叉树并且返回 root。
+    把题目中输入 null 换成 None
+    vals = [1,2,3,None,5]
+    &quot;&quot;&quot;
+    if not vals:
+        return None
+    nodemap = {}
+    for i in range(len(vals)):
+        if vals[i]:
+            nodemap[i] = TreeNode(vals[i])
+        else:
+            nodemap[i] = None
+
+    root = nodemap[0]
+    for i in range(len(vals)):
+        l = 2*i + 1
+        r = 2*i + 2
+        cur = nodemap.get(i, None)
+        left = nodemap.get(l, None)
+        right = nodemap.get(r, None)
+        if cur:
+            cur.left = left
+            cur.right = right
+    return root
 </code></pre>
               
             </div>
