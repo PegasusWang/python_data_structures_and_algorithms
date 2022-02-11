@@ -231,3 +231,121 @@ class Solution(object):
         return dfs(root)
 
 ```
+
+
+# leetcode 二叉树调试函数
+
+```py
+"""
+二叉树树相关问题调试函数
+"""
+
+
+class TreeNode(object):  # leetcode tree 节点定义
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+    def __str__(self):
+        return "TreeNode:{} left:{} right:{}".format(self.val, self.left, self.right)
+    __repr__ = __str__
+
+
+def gen_tree_from_lc_input(vals_str):  # [1,2,3] -> root TreeNode
+    """ 根据 输入生成一个 tree，返回 root 节点，注意输入字符串
+    # [450] 删除二叉搜索树中的节点
+    # https://leetcode-cn.com/problems/delete-node-in-a-bst/description/
+    # 比如 450 题目单测代码可以这么写
+    def test():
+        s = Solution()
+        root = gen_tree_from_lc_input("[2,1]")
+        key = 1
+        res = "[2]"
+        assert to_lc_tree_str(s.deleteNode(root, key)) == res
+    """
+    import ast
+    valids = vals_str.replace("null", "None")
+    vals = ast.literal_eval(valids)
+    # 以下就是 gen_tree 函数的内容，为了方便单独使用不调用函数了
+    if not vals:
+        return None
+    nodemap = {}
+    for i in range(len(vals)):
+        if vals[i] is not None:  # 一开始写的 if vals[i]，但是 0 节点就错了!!!
+            nodemap[i] = TreeNode(vals[i])
+        else:
+            nodemap[i] = None
+
+    root = nodemap[0]
+    for i in range(len(vals)):
+        l = 2*i + 1
+        r = 2*i + 2
+        cur = nodemap.get(i, None)
+        left = nodemap.get(l, None)
+        right = nodemap.get(r, None)
+        if cur:
+            cur.left = left
+            cur.right = right
+    return root
+
+
+def to_lc_tree_str(root):  # root TreeNode -> [1,2,3,null]
+    """返回层序序列化后的树字符串，可以和 leetcode 输出结果比对字符串"""
+    import json
+    if not root:
+        return '[]'
+    curnodes = [root]
+    res = [root.val]
+    while curnodes:
+        nextnodes = []
+        for node in curnodes:
+            if node:
+                if node.left:
+                    nextnodes.append(node.left)
+                    res.append(node.left.val)
+                else:
+                    nextnodes.append(None)
+                    res.append(None)
+                if node.right:
+                    nextnodes.append(node.right)
+                    res.append(node.right.val)
+                else:
+                    nextnodes.append(None)
+                    res.append(None)
+        curnodes = nextnodes
+
+    while res[-1] is None:  # 最后空节点去掉
+        res.pop()
+    s = json.dumps(res)
+    s = s.replace(" ", "")
+    return s
+
+
+def gen_tree(vals):
+    """
+    根据层序遍历结果生成二叉树并且返回 root。
+    把题目中输入 null 换成 None
+    vals = [1,2,3,None,5]
+    """
+    if not vals:
+        return None
+    nodemap = {}
+    for i in range(len(vals)):
+        if vals[i]:
+            nodemap[i] = TreeNode(vals[i])
+        else:
+            nodemap[i] = None
+
+    root = nodemap[0]
+    for i in range(len(vals)):
+        l = 2*i + 1
+        r = 2*i + 2
+        cur = nodemap.get(i, None)
+        left = nodemap.get(l, None)
+        right = nodemap.get(r, None)
+        if cur:
+            cur.left = left
+            cur.right = right
+    return root
+```
