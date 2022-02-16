@@ -34,7 +34,7 @@
 - python在数值范围建议用：`MAXINT = 2**63-1; MININT = -2**63` 。因为 python2 sys.maxint 和 python3 sys.maxsize 不统一
 - 优先级队列：使用内置queue.PriorityQueue or heapq ，定义一个 Item 类实现"小于" 魔术方法就可以实现，下边有代码演示
 - python3 的 functools 模块自带了 cache(等价于lru_cache(maxsize=None)) 和 lru_cache 装饰器，在一些需要递归记忆化搜索的时候会很方便
-- 除法变更：python2和 python3 除法做了变更要注意。还有负数除法。 python2 `int(6/-123)==-1`，但是 python3 `int(6/-123)==0`
+- 除法变更：python2和 python3 除法做了变更要注意。还有负数除法。 python2 `int(6/-123)==-1`，但是 python3 `int(6/-123)==0`。整数除法统一用 "//"
 
 # python int 值范围
 
