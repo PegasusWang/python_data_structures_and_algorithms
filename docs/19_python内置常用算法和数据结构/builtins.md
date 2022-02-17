@@ -34,7 +34,7 @@
 - python在数值范围建议用：`MAXINT = 2**63-1; MININT = -2**63` 。因为 python2 sys.maxint 和 python3 sys.maxsize 不统一
 - 优先级队列：使用内置queue.PriorityQueue or heapq ，定义一个 Item 类实现"小于" 魔术方法就可以实现，下边有代码演示
 - python3 的 functools 模块自带了 cache(等价于lru_cache(maxsize=None)) 和 lru_cache 装饰器，在一些需要递归记忆化搜索的时候会很方便
-- 除法变更：python2和 python3 除法做了变更要注意。还有负数除法。 python2 `int(6/-123)==-1`，但是 python3 `int(6/-123)==0`
+- 除法变更：python2和 python3 除法做了变更要注意。还有负数除法。 python2 `int(6/-123)==-1`，但是 python3 `int(6/-123)==0`。整数除法统一用 "//"
 
 # python int 值范围
 
@@ -349,4 +349,34 @@ def gen_tree(vals):
             cur.left = left
             cur.right = right
     return root
+```
+
+# python 交换列表元素的坑
+
+```
+# 41. 缺失的第一个正数 https://leetcode-cn.com/problems/first-missing-positive/
+class Solution(object):
+    def firstMissingPositive(self, nums):
+        """
+        平常习惯了 python 里边交换元素 a,b=b,a 这里你可能这么写，那就中招了!
+        nums[i], nums[nums[i]-1] =  nums[nums[i]-1], nums[i] # 这么写死循环！
+        这个等价于
+        x, y = nums[nums[i]-1], nums[i]
+        nums[i] = x  # 这一步 nums[i] 已经修改了，下边一句赋值不是期望的 nums[i]了
+        nums[nums[i]-1] = y
+
+        :type nums: List[int]
+        :rtype: int
+        """
+        n = len(nums)
+        for i in range(n):
+            while 1 <= nums[i] <= n and nums[nums[i]-1] != nums[i]:
+                # NOTE: 注意这一句交换右边有副作用的，不能颠倒！！！
+                # nums[i], nums[nums[i]-1] =  nums[nums[i]-1], nums[i] # 这么写死循环！
+                nums[nums[i]-1], nums[i] = nums[i], nums[nums[i]-1]
+        for i in range(n):
+            if nums[i] != i+1:
+                return i+1
+
+        return n+1
 ```
