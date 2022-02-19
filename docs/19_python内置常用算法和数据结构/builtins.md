@@ -383,3 +383,52 @@ class Solution(object):
 
         return n+1
 ```
+
+# 兼容提交格式
+
+注意牛客网有两种模式，一种是和 leetcode 一样的提交(无需处理输入)，只需要提交核心代码。
+一种是 ACM 模式，还需要自己处理输入和输出。
+建议使用这种兼容写法，同样的题目可以同时提交到 牛客和leetcode。
+这道题目为例子 [679] 奖品分配 https://www.acwing.com/problem/content/681/
+
+```py
+# 这段代码可以直接以OJ输入模式提交，如果题目一样，直接复制 Solution 类就可以同时提交到leetcode
+class Solution:
+    def solve(self, scores):
+        """
+        思路：记忆化搜索。时间O(N)
+        对于旁边都比自己大的点，它肯定是1
+        对于旁边有比自己小的点，先算出比自己小的点的值再+1就好了。
+        每个点如果计算过了就记忆化，下次再计算他的时候不用重复递归直接返回。
+        参考：https://www.acwing.com/solution/acwing/content/1520/
+        """
+        from functools import lru_cache
+        n = len(scores)
+
+        @lru_cache(maxsize=None)
+        def dfs(x):
+            left = (x-1+n) % n
+            right = (x+1) % n
+
+            if scores[x] <= scores[left] and scores[x] <= scores[right]:  # 注意是 <= ，下边是 <
+                return 1
+
+            l, r = 0, 0
+            if scores[left] < scores[x]:
+                l = dfs(left)
+            if scores[right] < scores[x]:
+                r = dfs(right)
+
+            return max(l, r) + 1
+
+        return sum([dfs(i) for i in range(n)])
+
+
+if __name__ == "__main__":  # python3 提交，python3 input 都当做 str 输入
+    so = Solution() # 构造 Solution 实例后续调用
+    n = int(input())
+    for i in range(n):
+        arrlen = input()
+        arr = list(map(int, input().split()))
+        print(so.solve(arr))
+```
