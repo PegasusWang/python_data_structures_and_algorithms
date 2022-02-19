@@ -14,7 +14,7 @@
 
 | 数据结构/算法 | 语言内置                        | 内置库                                                                  |
 |---------------|---------------------------------|-------------------------------------------------------------------------|
-| 线性结构      | list(列表)/tuple(元祖)          | array(数组，不常用)/collections.namedtuple                              |
+| 线性结构      | list(列表)/tuple(元组)          | array(数组，不常用)/collections.namedtuple                              |
 | 链式结构      |                                 | collections.deque(双端队列)                                             |
 | 字典结构      | dict(字典)                      | collections.Counter(计数器)/OrderedDict(有序字典)/defaultdict(默认字典) |
 | 集合结构      | set(集合)/frozenset(不可变集合) |                                                                         |
@@ -152,6 +152,7 @@ def test_buildin_PriorityQueue():  # python3
 def test_buildin_heapq_as_PriorityQueue():
     """
     测试使用 heapq 实现优先级队列，保存一个 tuple 比较元素(tuple第一个元素是优先级)
+    实际上是利用了元组tuple比较从第一个开始比较的性质
     """
     import heapq
     s_roll = []
@@ -169,15 +170,16 @@ class Item:
     def __init__(self, key, weight):
         self.key, self.weight = key, weight
 
-    def __lt__(self, other): # 看其来 heapq 实现只用了 小于 比较，这里定义了就可以 push 一个 item 类
+    def __lt__(self, other): # heapq 源码实现只用了 小于 比较，这里定义了就可以 push 一个 item 类
         return self.weight < other.weight
 
-    def __eq__(self, other):
+    def __eq__(self, other): # 这个可以省略，只要定义了 __lt__ 魔法函数就可以了
         return self.weight == other.weight
 
     def __str__(self):
         return '{}:{}'.format(self.key,self.weight)
 
+# Item.__lt__ = lambda self, other: self.weight < other.weight # 对于已有的类，直接加一句就可以实现作为 heap item 了
 
 def test_heap_item():
     """
