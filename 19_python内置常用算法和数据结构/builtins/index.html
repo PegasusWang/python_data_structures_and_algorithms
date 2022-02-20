@@ -185,13 +185,13 @@
     <li class="toctree-l2"><a href="#_3">内置库实现优先级队列的三种方式</a></li>
     
 
-    <li class="toctree-l2"><a href="#lru_cachecache">lru_cache/cache 优化记忆化搜索</a></li>
+    <li class="toctree-l2"><a href="#python_1">python 如何实现最大堆</a></li>
     
 
     <li class="toctree-l2"><a href="#leetcode">leetcode 二叉树调试函数</a></li>
     
 
-    <li class="toctree-l2"><a href="#python_1">python 交换列表元素的坑</a></li>
+    <li class="toctree-l2"><a href="#python_2">python 交换列表元素的坑</a></li>
     
 
     <li class="toctree-l2"><a href="#_4">兼容提交格式</a></li>
@@ -462,10 +462,52 @@ def test_heap_item():
     while pq:
         print(heapq.heappop(pq))
 </code></pre>
-<h1 id="lru_cachecache">lru_cache/cache 优化记忆化搜索</h1>
-<p>python3 functools 模块的 cache 功能和 lru_cache(maxsize=None) 一样，不过更加轻量更快。在记忆化递归搜索的时候很方便。
-举一个力扣上的例子，如果不加 cache 递归函数因为会大量重复计算直接超时，但是加一个装饰器就可以通过。</p>
-<pre><code class="language-py">&quot;&quot;&quot;
+<h1 id="python_1">python 如何实现最大堆</h1>
+<p>python自带了heapq 模块实现了最小堆(min-heaq)，但是如果想要实现最大堆(max-heap)，有几种实现方式：</p>
+<ol>
+<li>对放入的数字取反。比如 10 放入 -10 ，然后取出来的时候再取反。个人倾向于这种，可以自己封装一个类防止来回取反搞晕</li>
+<li>直接根据 heapq 模块的函数封装几个最大堆的函数，也是通过取反实现</li>
+<li>新建一个对象重写 <code>__lt__</code> 魔术方法。这种方式也可以，但是重写魔术方法修改了语义不太好(个人不推荐)</li>
+</ol>
+<pre><code class="language-py"># 方法1:封装一个 max heap 类
+import heapq
+class MaxHeap:
+    &quot;&quot;&quot;
+    https://stackoverflow.com/questions/2501457/what-do-i-use-for-a-max-heap-implementation-in-python
+    &quot;&quot;&quot;
+    def __init__(self, capacity):
+        self.capacity = capacity
+        self.minheap = []
+
+    def push(self, val):
+        heapq.heappush(self.minheap, -val)  # push取反后的数字, 1 -&gt; -1
+
+    def pop(self):
+        val = heapq.heappop(self.minheap)
+        return -val # 拿出来的数字再取反
+
+    def max(self):
+        return -self.minheap[0] # min-heap 的数组最小值是 m[0]，最大值取反
+
+# 方法2: 重新定几个新的 max-heap 方法
+import heapq
+def maxheappush(h, item):
+    return heapq.heappush(h, -item)
+
+def maxheappop(h):
+    return -heapq.heappop(h)
+
+def maxheapval(h):
+    return -h[0]
+``````
+
+# lru_cache/cache 优化记忆化搜索
+
+python3 functools 模块的 cache 功能和 lru_cache(maxsize=None) 一样，不过更加轻量更快。在记忆化递归搜索的时候很方便。
+举一个力扣上的例子，如果不加 cache 递归函数因为会大量重复计算直接超时，但是加一个装饰器就可以通过。
+
+```py
+&quot;&quot;&quot;
 [337] 打家劫舍 III
 https://leetcode-cn.com/problems/house-robber-iii/description/
 &quot;&quot;&quot;
@@ -614,7 +656,7 @@ def gen_tree(vals):
             cur.right = right
     return root
 </code></pre>
-<h1 id="python_1">python 交换列表元素的坑</h1>
+<h1 id="python_2">python 交换列表元素的坑</h1>
 <pre><code># 41. 缺失的第一个正数 https://leetcode-cn.com/problems/first-missing-positive/
 class Solution(object):
     def firstMissingPositive(self, nums):
