@@ -195,6 +195,45 @@ def test_heap_item():
         print(heapq.heappop(pq))
 ```
 
+# python 如何实现最大堆
+python自带了heapq 模块实现了最小堆(min-heaq)，但是如果想要实现最大堆(max-heap)，有几种实现方式：
+
+1. 对放入的数字取反。比如 10 放入 -10 ，然后取出来的时候再取反。个人倾向于这种，可以自己封装一个类防止来回取反搞晕
+2. 直接根据 heapq 模块的函数封装几个最大堆的函数，也是通过取反实现
+3. 新建一个对象重写 `__lt__` 魔术方法。这种方式也可以，但是重写魔术方法修改了语义不太好(个人不推荐)
+
+```py
+# 方法1:封装一个 max heap 类
+import heapq
+class MaxHeap:
+    """
+    https://stackoverflow.com/questions/2501457/what-do-i-use-for-a-max-heap-implementation-in-python
+    """
+    def __init__(self, capacity):
+        self.capacity = capacity
+        self.minheap = []
+
+    def push(self, val):
+        heapq.heappush(self.minheap, -val)  # push取反后的数字, 1 -> -1
+
+    def pop(self):
+        val = heapq.heappop(self.minheap)
+        return -val # 拿出来的数字再取反
+
+    def max(self):
+        return -self.minheap[0] # min-heap 的数组最小值是 m[0]，最大值取反
+
+# 方法2: 重新定几个新的 max-heap 方法
+import heapq
+def maxheappush(h, item):
+    return heapq.heappush(h, -item)
+
+def maxheappop(h):
+    return -heapq.heappop(h)
+
+def maxheapval(h):
+    return -h[0]
+``````
 
 # lru_cache/cache 优化记忆化搜索
 
