@@ -233,7 +233,7 @@ def maxheappop(h):
 
 def maxheapval(h):
     return -h[0]
-``````
+```
 
 # lru_cache/cache 优化记忆化搜索
 
@@ -245,7 +245,8 @@ python3 functools 模块的 cache 功能和 lru_cache(maxsize=None) 一样，不
 [337] 打家劫舍 III
 https://leetcode-cn.com/problems/house-robber-iii/description/
 """
-from functools import cache, lru_cache  # cache 等价于 functools.lru_cache(maxsize=None)
+# cache 等价于 functools.lru_cache(maxsize=None), 不过python3版本低可能没有 cache 只有 lru_cache
+from functools import cache, lru_cache
 
 
 class Solution(object):
@@ -255,7 +256,7 @@ class Solution(object):
         :type root: TreeNode
         :rtype: int
         """
-        # @lru_cache(maxsize=None)
+        # @lru_cache(maxsize=None) # 注意如果 python3 版本不是很新的话，只能用 lru_cache(maxsize=None)
         @cache  # NOTE: 不加 cache 会直接超时，就只能用动态规划了
         def dfs(root):
             if root is None:
@@ -425,11 +426,11 @@ class Solution(object):
         return n+1
 ```
 
-# 兼容提交格式
+# 兼容代码提交格式
 
 注意牛客网有两种模式，一种是和 leetcode 一样的提交(无需处理输入)，只需要提交核心代码。
 一种是 ACM 模式，还需要自己处理输入和输出。
-建议使用这种兼容写法，同样的题目可以同时提交到 牛客和leetcode。
+建议使用这种兼容写法，同样的题目可以同时提交到 牛客、leetcode 和 acwing(python3)。
 这道题目为例子 [679] 奖品分配 https://www.acwing.com/problem/content/681/
 
 ```py
