@@ -28,9 +28,9 @@
 
 如果你使用 python2 or python3 刷题（比如力扣leetcode），有一些坑或者技巧需要注意：
 
-- python3 和 python2 的 dict 有所用不同，python3.7 之后的 dict 会保持插入顺序, python2 不要依赖 dict 迭代顺序，请使用 OrderedDict
+- python3 和 python2 的 dict 有所用不同，python3.7 之后的 dict 会保持插入顺序(不是字典序), python2 不要依赖 dict 迭代顺序，请使用 OrderedDict
 - 正确初始化一个二维数组：`dp = [[0 for _ in range(col)] for _ in range(row)]`，不要用 `dp = [[0] * n] * m`， 否则里边都
-引用的同一个 list，修改一个都会变
+引用的同一个 list，修改一个都会变。`[[val]*cols for _ in range(rows)]` 也行
 - python在数值范围建议用：`MAXINT = 2**63-1; MININT = -2**63` 。因为 python2 sys.maxint 和 python3 sys.maxsize 不统一
 - 优先级队列：使用内置queue.PriorityQueue or heapq ，定义一个 Item 类实现"小于" 魔术方法就可以实现，下边有代码演示
 - python3 的 functools 模块自带了 cache(等价于lru_cache(maxsize=None)) 和 lru_cache 装饰器，在一些需要递归记忆化搜索的时候会很方便
@@ -59,18 +59,27 @@ MAXINT = (1<<63) - 1
 MININT = ~MAXINT
 ```
 
-# python dict 排序
+# python list/dict 排序技巧
 
 ```py
-# 补充 python 根据 key，value 排序字典的
+# python 根据 key，value 排序字典
 d = {'d': 4, 'a': 1, 'b': 2, 'c':3}
-# sort by key and reverse
+# dict sort by key and reverse
 dict(sorted(d.items()))  # {'a': 1, 'b': 2, 'c': 3, 'd': 4}
 dict(sorted(d.items(), reverse=True)) # {'d': 4, 'c': 3, 'b': 2, 'a': 1}
 
-# sort by value and reverse
+# dict sort by value and reverse
 dict(sorted(d.items(), key = lambda kv:kv[1])) # {'a': 1, 'b': 2, 'c': 3, 'd': 4}
 dict(sorted(d.items(), key = lambda kv:kv[1], reverse=True)) # {'d': 4, 'c': 3, 'b': 2, 'a': 1}
+
+# 排序嵌套 list
+l = [('a', 1), ('c', 2), ('b',3)]
+sorted(l, key=lambda p:p[0]) # 根据第1个值排序，[('a', 1), ('b', 3), ('c', 2)]
+sorted(l, key=lambda p:p[1]) # 根据第2个值排序，[('a', 1), ('c', 2), ('b', 3)]
+
+# 同时获取最大值的下标和值
+l = [1,2,5,4,3]
+maxi, maxval = max(enumerate(l), key=lambda iv: iv[1]) # 2, 5
 ```
 
 # 链表题目调试函数
@@ -173,11 +182,11 @@ class Item:
     def __lt__(self, other): # heapq 源码实现只用了 小于 比较，这里定义了就可以 push 一个 item 类
         return self.weight < other.weight
 
-    def __eq__(self, other): # 这个可以省略，只要定义了 __lt__ 魔法函数就可以了
-        return self.weight == other.weight
-
-    def __str__(self):
-        return '{}:{}'.format(self.key,self.weight)
+#   def __eq__(self, other): # 这个可以省略，只要定义了 __lt__ 魔法函数就可以了
+#       return self.weight == other.weight
+#
+#   def __str__(self):
+#       return '{}:{}'.format(self.key,self.weight)
 
 # Item.__lt__ = lambda self, other: self.weight < other.weight # 对于已有的类，直接加一句就可以实现作为 heap item 了
 
@@ -426,7 +435,7 @@ class Solution(object):
         return n+1
 ```
 
-# 兼容代码提交格式
+# 兼容代码ACM/核心提交格式
 
 注意牛客网有两种模式，一种是和 leetcode 一样的提交(无需处理输入)，只需要提交核心代码。
 一种是 ACM 模式，还需要自己处理输入和输出。
