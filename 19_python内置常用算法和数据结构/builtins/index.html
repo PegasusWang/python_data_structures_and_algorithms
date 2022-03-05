@@ -588,7 +588,7 @@ def gen_tree_from_lc_input(vals_str):  # [1,2,3] -&gt; root TreeNode
         return None
     nodemap = {}
     for i in range(len(vals)):
-        if vals[i] is not None:  # 一开始写的 if vals[i]，但是 0 节点就错了!!!
+        if vals[i] is not None:  # 一开始写的 if vals[i]，但是 0 节点就错了! 应该显示判断是否为 None(空节点)
             nodemap[i] = TreeNode(vals[i])
         else:
             nodemap[i] = None
