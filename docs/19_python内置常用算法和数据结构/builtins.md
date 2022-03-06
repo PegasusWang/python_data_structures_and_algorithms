@@ -34,8 +34,9 @@
 - python在数值范围建议用：`MAXINT = 2**63-1; MININT = -2**63` 。因为 python2 sys.maxint 和 python3 sys.maxsize 不统一
 - 优先级队列：使用内置queue.PriorityQueue or heapq ，定义一个 Item 类实现"小于" 魔术方法就可以实现，下边有代码演示
 - python3 的 functools 模块自带了 cache(等价于lru_cache(maxsize=None)) 和 lru_cache 装饰器，在一些需要递归记忆化搜索的时候会很方便
-- 除法变更：python2和 python3 除法做了变更要注意。还有负数除法。 python2 `int(6/-123)==-1`，但是 python3 `int(6/-123)==0`。
-整数除法统一用"//"。比如二分求中间值 `mid=(l+r)//2` 或者 `mid=l+(r-l)//2`，因为python天生支持大数不会溢出两种写法都行
+- 除法变更：python2和 python3 除法做了变更要注意。还有负数除法。 python2 `int(6/-123)==-1, int(-3/2)==-2`，但是 python3 `int(6/-123)==0, int(-3/2)==-1`。
+正数的整数除法统一用"//"。比如二分求中间值 `mid=(l+r)//2` 或者 `mid=l+(r-l)//2`，因为python天生支持大数不会溢出两种写法都行。负数整数除法统一写 int(a/b)。
+凡是遇到除法运算的题目建议统一使用 python3 提交。
 - 自定义排序函数。python2 可以用 `nums.sort(cmp=lambda a, b: a - b)`，但是python3移除了cmp参数。
 python3如果想要用自定义排序函数可以使用 functools.cmp_to_key 函数改成 `nums.sort(key=cmp_to_key(lambda a, b: a - b))`
 
