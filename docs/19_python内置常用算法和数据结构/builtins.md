@@ -83,6 +83,13 @@ sorted(l, key=lambda p:p[1]) # 根据第2个值排序，[('a', 1), ('c', 2), ('b
 # 同时获取最大值的下标和值
 l = [1,2,5,4,3]
 maxi, maxval = max(enumerate(l), key=lambda iv: iv[1]) # 2, 5
+
+# 获取字典对应的最大值对应的 key,value
+mydict = {'A':4,'B':10,'C':0,'D':87}
+maximum = max(mydict, key=mydict.get)  # Just use 'min' instead of 'max' for minimum.
+maxk, maxv = maximum, mydict[maximum]
+# 或者
+maxk, maxv = max(mydict.items(), key=lambda k: k[1])
 ```
 
 # 链表题目调试函数
