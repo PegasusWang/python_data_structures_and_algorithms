@@ -28,12 +28,14 @@
 
 如果你使用 python2 or python3 刷题（比如力扣leetcode），有一些坑或者技巧需要注意：
 
-- python3 和 python2 的 dict 有所用不同，python3.7 之后的 dict 会保持插入顺序(不是字典序), python2 不要依赖 dict 迭代顺序，请使用 OrderedDict
-- 正确初始化一个不可变对象的二维数组：`dp = [ [0]*col for _ in range(row) ]`，不要用 `dp = [[0] * n] * m`， 否则里边都
+- 字典顺序。python3 和 python2 的 dict 有所用不同，python3.7 之后的 dict 会保持插入顺序(不是字典序), python2 不要依赖 dict 迭代顺序，请使用 OrderedDict
+- 矩阵。正确初始化一个不可变对象的二维数组：`dp = [ [0]*col for _ in range(row) ]`，不要用 `dp = [[0] * n] * m`， 否则里边都
 引用的同一个 list，修改一个都会变。`[[0 for _ in range(col)] for _ in range(row)]` 也可以(稍慢)，因为数字 0 是不可变对象
-- python在数值范围建议用：`MAXINT = 2**63-1; MININT = -2**63` 。因为 python2 sys.maxint 和 python3 sys.maxsize 不统一
+- 深浅拷贝。经常在回溯题中需要`res,path=[],[]`，path 是用来回溯的路径。找到一个结果的时候需要用 `res.append(path[:])` 而
+不是`res.append(path)#错！` ，因为这里append的path的引用，之后修改了 path 结果就是错的！(或者用copy模块，不过不如[:]语法简洁)
+- int范围。python在数值范围建议用：`MAXINT = 2**63-1; MININT = -2**63` 。因为 python2 sys.maxint 和 python3 sys.maxsize 不统一
 - 优先级队列：使用内置queue.PriorityQueue or heapq ，定义一个 Item 类实现"小于" 魔术方法就可以实现，下边有代码演示
-- python3 的 functools 模块自带了 cache(等价于lru_cache(maxsize=None)) 和 lru_cache 装饰器，在一些需要递归记忆化搜索的时候会很方便
+- 缓存。python3 的 functools 模块自带了 cache(等价于lru_cache(maxsize=None)) 和 lru_cache 装饰器，在一些需要递归记忆化搜索的时候会很方便
 - 除法变更：python2和 python3 除法做了变更要注意。还有负数除法。 python2 `int(6/-123)==-1, int(-3/2)==-2`，但是 python3 `int(6/-123)==0, int(-3/2)==-1`。
 正数的整数除法统一用"//"。比如二分求中间值 `mid=(l+r)//2` 或者 `mid=l+(r-l)//2`，因为python天生支持大数不会溢出两种写法都行。负数整数除法统一写 int(a/b)。
 凡是遇到除法运算的题目建议统一使用 python3 提交。
