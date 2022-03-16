@@ -90,6 +90,12 @@ maximum = max(mydict, key=mydict.get)  # Just use 'min' instead of 'max' for min
 maxk, maxv = maximum, mydict[maximum]
 # 或者
 maxk, maxv = max(mydict.items(), key=lambda k: k[1])
+
+# python3 排序list自定义函数(python2 直接用 cmp 参数)
+from functools import cmp_to_key
+nums = [3,2,1,4,5]
+sorted(nums, key= cmp_to_key(lambda a,b: a-b) ) # [1 ,2 ,3, 4, 5]
+sorted(nums, key= cmp_to_key(lambda a,b: b-a) ) # [5, 4, 3, 2, 1]
 ```
 
 # 链表题目调试函数
