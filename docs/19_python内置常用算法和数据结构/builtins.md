@@ -96,6 +96,9 @@ from functools import cmp_to_key
 nums = [3,2,1,4,5]
 sorted(nums, key= cmp_to_key(lambda a,b: a-b) ) # [1 ,2 ,3, 4, 5]
 sorted(nums, key= cmp_to_key(lambda a,b: b-a) ) # [5, 4, 3, 2, 1]
+
+# 一行代码判断列表是否有序
+issorted = all(l[i] <= l[i+1] for i in range(len(l) - 1))
 ```
 
 # 链表题目调试函数
