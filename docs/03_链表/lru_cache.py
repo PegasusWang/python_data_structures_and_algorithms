@@ -132,3 +132,83 @@ def test():
 
 if __name__ == '__main__':
     test()
+
+
+######################################### 使用双链表实现 LRUcache ####################################################
+"""
+一般面试中不会让我们直接用内置结构，所以这里提供一个自己实现的双链表+map lru 缓存。这也是力扣上的一道真题：
+[146] LRU 缓存 https://leetcode-cn.com/problems/lru-cache/description/
+"""
+
+class ListNode:
+    def __init__(self, key=None, value=None):
+        self.key = key
+        self.value = value
+        self.prev = self.next = None
+
+
+class List:
+    def __init__(self):
+        """循环双链表。注意增加了虚拟头尾结点 head,tail 方便处理"""
+        self.head = ListNode()
+        self.tail = ListNode()
+        self.head.prev = self.head.next = self.tail
+        self.tail.next = self.tail.prev = self.head
+
+    def delete_node(self, node):  # 删除指定节点
+        node.prev.next = node.next
+        node.next.prev = node.prev
+
+    def add_to_head(self, node):  # 指定节点添加到 self.head 后
+        nextnode = self.head.next
+        node.next = nextnode
+        node.prev = self.head
+        self.head.next = node
+        nextnode.prev = node
+
+
+class LRUCache(object):
+
+    def __init__(self, capacity):
+        """
+        思路：循环双链表 + 字典
+        :type capacity: int
+        """
+        self.map = dict()
+        self.ll = List()
+        self.capacity = capacity
+
+    def get(self, key):
+        """
+        :type key: int
+        :rtype: int
+        """
+        if key not in self.map:
+            return -1
+
+        node = self.map[key]
+        self.ll.delete_node(node)
+        self.ll.add_to_head(node)
+        return node.value
+
+    def put(self, key, value):
+        """
+        :type key: int
+        :type value: int
+        :rtype: None
+        """
+        if key in self.map:
+            node = self.map[key]
+            node.value = value  # 修改结构体会也会修改 map 对应 value 的引用
+            self.ll.delete_node(node)
+            self.ll.add_to_head(node)
+        else:
+            if len(self.map) >= self.capacity:  # 直接用 len(self.map) ，不需要self.size 字段了
+                tailnode = self.ll.tail.prev
+                self.ll.delete_node(tailnode)
+                del self.map[tailnode.key]
+
+            node = ListNode(key, value)
+            self.map[key] = node
+            self.ll.add_to_head(node)
+
