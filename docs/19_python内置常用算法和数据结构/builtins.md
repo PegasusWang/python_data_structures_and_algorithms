@@ -266,6 +266,7 @@ def maxheapval(h):
 # lru_cache/cache 优化记忆化搜索
 
 python3 functools 模块的 cache 功能和 lru_cache(maxsize=None) 一样，不过更加轻量更快。在记忆化递归搜索的时候很方便。
+注意这里的参数 `maxsize=None` 一定要设置为 None，否则默认的 maxsize=128。
 举一个力扣上的例子，如果不加 cache 递归函数因为会大量重复计算直接超时，但是加一个装饰器就可以通过。
 
 ```py
