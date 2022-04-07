@@ -361,6 +361,22 @@ sorted(l, key=lambda p:p[1]) # 根据第2个值排序，[('a', 1), ('c', 2), ('b
 # 同时获取最大值的下标和值
 l = [1,2,5,4,3]
 maxi, maxval = max(enumerate(l), key=lambda iv: iv[1]) # 2, 5
+
+# 获取字典对应的最大值对应的 key,value
+mydict = {'A':4,'B':10,'C':0,'D':87}
+maximum = max(mydict, key=mydict.get)  # Just use 'min' instead of 'max' for minimum.
+maxk, maxv = maximum, mydict[maximum]
+# 或者
+maxk, maxv = max(mydict.items(), key=lambda k: k[1])
+
+# python3 排序list自定义函数(python2 直接用 cmp 参数)
+from functools import cmp_to_key
+nums = [3,2,1,4,5]
+sorted(nums, key= cmp_to_key(lambda a,b: a-b) ) # [1 ,2 ,3, 4, 5]
+sorted(nums, key= cmp_to_key(lambda a,b: b-a) ) # [5, 4, 3, 2, 1]
+
+# 一行代码判断列表是否有序
+issorted = all(l[i] &lt;= l[i+1] for i in range(len(l) - 1))
 </code></pre>
 <h1 id="_2">链表题目调试函数</h1>
 <pre><code class="language-py"># 编写链表题目经常用到的一些通用函数和调试函数，定义等，方便代码调试
@@ -517,6 +533,7 @@ def maxheapval(h):
 </code></pre>
 <h1 id="lru_cachecache">lru_cache/cache 优化记忆化搜索</h1>
 <p>python3 functools 模块的 cache 功能和 lru_cache(maxsize=None) 一样，不过更加轻量更快。在记忆化递归搜索的时候很方便。
+注意这里的参数 <code>maxsize=None</code> 一定要设置为 None，否则默认的 maxsize=128。
 举一个力扣上的例子，如果不加 cache 递归函数因为会大量重复计算直接超时，但是加一个装饰器就可以通过。</p>
 <pre><code class="language-py">&quot;&quot;&quot;
 [337] 打家劫舍 III
