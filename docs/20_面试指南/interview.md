@@ -41,3 +41,9 @@ leetcode 上的基础题目练练手感。
 - [《程序员面试金典（第5版）》](https://book.douban.com/subject/25753386/)
 - [《剑指Offer》](https://book.douban.com/subject/25910559/)
 - [python leetCode](https://github.com/HuberTRoy/leetCodek)
+
+# 刷题网站
+leetcode 和牛客网是国内常用的两个刷题网站，笔者建议刷一下高频的 200 道题左右，基本可以应付大部分公司的算法面试了。
+
+- https://leetcode-cn.com/
+- https://www.nowcoder.com/exam/oj
