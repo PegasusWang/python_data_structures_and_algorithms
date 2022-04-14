@@ -176,7 +176,7 @@
     <li class="toctree-l2"><a href="#python-int">python int 值范围</a></li>
     
 
-    <li class="toctree-l2"><a href="#python-listdict">python list/dict 排序技巧</a></li>
+    <li class="toctree-l2"><a href="#python-listdict">python list/dict 排序等技巧</a></li>
     
 
     <li class="toctree-l2"><a href="#_2">链表题目调试函数</a></li>
@@ -342,7 +342,7 @@ sys.maxint
 MAXINT = (1&lt;&lt;63) - 1
 MININT = ~MAXINT
 </code></pre>
-<h1 id="python-listdict">python list/dict 排序技巧</h1>
+<h1 id="python-listdict">python list/dict 排序等技巧</h1>
 <pre><code class="language-py"># python 根据 key，value 排序字典
 d = {'d': 4, 'a': 1, 'b': 2, 'c':3}
 # dict sort by key and reverse
@@ -377,6 +377,10 @@ sorted(nums, key= cmp_to_key(lambda a,b: b-a) ) # [5, 4, 3, 2, 1]
 
 # 一行代码判断列表是否有序
 issorted = all(l[i] &lt;= l[i+1] for i in range(len(l) - 1))
+
+# python3 一行代码求前缀和
+from itertools import accumulate
+presums = list(accumulate([1,2,3])) # [1, 3, 6]
 </code></pre>
 <h1 id="_2">链表题目调试函数</h1>
 <pre><code class="language-py"># 编写链表题目经常用到的一些通用函数和调试函数，定义等，方便代码调试
