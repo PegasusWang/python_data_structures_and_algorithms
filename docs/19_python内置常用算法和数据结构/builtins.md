@@ -62,7 +62,7 @@ MAXINT = (1<<63) - 1
 MININT = ~MAXINT
 ```
 
-# python list/dict 排序技巧
+# python list/dict 排序等技巧
 
 ```py
 # python 根据 key，value 排序字典
@@ -99,6 +99,10 @@ sorted(nums, key= cmp_to_key(lambda a,b: b-a) ) # [5, 4, 3, 2, 1]
 
 # 一行代码判断列表是否有序
 issorted = all(l[i] <= l[i+1] for i in range(len(l) - 1))
+
+# python3 一行代码求前缀和
+from itertools import accumulate
+presums = list(accumulate([1,2,3])) # [1, 3, 6]
 ```
 
 # 链表题目调试函数
