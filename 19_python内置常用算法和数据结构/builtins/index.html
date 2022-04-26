@@ -173,6 +173,9 @@
     <li class="toctree-l2"><a href="#_1">一些坑</a></li>
     
 
+    <li class="toctree-l2"><a href="#python_1">python 递归暴栈(栈溢出)</a></li>
+    
+
     <li class="toctree-l2"><a href="#python-int">python int 值范围</a></li>
     
 
@@ -185,7 +188,7 @@
     <li class="toctree-l2"><a href="#_3">内置库实现优先级队列的三种方式</a></li>
     
 
-    <li class="toctree-l2"><a href="#python_1">python 如何实现最大堆</a></li>
+    <li class="toctree-l2"><a href="#python_2">python 如何实现最大堆</a></li>
     
 
     <li class="toctree-l2"><a href="#lru_cachecache">lru_cache/cache 优化记忆化搜索</a></li>
@@ -194,7 +197,7 @@
     <li class="toctree-l2"><a href="#leetcode">leetcode 二叉树调试函数</a></li>
     
 
-    <li class="toctree-l2"><a href="#python_2">python 交换列表元素的坑</a></li>
+    <li class="toctree-l2"><a href="#python_3">python 交换列表元素的坑</a></li>
     
 
     <li class="toctree-l2"><a href="#acm">兼容代码ACM/核心提交格式</a></li>
@@ -325,6 +328,18 @@
 <li>自定义排序函数。python2 可以用 <code>nums.sort(cmp=lambda a, b: a - b)</code>，但是python3移除了cmp参数。
 python3如果想要用自定义排序函数可以使用 functools.cmp_to_key 函数改成 <code>nums.sort(key=cmp_to_key(lambda a, b: a - b))</code></li>
 </ul>
+<h1 id="python_1">python 递归暴栈(栈溢出)</h1>
+<p>python 递归函数默认递归深度比较小，你可以通过 <code>sys.getrecursionlimit()</code> 函数打印出来。
+我在 mac 机器上测试的时候，以下结果 python2 输出 1000。这就导致一些递归函数测试用例稍微多一些就会报错。
+(一个用例超过上千个数据就会报错了)</p>
+<pre><code class="language-py">import sys
+print(sys.getrecursionlimit()) # 我的 mac 机器上输出 1000
+</code></pre>
+<p>可以把以下代码设置最大栈深度，放到文件开头，在牛客上提交代码的时候可以避免一些递归代码报错。
+(leetcode 似乎给设置了，类似的题目发现力扣上提交不会栈溢出但是在牛客就会)</p>
+<pre><code class="language-py">import sys
+sys.setrecursionlimit(100000) # 设置函数栈深度足够大，避免栈溢出错误
+</code></pre>
 <h1 id="python-int">python int 值范围</h1>
 <pre><code># 乘方 （比较推荐，py2/3 都兼容不容易出错)
 MAXINT = 2**63-1
@@ -497,7 +512,7 @@ def test_heap_item():
     while pq:
         print(heapq.heappop(pq))
 </code></pre>
-<h1 id="python_1">python 如何实现最大堆</h1>
+<h1 id="python_2">python 如何实现最大堆</h1>
 <p>python自带了heapq 模块实现了最小堆(min-heaq)，但是如果想要实现最大堆(max-heap)，有几种实现方式：</p>
 <ol>
 <li>对放入的数字取反。比如 10 放入 -10 ，然后取出来的时候再取反。个人倾向于这种，可以自己封装一个类防止来回取反搞晕</li>
@@ -690,7 +705,7 @@ def gen_tree(vals):
             cur.right = right
     return root
 </code></pre>
-<h1 id="python_2">python 交换列表元素的坑</h1>
+<h1 id="python_3">python 交换列表元素的坑</h1>
 <pre><code># 41. 缺失的第一个正数 https://leetcode-cn.com/problems/first-missing-positive/
 class Solution(object):
     def firstMissingPositive(self, nums):
