@@ -42,6 +42,25 @@
 - 自定义排序函数。python2 可以用 `nums.sort(cmp=lambda a, b: a - b)`，但是python3移除了cmp参数。
 python3如果想要用自定义排序函数可以使用 functools.cmp_to_key 函数改成 `nums.sort(key=cmp_to_key(lambda a, b: a - b))`
 
+# python 递归暴栈(栈溢出)
+
+python 递归函数默认递归深度比较小，你可以通过 `sys.getrecursionlimit()` 函数打印出来。
+我在 mac 机器上测试的时候，以下结果 python2 输出 1000。这就导致一些递归函数测试用例稍微多一些就会报错。
+(一个用例超过上千个数据就会报错了)
+
+```py
+import sys
+print(sys.getrecursionlimit()) # 我的 mac 机器上输出 1000
+```
+
+可以把以下代码设置最大栈深度，放到文件开头，在牛客上提交代码的时候可以避免一些递归代码报错。
+(leetcode 似乎给设置了，类似的题目发现力扣上提交不会栈溢出但是在牛客就会)
+
+```py
+import sys
+sys.setrecursionlimit(100000) # 设置函数栈深度足够大，避免栈溢出错误
+```
+
 # python int 值范围
 
 ```
