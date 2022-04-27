@@ -122,6 +122,9 @@ issorted = all(l[i] <= l[i+1] for i in range(len(l) - 1))
 # python3 一行代码求前缀和
 from itertools import accumulate
 presums = list(accumulate([1,2,3])) # [1, 3, 6]
+
+# 一行代码求矩阵和 https://stackoverflow.com/questions/10713150/how-to-sum-a-2d-array-in-python
+allsum = sum(map(sum, matrix)) # 或者 allsum = sum((sum(row) for row in matrix))
 ```
 
 # 链表题目调试函数
