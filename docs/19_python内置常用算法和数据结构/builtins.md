@@ -64,7 +64,7 @@ sys.setrecursionlimit(100000) # 设置函数栈深度足够大，避免栈溢出
 # python int 值范围
 
 ```
-# 乘方 （比较推荐，py2/3 都兼容不容易出错)
+# 乘方 （比较推荐⭐️，py2/3 都兼容不容易出错)
 MAXINT = 2**63-1
 MININT = -2**63
 
@@ -80,6 +80,23 @@ sys.maxint
 MAXINT = (1<<63) - 1
 MININT = ~MAXINT
 ```
+
+# python 负数位运算的坑
+1. Python3 中的整型是补码形式存储的
+2. Python3 中 bin 一个负数（十进制表示），输出的是它的原码的二进制表示加上个负号
+3. 为了获得负数（十进制表示）的补码，需要手动将其和十六进制数 0xffffffff 进行按位与操作，得到结果是个十六进制数，再交给 bin() 进行输出，
+得到的才是你想要的补码表示。
+
+```py
+# 整数转换 https://leetcode-cn.com/problems/convert-integer-lcci/
+class Solution:
+    def convertInteger(self, A: int, B: int) -> int:
+        return bin((A & 0xffffffff) ^ (B & 0xffffffff)).count('1')
+```
+
+参考：
+- https://www.runoob.com/w3cnote/python-negative-storage.html
+- https://leetcode-cn.com/problems/convert-integer-lcci/solution/python3-zhu-yi-qi-dui-yu-fu-shu-de-cun-chu-fang-sh/
 
 # python list/dict 排序等技巧
 
@@ -452,7 +469,7 @@ def gen_tree(vals):
     return root
 ```
 
-# python 交换列表元素的坑
+# python 交换列表元素的坑(交换副作用)
 
 ```
 # 41. 缺失的第一个正数 https://leetcode-cn.com/problems/first-missing-positive/
@@ -474,7 +491,7 @@ class Solution(object):
             while 1 <= nums[i] <= n and nums[nums[i]-1] != nums[i]:
                 # NOTE: 注意这一句交换右边有副作用的，不能颠倒！！！
                 # nums[i], nums[nums[i]-1] =  nums[nums[i]-1], nums[i] # 这么写死循环！
-                nums[nums[i]-1], nums[i] = nums[i], nums[nums[i]-1]
+                nums[nums[i]-1], nums[i] = nums[i], nums[nums[i]-1] # 有副作用的放前边
         for i in range(n):
             if nums[i] != i+1:
                 return i+1
