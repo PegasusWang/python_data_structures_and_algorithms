@@ -179,7 +179,13 @@
     <li class="toctree-l2"><a href="#python-int">python int 值范围</a></li>
     
 
-    <li class="toctree-l2"><a href="#python-listdict">python list/dict 排序等技巧</a></li>
+    <li class="toctree-l2"><a href="#python_2">python 负数位运算的坑</a></li>
+    
+
+    <li class="toctree-l2"><a href="#python-list">python list 技巧</a></li>
+    
+
+    <li class="toctree-l2"><a href="#python-dict">python dict 技巧</a></li>
     
 
     <li class="toctree-l2"><a href="#_2">链表题目调试函数</a></li>
@@ -188,7 +194,7 @@
     <li class="toctree-l2"><a href="#_3">内置库实现优先级队列的三种方式</a></li>
     
 
-    <li class="toctree-l2"><a href="#python_2">python 如何实现最大堆</a></li>
+    <li class="toctree-l2"><a href="#python_3">python 如何实现最大堆</a></li>
     
 
     <li class="toctree-l2"><a href="#lru_cachecache">lru_cache/cache 优化记忆化搜索</a></li>
@@ -197,7 +203,7 @@
     <li class="toctree-l2"><a href="#leetcode">leetcode 二叉树调试函数</a></li>
     
 
-    <li class="toctree-l2"><a href="#python_3">python 交换列表元素的坑</a></li>
+    <li class="toctree-l2"><a href="#python_4">python 交换列表元素的坑(交换副作用)</a></li>
     
 
     <li class="toctree-l2"><a href="#acm">兼容代码ACM/核心提交格式</a></li>
@@ -341,7 +347,7 @@ print(sys.getrecursionlimit()) # 我的 mac 机器上输出 1000
 sys.setrecursionlimit(100000) # 设置函数栈深度足够大，避免栈溢出错误
 </code></pre>
 <h1 id="python-int">python int 值范围</h1>
-<pre><code># 乘方 （比较推荐，py2/3 都兼容不容易出错)
+<pre><code># 乘方 （比较推荐⭐️，py2/3 都兼容不容易出错)
 MAXINT = 2**63-1
 MININT = -2**63
 
@@ -357,18 +363,23 @@ sys.maxint
 MAXINT = (1&lt;&lt;63) - 1
 MININT = ~MAXINT
 </code></pre>
-<h1 id="python-listdict">python list/dict 排序等技巧</h1>
-<pre><code class="language-py"># python 根据 key，value 排序字典
-d = {'d': 4, 'a': 1, 'b': 2, 'c':3}
-# dict sort by key and reverse
-dict(sorted(d.items()))  # {'a': 1, 'b': 2, 'c': 3, 'd': 4}
-dict(sorted(d.items(), reverse=True)) # {'d': 4, 'c': 3, 'b': 2, 'a': 1}
-
-# dict sort by value and reverse
-dict(sorted(d.items(), key = lambda kv:kv[1])) # {'a': 1, 'b': 2, 'c': 3, 'd': 4}
-dict(sorted(d.items(), key = lambda kv:kv[1], reverse=True)) # {'d': 4, 'c': 3, 'b': 2, 'a': 1}
-
-# 排序嵌套 list
+<h1 id="python_2">python 负数位运算的坑</h1>
+<ol>
+<li>Python3 中的整型是补码形式存储的</li>
+<li>Python3 中 bin 一个负数（十进制表示），输出的是它的原码的二进制表示加上个负号</li>
+<li>为了获得负数（十进制表示）的补码，需要手动将其和十六进制数 0xffffffff 进行按位与操作，得到结果是个十六进制数，再交给 bin() 进行输出，
+得到的才是你想要的补码表示。</li>
+</ol>
+<pre><code class="language-py"># 整数转换 https://leetcode-cn.com/problems/convert-integer-lcci/
+class Solution:
+    def convertInteger(self, A: int, B: int) -&gt; int:
+        return bin((A &amp; 0xffffffff) ^ (B &amp; 0xffffffff)).count('1')
+</code></pre>
+<p>参考：
+- https://www.runoob.com/w3cnote/python-negative-storage.html
+- https://leetcode-cn.com/problems/convert-integer-lcci/solution/python3-zhu-yi-qi-dui-yu-fu-shu-de-cun-chu-fang-sh/</p>
+<h1 id="python-list">python list 技巧</h1>
+<pre><code class="language-py"># 排序嵌套 list
 l = [('a', 1), ('c', 2), ('b',3)]
 sorted(l, key=lambda p:p[0]) # 根据第1个值排序，[('a', 1), ('b', 3), ('c', 2)]
 sorted(l, key=lambda p:p[1]) # 根据第2个值排序，[('a', 1), ('c', 2), ('b', 3)]
@@ -377,18 +388,11 @@ sorted(l, key=lambda p:p[1]) # 根据第2个值排序，[('a', 1), ('c', 2), ('b
 l = [1,2,5,4,3]
 maxi, maxval = max(enumerate(l), key=lambda iv: iv[1]) # 2, 5
 
-# 获取字典对应的最大值对应的 key,value
-mydict = {'A':4,'B':10,'C':0,'D':87}
-maximum = max(mydict, key=mydict.get)  # Just use 'min' instead of 'max' for minimum.
-maxk, maxv = maximum, mydict[maximum]
-# 或者
-maxk, maxv = max(mydict.items(), key=lambda k: k[1])
-
-# python3 排序list自定义函数(python2 直接用 cmp 参数)
+# python3 排序list自定义函数(python2 直接用 cmp 参数， python3 需要用 cmp_to_key 转成 key 参数)
 from functools import cmp_to_key
 nums = [3,2,1,4,5]
-sorted(nums, key= cmp_to_key(lambda a,b: a-b) ) # [1 ,2 ,3, 4, 5]
-sorted(nums, key= cmp_to_key(lambda a,b: b-a) ) # [5, 4, 3, 2, 1]
+sorted(nums, key=cmp_to_key(lambda a,b: a-b) ) # [1 ,2 ,3, 4, 5]
+sorted(nums, key=cmp_to_key(lambda a,b: b-a) ) # [5, 4, 3, 2, 1]
 
 # 一行代码判断列表是否有序
 issorted = all(l[i] &lt;= l[i+1] for i in range(len(l) - 1))
@@ -396,6 +400,32 @@ issorted = all(l[i] &lt;= l[i+1] for i in range(len(l) - 1))
 # python3 一行代码求前缀和
 from itertools import accumulate
 presums = list(accumulate([1,2,3])) # [1, 3, 6]
+
+# 一行代码求矩阵元素总和 https://stackoverflow.com/questions/10713150/how-to-sum-a-2d-array-in-python
+allsum = sum(map(sum, matrix)) # 或者 allsum = sum((sum(row) for row in matrix))
+</code></pre>
+<h1 id="python-dict">python dict 技巧</h1>
+<pre><code class="language-py"># python 根据 key，value 排序字典
+d = {'d': 4, 'a': 1, 'b': 2, 'c':3}
+# dict sort by **key** and reverse
+dict(sorted(d.items()))  # {'a': 1, 'b': 2, 'c': 3, 'd': 4}
+dict(sorted(d.items(), reverse=True)) # {'d': 4, 'c': 3, 'b': 2, 'a': 1}
+
+# dict sort by **value** and reverse
+dict(sorted(d.items(), key = lambda kv:kv[1])) # {'a': 1, 'b': 2, 'c': 3, 'd': 4}
+dict(sorted(d.items(), key = lambda kv:kv[1], reverse=True)) # {'d': 4, 'c': 3, 'b': 2, 'a': 1}
+
+# 获取字典对应的最大值对应的 key,value
+mydict = {'A':4,'B':10,'C':0,'D':87}
+maximum = max(mydict, key=mydict.get)  # Just use 'min' instead of 'max' for minimum.
+maxk, maxv = maximum, mydict[maximum]
+# 或者
+maxk, maxv = max(mydict.items(), key=lambda k: k[1])
+
+# 支持默认值的有序字典 (OrderedDict and defaultdict) 
+# https://stackoverflow.com/questions/6190331/how-to-implement-an-ordered-default-dict
+od = OrderedDict()  # collections.OrderedDict()
+od[i] = od.get(i, 0) + 1 # 间接实现了 defaultdict(int) ，同时保持了插入字典的 key 顺序
 </code></pre>
 <h1 id="_2">链表题目调试函数</h1>
 <pre><code class="language-py"># 编写链表题目经常用到的一些通用函数和调试函数，定义等，方便代码调试
@@ -512,7 +542,7 @@ def test_heap_item():
     while pq:
         print(heapq.heappop(pq))
 </code></pre>
-<h1 id="python_2">python 如何实现最大堆</h1>
+<h1 id="python_3">python 如何实现最大堆</h1>
 <p>python自带了heapq 模块实现了最小堆(min-heaq)，但是如果想要实现最大堆(max-heap)，有几种实现方式：</p>
 <ol>
 <li>对放入的数字取反。比如 10 放入 -10 ，然后取出来的时候再取反。个人倾向于这种，可以自己封装一个类防止来回取反搞晕</li>
@@ -705,7 +735,7 @@ def gen_tree(vals):
             cur.right = right
     return root
 </code></pre>
-<h1 id="python_3">python 交换列表元素的坑</h1>
+<h1 id="python_4">python 交换列表元素的坑(交换副作用)</h1>
 <pre><code># 41. 缺失的第一个正数 https://leetcode-cn.com/problems/first-missing-positive/
 class Solution(object):
     def firstMissingPositive(self, nums):
@@ -725,7 +755,7 @@ class Solution(object):
             while 1 &lt;= nums[i] &lt;= n and nums[nums[i]-1] != nums[i]:
                 # NOTE: 注意这一句交换右边有副作用的，不能颠倒！！！
                 # nums[i], nums[nums[i]-1] =  nums[nums[i]-1], nums[i] # 这么写死循环！
-                nums[nums[i]-1], nums[i] = nums[i], nums[nums[i]-1]
+                nums[nums[i]-1], nums[i] = nums[i], nums[nums[i]-1] # 有副作用的放前边
         for i in range(n):
             if nums[i] != i+1:
                 return i+1
