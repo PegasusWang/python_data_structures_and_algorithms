@@ -147,7 +147,7 @@ maxk, maxv = maximum, mydict[maximum]
 # 或者
 maxk, maxv = max(mydict.items(), key=lambda k: k[1])
 
-# 支持默认值的有序字典 (OrderedDict and defaultdict) 
+# 支持默认值的有序字典 (OrderedDict and defaultdict)  (注意是 key 插入顺序不是字典序)
 # https://stackoverflow.com/questions/6190331/how-to-implement-an-ordered-default-dict
 od = OrderedDict()  # collections.OrderedDict()
 od[i] = od.get(i, 0) + 1 # 间接实现了 defaultdict(int) ，同时保持了插入字典的 key 顺序
