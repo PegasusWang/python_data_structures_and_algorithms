@@ -121,9 +121,12 @@ Python 抽象程度比较高， 我们能用更少的代码来实现功能，同
 ## 算法可视化
 
 学习算法的过程中有时候会比较抽象，这里给大家推荐一些可视化的网站，方便更直观地理解各种算法和数据结构的执行步骤：
+遇到一个算法或数据结构，你可以 google 搜索 "名称+ visualization" 找到一些可视化网站方便理解，比如学习跳跃表的时候笔者就
+可以通过 goole "skip list visualization" 搜到一些可视化网站帮助你理解它的工作原理。
 
 - https://github.com/algorithm-visualizer/algorithm-visualizer
 - https://www.cs.usfca.edu/~galles/visualization/Algorithms.html
+- https://cmps-people.ok.ubc.ca/ylucet/DS/Algorithms.html
 - https://runestone.academy/runestone/books/published/pythonds/index.html#
 
 ## 讲课形式
