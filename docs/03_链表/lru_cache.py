@@ -197,7 +197,7 @@ class LRUCache(object):
         :type value: int
         :rtype: None
         """
-        if key in self.map:
+        if key in self.map: # 更新不会改变元素个数，这里不用判断是否需要剔除
             node = self.map[key]
             node.value = value  # 修改结构体会也会修改 map 对应 value 的引用
             self.ll.delete_node(node)
