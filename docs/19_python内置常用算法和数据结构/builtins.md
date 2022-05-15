@@ -125,6 +125,8 @@ presums = list(accumulate([1,2,3])) # [1, 3, 6]
 
 # 一行代码求矩阵元素总和 https://stackoverflow.com/questions/10713150/how-to-sum-a-2d-array-in-python
 allsum = sum(map(sum, matrix)) # 或者 allsum = sum((sum(row) for row in matrix))
+# 一行代码判断一个元素是否在矩阵中，比如判断 1 是否在矩阵matrix中
+any(1 in row for row in matrix)
 ```
 
 # python dict 技巧
