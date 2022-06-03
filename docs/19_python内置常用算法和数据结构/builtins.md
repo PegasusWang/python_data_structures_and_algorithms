@@ -101,10 +101,11 @@ class Solution:
 # python list 技巧
 
 ```py
-# 排序嵌套 list
+# 排序嵌套 list，比如元素值是一个 tuple 或者 list
 l = [('a', 1), ('c', 2), ('b',3)]
 sorted(l, key=lambda p:p[0]) # 根据第1个值排序，[('a', 1), ('b', 3), ('c', 2)]
 sorted(l, key=lambda p:p[1]) # 根据第2个值排序，[('a', 1), ('c', 2), ('b', 3)]
+sorted(l, key=lambda p:(-p[0], p[1])) # 先根据第一个倒排，如果相等再根据第二个正排序
 
 # 同时获取最大值的下标和值
 l = [1,2,5,4,3]
